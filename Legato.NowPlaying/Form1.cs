@@ -5,18 +5,23 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using CoreTweet;
-using Legato.Interop.AimpRemote.Entities;
 using Newtonsoft.Json;
+using Legato.Interop.AimpRemote.Entities;
 
 namespace Legato.NowPlaying
 {
 	public partial class Form1 : Form
 	{
+		#region Constractor
+
 		public Form1()
 		{
 			InitializeComponent();
 		}
+
+		#endregion
 
 		#region Constants
 
