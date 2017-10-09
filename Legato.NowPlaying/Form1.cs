@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 using CoreTweet;
 using Newtonsoft.Json;
@@ -28,6 +29,7 @@ namespace Legato.NowPlaying
 		private static readonly string _DefaultPostingFormat = "{TrackNum}. {Title}\r\nArtist: {Artist}\r\nAlbum: {Album}\r\n#nowplaying";
 		private static readonly string _DefaultPostingVoice = "please your hope voice file.";
 		private static readonly string _DefaultTokensKey = "please your tokens";
+		private static readonly string _AliasName = "MediaFile";
 
 		#endregion Constants
 
@@ -43,8 +45,8 @@ namespace Legato.NowPlaying
 
 		#region externs
 
-		[System.Runtime.InteropServices.DllImport("winmm.dll")]
-		private static extern int mciSendString(String command, StringBuilder buffer, int bufferSize, IntPtr hwndCallback);
+		[DllImport("winmm.dll")]
+		private static extern int mciSendString(string command, StringBuilder buffer, int bufferSize, IntPtr hwndCallback);
 
 		#endregion
 
@@ -87,25 +89,58 @@ namespace Legato.NowPlaying
 		/// </summary>
 		/// <param name="filePath"> 再生する Voice ファイル</param>
 		/// <param name="aliasName">規定ワード</param>
-		private void _PostingVoice(string filePath, string aliasName)
+		private async Task _PostingVoice(string filePath, string aliasName)
 		{
-			string fileName = filePath;
-			string cmd;
-
-			// ファイルを開く
-			cmd = "open \"" + fileName + "\" type mpegvideo alias " + aliasName;
-			if (mciSendString(cmd, null, 0, IntPtr.Zero) != 0) return;
-
-			// 再生する
-			cmd = "play " + aliasName;
-			mciSendString(cmd, null, 0, IntPtr.Zero);
+			await _PlayingVoice(filePath, aliasName);
 		}
 
 		/// <summary>
 		/// 再生した Voice を停止します。
 		/// </summary>
 		/// <param name="aliasName">規定ワード</param>
-		private void _UnPostingVoice(string aliasName)
+		private async Task _UnPostingVoice(string aliasName)
+		{
+			await _StoppedVoice(aliasName);
+		}
+
+		/// <summary>
+		/// 非同期でボイスファイルを再生します。
+		/// </summary>
+		private async Task _PlayingVoice(string fileName, string aliasName)
+		{
+			string cmd;
+
+			try
+			{
+				// ファイルを開く
+				cmd = "open \"" + fileName + "\" type mpegvideo alias " + aliasName;
+
+				if (mciSendString(cmd, null, 0, IntPtr.Zero) != 0)
+					throw new ApplicationException();
+
+				// 再生する
+				cmd = "play " + aliasName;
+				mciSendString(cmd, null, 0, IntPtr.Zero);
+
+				await Task.Delay(1000);
+			}
+			catch (ApplicationException ex)
+			{
+				MessageBox.Show($"mp3 再生エラーが発生しました。\r\n{ex.StackTrace}",
+								"mp3 再生エラー", 
+								MessageBoxButtons.OK, 
+								MessageBoxIcon.Error);
+			}
+			finally
+			{
+				//今のところ、常に実行したいものはない。
+			}
+		}
+
+		/// <summary>
+		/// 非同期でボイスファイルを停止します。
+		/// </summary>
+		private async Task _StoppedVoice(string aliasName)
 		{
 			string cmd;
 
@@ -116,6 +151,8 @@ namespace Legato.NowPlaying
 			// 閉じる
 			cmd = "close " + aliasName;
 			mciSendString(cmd, null, 0, IntPtr.Zero);
+
+			await Task.Delay(100);
 		}
 
 		/// <summary>
@@ -301,12 +338,9 @@ namespace Legato.NowPlaying
 				// auto posting
 				if (checkBoxAutoPosting.Checked)
 				{
-					string aliasName = "MediaFile";
-
-					_PostingVoice(_PostingSound, aliasName);
+					await _PostingVoice(_PostingSound, _AliasName);
 					await _PostAsync();
-					await Task.Delay(1000);
-					_UnPostingVoice(aliasName);
+					await _UnPostingVoice(_AliasName);
 				}
 			};
 
@@ -324,11 +358,9 @@ namespace Legato.NowPlaying
 
 		private async void buttonPostNowPlaying_Click(object sender, EventArgs e)
 		{
-			string aliasName = "MediaFile";
-
-			_PostingVoice(_PostingSound, aliasName);
+			await _PostingVoice(_PostingSound, _AliasName);
 			await _PostAsync();
-			_UnPostingVoice(aliasName);
+			await _UnPostingVoice(_AliasName);
 		}
 
 		private void pictureBoxAlbumArt_Click(object sender, EventArgs e)
