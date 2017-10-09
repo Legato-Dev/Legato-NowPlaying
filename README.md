@@ -12,6 +12,9 @@ Let's post your track information Twitter!  
 ## License for Legato-NowPlaying
 MIT
 
+## Sample
+![sample](sample.png)
+
 ### Legato.NowPlayingで利用しているライブラリとそのライセンス
 - Legato : MIT License
 - CoreTweet : MIT License
