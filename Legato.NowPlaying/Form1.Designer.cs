@@ -49,7 +49,7 @@
 			this.buttonPostNowPlaying.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.buttonPostNowPlaying.Location = new System.Drawing.Point(187, 156);
 			this.buttonPostNowPlaying.Name = "buttonPostNowPlaying";
-			this.buttonPostNowPlaying.Size = new System.Drawing.Size(107, 25);
+			this.buttonPostNowPlaying.Size = new System.Drawing.Size(108, 25);
 			this.buttonPostNowPlaying.TabIndex = 0;
 			this.buttonPostNowPlaying.Text = "NowPlaying";
 			this.buttonPostNowPlaying.UseVisualStyleBackColor = true;
@@ -155,9 +155,9 @@
 			// 
 			this.buttonShowSettingWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.buttonShowSettingWindow.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.buttonShowSettingWindow.Location = new System.Drawing.Point(300, 156);
+			this.buttonShowSettingWindow.Location = new System.Drawing.Point(314, 156);
 			this.buttonShowSettingWindow.Name = "buttonShowSettingWindow";
-			this.buttonShowSettingWindow.Size = new System.Drawing.Size(75, 25);
+			this.buttonShowSettingWindow.Size = new System.Drawing.Size(108, 25);
 			this.buttonShowSettingWindow.TabIndex = 9;
 			this.buttonShowSettingWindow.Text = "Settings...";
 			this.buttonShowSettingWindow.UseVisualStyleBackColor = true;

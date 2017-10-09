@@ -48,7 +48,6 @@ namespace Legato.NowPlaying
 
 		#endregion
 
-
 		#region Methods
 
 		private async Task _PostAsync()
@@ -273,7 +272,7 @@ namespace Legato.NowPlaying
 
 		private async void Form1_Load(object sender, EventArgs e)
 		{
-			Icon = NowPlaying.Properties.Resources.legato;
+			Icon = Properties.Resources.legato;
 			_NotifyTime = new TimeSpan(0, 0, 1);
 
 			await _LoadTokensFileAsync();
@@ -286,7 +285,7 @@ namespace Legato.NowPlaying
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Information);
 
-				Close();
+				this.Close();
 				return;
 			}
 
