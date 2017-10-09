@@ -12,3 +12,7 @@ Let's post your track information Twitter!  
 ## License for Legato-NowPlaying
 MIT
 
+### Legato.NowPlayingで利用しているライブラリとそのライセンス
+- Legato : MIT License
+- CoreTweet : MIT License
+- Json.NET(Newtonsoft.Json) : MIT License
