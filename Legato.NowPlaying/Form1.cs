@@ -89,24 +89,24 @@ namespace Legato.NowPlaying
 		/// </summary>
 		/// <param name="filePath"> 再生する Voice ファイル</param>
 		/// <param name="aliasName">規定ワード</param>
-		private async Task _PostingVoice(string filePath, string aliasName)
+		private async Task _PostingVoiceAsync(string filePath, string aliasName)
 		{
-			await _PlayingVoice(filePath, aliasName);
+			await _PlayingVoiceAsync(filePath, aliasName);
 		}
 
 		/// <summary>
 		/// 再生した Voice を停止します。
 		/// </summary>
 		/// <param name="aliasName">規定ワード</param>
-		private async Task _UnPostingVoice(string aliasName)
+		private async Task _UnPostingVoiceAsync(string aliasName)
 		{
-			await _StoppedVoice(aliasName);
+			await _StoppedVoiceAsync(aliasName);
 		}
 
 		/// <summary>
 		/// 非同期でボイスファイルを再生します。
 		/// </summary>
-		private async Task _PlayingVoice(string fileName, string aliasName)
+		private async Task _PlayingVoiceAsync(string fileName, string aliasName)
 		{
 			string cmd;
 
@@ -140,7 +140,7 @@ namespace Legato.NowPlaying
 		/// <summary>
 		/// 非同期でボイスファイルを停止します。
 		/// </summary>
-		private async Task _StoppedVoice(string aliasName)
+		private async Task _StoppedVoiceAsync(string aliasName)
 		{
 			string cmd;
 
@@ -338,9 +338,9 @@ namespace Legato.NowPlaying
 				// auto posting
 				if (checkBoxAutoPosting.Checked)
 				{
-					await _PostingVoice(_PostingSound, _AliasName);
+					await _PostingVoiceAsync(_PostingSound, _AliasName);
 					await _PostAsync();
-					await _UnPostingVoice(_AliasName);
+					await _UnPostingVoiceAsync(_AliasName);
 				}
 			};
 
@@ -358,9 +358,9 @@ namespace Legato.NowPlaying
 
 		private async void buttonPostNowPlaying_Click(object sender, EventArgs e)
 		{
-			await _PostingVoice(_PostingSound, _AliasName);
+			await _PostingVoiceAsync(_PostingSound, _AliasName);
 			await _PostAsync();
-			await _UnPostingVoice(_AliasName);
+			await _UnPostingVoiceAsync(_AliasName);
 		}
 
 		private void pictureBoxAlbumArt_Click(object sender, EventArgs e)
