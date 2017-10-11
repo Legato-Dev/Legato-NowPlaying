@@ -28,8 +28,11 @@ namespace Legato.NowPlaying
 
 		private static readonly string _DefaultPostingFormat = "{TrackNum}. {Title}\r\nArtist: {Artist}\r\nAlbum: {Album}\r\n#nowplaying";
 		private static readonly string _DefaultPostingVoice = "please your hope voice file.";
+		private static readonly string _DefaultExitingVoice = "please your hope voice file.";
 		private static readonly string _DefaultTokensKey = "please your tokens";
 		private static readonly string _AliasName = "MediaFile";
+
+		private bool _IsClosed;
 
 		#endregion Constants
 
@@ -38,8 +41,10 @@ namespace Legato.NowPlaying
 		private Legato _Legato { get; set; }
 		private Tokens _Twitter { get; set; }
 		private TimeSpan _NotifyTime { get; set; }
+
 		private string _PostingFormat { get; set; }
 		private string _PostingSound { get; set; }
+		private string _ExitingSound { get; set; }
 
 		#endregion Properties
 
@@ -85,6 +90,16 @@ namespace Legato.NowPlaying
 		}
 
 		/// <summary>
+		/// Legato-NowPlaying を終了する際に、Voice 再生を行います。
+		/// </summary>
+		/// <param name="filePath"> 再生する Voice ファイル</param>
+		/// <param name="aliasName">規定ワード</param>
+		private async Task _ExitingVoiceAsync(string filePath, string aliasName)
+		{
+			await _PlayingVoiceAsync(filePath, aliasName);
+		}
+
+		/// <summary>
 		/// Twitter に投稿する際に、Voice 再生を行います。
 		/// </summary>
 		/// <param name="filePath"> 再生する Voice ファイル</param>
@@ -92,6 +107,15 @@ namespace Legato.NowPlaying
 		private async Task _PostingVoiceAsync(string filePath, string aliasName)
 		{
 			await _PlayingVoiceAsync(filePath, aliasName);
+		}
+
+		/// <summary>
+		/// 再生した Voice を停止します。
+		/// </summary>
+		/// <param name="aliasName">規定ワード</param>
+		private async Task _UnExitingVoiceAsync(string aliasName)
+		{
+			await _StoppedVoiceAsync(aliasName);
 		}
 
 		/// <summary>
@@ -118,10 +142,25 @@ namespace Legato.NowPlaying
 				if (mciSendString(cmd, null, 0, IntPtr.Zero) != 0)
 					throw new ApplicationException();
 
-				// 再生する
-				cmd = "play " + aliasName;
-				mciSendString(cmd, null, 0, IntPtr.Zero);
+				// Legato-NowPlaying が終了される時
+				if (_IsClosed)
+				{
+					_IsClosed = false;
 
+					// 再生する
+					cmd = "play " + aliasName;
+					mciSendString(cmd, null, 0, IntPtr.Zero);
+
+					// 終了メッセージ、ボイスを再生
+					// ボイスが指定されない場合は、例外発生。
+					new LegatoMessageBox("Legato-NowPlaying を終了します。", "れがーとなうぷれしゅーりょー", 1500);
+				}
+				else
+				{
+					// 再生する
+					cmd = "play " + aliasName;
+					mciSendString(cmd, null, 0, IntPtr.Zero);
+				}
 				await Task.Delay(1000);
 			}
 			catch (ApplicationException ex)
@@ -210,12 +249,14 @@ namespace Legato.NowPlaying
 				dynamic json = JsonConvert.DeserializeObject(jsonString);
 
 				_PostingFormat = json.format ?? _DefaultPostingFormat;
-				_PostingSound = json.sound ?? _DefaultPostingVoice;
+				_PostingSound = json.postsound ?? _DefaultPostingVoice;
+				_ExitingSound = json.exitsound ?? _DefaultExitingVoice;
 			}
 			catch
 			{
 				_PostingFormat = _DefaultPostingFormat;
 				_PostingSound = _DefaultPostingVoice;
+				_ExitingSound = _DefaultExitingVoice;
 				await _SaveSettingsAsync();
 			}
 		}
@@ -228,7 +269,7 @@ namespace Legato.NowPlaying
 			// 設定ファイルに保存すべき情報がある場合
 			if (_PostingFormat != null)
 			{
-				var data = new { format = _PostingFormat, sound = _PostingSound };
+				var data = new { format = _PostingFormat, postsound = _PostingSound, exitsound = _ExitingSound };
 
 				var jsonString = JsonConvert.SerializeObject(data, new JsonSerializerSettings
 				{
@@ -311,6 +352,7 @@ namespace Legato.NowPlaying
 		{
 			Icon = Properties.Resources.legato;
 			_NotifyTime = new TimeSpan(0, 0, 1);
+			_IsClosed = false;
 
 			await _LoadTokensFileAsync();
 
@@ -351,9 +393,13 @@ namespace Legato.NowPlaying
 			}
 		}
 
-		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+		private async void Form1_FormClosed(object sender, FormClosedEventArgs e)
 		{
+			_IsClosed = true;
+			await _ExitingVoiceAsync(_ExitingSound, _AliasName);
+
 			_Legato?.Dispose();
+			await _UnExitingVoiceAsync(_AliasName);
 		}
 
 		private async void buttonPostNowPlaying_Click(object sender, EventArgs e)
@@ -379,13 +425,14 @@ namespace Legato.NowPlaying
 
 		private async void buttonShowSettingWindow_Click(object sender, EventArgs e)
 		{
-			var settingWindow = new SettingWindow(_PostingFormat, _PostingSound);
+			var settingWindow = new SettingWindow(_PostingFormat, _PostingSound, _ExitingSound);
 
 			if (settingWindow.ShowDialog() == DialogResult.OK)
 			{
 				_PostingFormat = settingWindow.PostingFormat;
 				_NotifyTime = settingWindow.notifyTime;
 				_PostingSound = settingWindow.PostingSound;
+				_ExitingSound = settingWindow.ExitingSound;
 				await _SaveSettingsAsync();
 			}
 		}
