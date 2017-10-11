@@ -36,16 +36,19 @@
 			this.UpDownNotifyTime = new System.Windows.Forms.NumericUpDown();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
-			this.VoicePath = new System.Windows.Forms.TextBox();
-			this.VoiceSetting = new System.Windows.Forms.Button();
+			this.PostVoicePath = new System.Windows.Forms.TextBox();
+			this.PostVoiceSetting = new System.Windows.Forms.Button();
 			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+			this.ExitVoiceSetting = new System.Windows.Forms.Button();
+			this.label5 = new System.Windows.Forms.Label();
+			this.ExitVoicePath = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.UpDownNotifyTime)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// textBoxPostingFormat
 			// 
-			this.textBoxPostingFormat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.textBoxPostingFormat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBoxPostingFormat.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.textBoxPostingFormat.Location = new System.Drawing.Point(12, 32);
 			this.textBoxPostingFormat.Multiline = true;
@@ -67,7 +70,7 @@
 			// 
 			this.buttonOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonOk.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.buttonOk.Location = new System.Drawing.Point(378, 314);
+			this.buttonOk.Location = new System.Drawing.Point(378, 357);
 			this.buttonOk.Name = "buttonOk";
 			this.buttonOk.Size = new System.Drawing.Size(124, 23);
 			this.buttonOk.TabIndex = 2;
@@ -84,15 +87,15 @@
 			this.label2.Size = new System.Drawing.Size(236, 100);
 			this.label2.TabIndex = 3;
 			this.label2.Text = "Available tags:\r\n{Title} : Embed track title\r\n{TrackNum} : Embed track number\r\n{A" +
-	"rtist} : Embed artist name\r\n{Album} : Embed album name\r\n";
+    "rtist} : Embed artist name\r\n{Album} : Embed album name\r\n";
 			// 
 			// panel1
 			// 
-			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel1.Cursor = System.Windows.Forms.Cursors.Default;
-			this.panel1.Location = new System.Drawing.Point(12, 303);
+			this.panel1.Location = new System.Drawing.Point(12, 346);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(490, 1);
 			this.panel1.TabIndex = 9;
@@ -102,18 +105,18 @@
 			this.UpDownNotifyTime.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.UpDownNotifyTime.Location = new System.Drawing.Point(105, 249);
 			this.UpDownNotifyTime.Minimum = new decimal(new int[] {
-			1,
-			0,
-			0,
-			0});
+            1,
+            0,
+            0,
+            0});
 			this.UpDownNotifyTime.Name = "UpDownNotifyTime";
 			this.UpDownNotifyTime.Size = new System.Drawing.Size(120, 24);
 			this.UpDownNotifyTime.TabIndex = 10;
 			this.UpDownNotifyTime.Value = new decimal(new int[] {
-			1,
-			0,
-			0,
-			0});
+            1,
+            0,
+            0,
+            0});
 			// 
 			// label3
 			// 
@@ -131,39 +134,70 @@
 			this.label4.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.label4.Location = new System.Drawing.Point(13, 278);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(71, 18);
+			this.label4.Size = new System.Drawing.Size(76, 18);
 			this.label4.TabIndex = 12;
-			this.label4.Text = "VoiceFile : ";
+			this.label4.Text = "PostVoice : ";
 			// 
-			// VoicePath
+			// PostVoicePath
 			// 
-			this.VoicePath.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.VoicePath.Location = new System.Drawing.Point(105, 275);
-			this.VoicePath.Name = "VoicePath";
-			this.VoicePath.Size = new System.Drawing.Size(397, 25);
-			this.VoicePath.TabIndex = 13;
+			this.PostVoicePath.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.PostVoicePath.Location = new System.Drawing.Point(105, 275);
+			this.PostVoicePath.Name = "PostVoicePath";
+			this.PostVoicePath.Size = new System.Drawing.Size(397, 25);
+			this.PostVoicePath.TabIndex = 13;
 			// 
-			// VoiceSetting
+			// PostVoiceSetting
 			// 
-			this.VoiceSetting.Location = new System.Drawing.Point(248, 314);
-			this.VoiceSetting.Name = "VoiceSetting";
-			this.VoiceSetting.Size = new System.Drawing.Size(124, 23);
-			this.VoiceSetting.TabIndex = 14;
-			this.VoiceSetting.Text = "voice setting";
-			this.VoiceSetting.UseVisualStyleBackColor = true;
-			this.VoiceSetting.Click += new System.EventHandler(this.VoiceSetting_Click);
+			this.PostVoiceSetting.Location = new System.Drawing.Point(118, 357);
+			this.PostVoiceSetting.Name = "PostVoiceSetting";
+			this.PostVoiceSetting.Size = new System.Drawing.Size(124, 23);
+			this.PostVoiceSetting.TabIndex = 14;
+			this.PostVoiceSetting.Text = "PostVoice Setting";
+			this.PostVoiceSetting.UseVisualStyleBackColor = true;
+			this.PostVoiceSetting.Click += new System.EventHandler(this.PostVoiceSetting_Click);
 			// 
 			// openFileDialog
 			// 
 			this.openFileDialog.FileName = "openFileDialog";
 			// 
+			// ExitVoiceSetting
+			// 
+			this.ExitVoiceSetting.Location = new System.Drawing.Point(248, 357);
+			this.ExitVoiceSetting.Name = "ExitVoiceSetting";
+			this.ExitVoiceSetting.Size = new System.Drawing.Size(124, 23);
+			this.ExitVoiceSetting.TabIndex = 15;
+			this.ExitVoiceSetting.Text = "ExitVoice Setting";
+			this.ExitVoiceSetting.UseVisualStyleBackColor = true;
+			this.ExitVoiceSetting.Click += new System.EventHandler(this.ExitVoiceSetting_Click);
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.label5.Location = new System.Drawing.Point(13, 305);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(73, 18);
+			this.label5.TabIndex = 16;
+			this.label5.Text = "ExitVoice : ";
+			// 
+			// ExitVoicePath
+			// 
+			this.ExitVoicePath.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.ExitVoicePath.Location = new System.Drawing.Point(105, 302);
+			this.ExitVoicePath.Name = "ExitVoicePath";
+			this.ExitVoicePath.Size = new System.Drawing.Size(397, 25);
+			this.ExitVoicePath.TabIndex = 17;
+			// 
 			// SettingWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(514, 349);
-			this.Controls.Add(this.VoiceSetting);
-			this.Controls.Add(this.VoicePath);
+			this.ClientSize = new System.Drawing.Size(514, 392);
+			this.Controls.Add(this.ExitVoicePath);
+			this.Controls.Add(this.label5);
+			this.Controls.Add(this.ExitVoiceSetting);
+			this.Controls.Add(this.PostVoiceSetting);
+			this.Controls.Add(this.PostVoicePath);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.UpDownNotifyTime);
@@ -191,8 +225,11 @@
 		private System.Windows.Forms.NumericUpDown UpDownNotifyTime;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.TextBox VoicePath;
-		private System.Windows.Forms.Button VoiceSetting;
+		private System.Windows.Forms.TextBox PostVoicePath;
+		private System.Windows.Forms.Button PostVoiceSetting;
 		private System.Windows.Forms.OpenFileDialog openFileDialog;
+		private System.Windows.Forms.Button ExitVoiceSetting;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.TextBox ExitVoicePath;
 	}
 }

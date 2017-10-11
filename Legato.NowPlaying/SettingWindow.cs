@@ -11,6 +11,7 @@ namespace Legato.NowPlaying
 		public string PostingFormat { get; set; }
 		public TimeSpan notifyTime { get; private set; }
 		public string PostingSound { get; set; }
+		public string ExitingSound { get; set; }
 
 		#endregion
 
@@ -19,12 +20,13 @@ namespace Legato.NowPlaying
 		/// <summary>
 		/// SettingWindow コンストラクタ
 		/// </summary>
-		public SettingWindow(string postingFormat, string postingSound)
+		public SettingWindow(string postingFormat, string postingSound, string exitingSound)
 		{
 			InitializeComponent();
 
 			PostingFormat = postingFormat;
 			PostingSound = postingSound;
+			ExitingSound = exitingSound;
 		}
 
 		#endregion
@@ -37,7 +39,8 @@ namespace Legato.NowPlaying
 		private void SettingWindow_Load(object sender, EventArgs e)
 		{
 			textBoxPostingFormat.Text = PostingFormat;
-			VoicePath.Text = PostingSound;
+			PostVoicePath.Text = PostingSound;
+			ExitVoicePath.Text = ExitingSound;
 		}
 
 		/// <summary>
@@ -47,7 +50,8 @@ namespace Legato.NowPlaying
 		{
 			PostingFormat = textBoxPostingFormat.Text;
 			notifyTime = TimeSpan.FromSeconds((double)UpDownNotifyTime.Value);
-			PostingSound = VoicePath.Text;
+			PostingSound = PostVoicePath.Text;
+			ExitingSound = ExitVoicePath.Text;
 
 			DialogResult = DialogResult.OK;
 			Close();
@@ -56,15 +60,26 @@ namespace Legato.NowPlaying
 		/// <summary>
 		/// 投稿時にお知らせを行うボイスファイルを決定します。
 		/// </summary>
-		private void VoiceSetting_Click(object sender, EventArgs e)
+		private void PostVoiceSetting_Click(object sender, EventArgs e)
 		{
 			if (openFileDialog.ShowDialog() == DialogResult.OK)
 			{
 				string str = openFileDialog.FileName;
-				VoicePath.Text = Path.GetDirectoryName(str) + @"\" + Path.GetFileName(str);
+				PostVoicePath.Text = Path.GetDirectoryName(str) + @"\" + Path.GetFileName(str);
 			}
 		}
 
+		/// <summary>
+		/// Lagato-NowPlaying 終了時に再生するボイスファイルを決定します。
+		/// </summary>
+		private void ExitVoiceSetting_Click(object sender, EventArgs e)
+		{
+			if (openFileDialog.ShowDialog() == DialogResult.OK)
+			{
+				string str = openFileDialog.FileName;
+				ExitVoicePath.Text = Path.GetDirectoryName(str) + @"\" + Path.GetFileName(str);
+			}
+		}
 		#endregion
 	}
 }
