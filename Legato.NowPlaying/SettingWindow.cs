@@ -8,6 +8,8 @@ namespace Legato.NowPlaying
 	{
 		#region Properties
 
+		private OpenFileDialog _OpenFileDialog { get; set; } = new OpenFileDialog();
+
 		public string PostingFormat { get; set; }
 		public TimeSpan notifyTime { get; private set; }
 		public string PostingSound { get; set; }
@@ -62,9 +64,9 @@ namespace Legato.NowPlaying
 		/// </summary>
 		private void PostVoiceSetting_Click(object sender, EventArgs e)
 		{
-			if (openFileDialog.ShowDialog() == DialogResult.OK)
+			if (_OpenFileDialog.ShowDialog() == DialogResult.OK)
 			{
-				string str = openFileDialog.FileName;
+				string str = _OpenFileDialog.FileName;
 				PostVoicePath.Text = Path.GetDirectoryName(str) + @"\" + Path.GetFileName(str);
 			}
 		}
@@ -74,9 +76,9 @@ namespace Legato.NowPlaying
 		/// </summary>
 		private void ExitVoiceSetting_Click(object sender, EventArgs e)
 		{
-			if (openFileDialog.ShowDialog() == DialogResult.OK)
+			if (_OpenFileDialog.ShowDialog() == DialogResult.OK)
 			{
-				string str = openFileDialog.FileName;
+				string str = _OpenFileDialog.FileName;
 				ExitVoicePath.Text = Path.GetDirectoryName(str) + @"\" + Path.GetFileName(str);
 			}
 		}

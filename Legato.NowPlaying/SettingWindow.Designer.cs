@@ -38,7 +38,6 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.PostVoicePath = new System.Windows.Forms.TextBox();
 			this.PostVoiceSetting = new System.Windows.Forms.Button();
-			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.ExitVoiceSetting = new System.Windows.Forms.Button();
 			this.label5 = new System.Windows.Forms.Label();
 			this.ExitVoicePath = new System.Windows.Forms.TextBox();
@@ -103,7 +102,7 @@
 			// UpDownNotifyTime
 			// 
 			this.UpDownNotifyTime.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.UpDownNotifyTime.Location = new System.Drawing.Point(105, 249);
+			this.UpDownNotifyTime.Location = new System.Drawing.Point(105, 256);
 			this.UpDownNotifyTime.Minimum = new decimal(new int[] {
             1,
             0,
@@ -122,7 +121,7 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label3.Location = new System.Drawing.Point(13, 250);
+			this.label3.Location = new System.Drawing.Point(13, 257);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(86, 18);
 			this.label3.TabIndex = 11;
@@ -132,7 +131,7 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label4.Location = new System.Drawing.Point(13, 278);
+			this.label4.Location = new System.Drawing.Point(23, 286);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(76, 18);
 			this.label4.TabIndex = 12;
@@ -141,32 +140,28 @@
 			// PostVoicePath
 			// 
 			this.PostVoicePath.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.PostVoicePath.Location = new System.Drawing.Point(105, 275);
+			this.PostVoicePath.Location = new System.Drawing.Point(105, 283);
 			this.PostVoicePath.Name = "PostVoicePath";
-			this.PostVoicePath.Size = new System.Drawing.Size(397, 25);
+			this.PostVoicePath.Size = new System.Drawing.Size(358, 25);
 			this.PostVoicePath.TabIndex = 13;
 			// 
 			// PostVoiceSetting
 			// 
-			this.PostVoiceSetting.Location = new System.Drawing.Point(118, 357);
+			this.PostVoiceSetting.Location = new System.Drawing.Point(469, 284);
 			this.PostVoiceSetting.Name = "PostVoiceSetting";
-			this.PostVoiceSetting.Size = new System.Drawing.Size(124, 23);
+			this.PostVoiceSetting.Size = new System.Drawing.Size(33, 23);
 			this.PostVoiceSetting.TabIndex = 14;
-			this.PostVoiceSetting.Text = "PostVoice Setting";
+			this.PostVoiceSetting.Text = "...";
 			this.PostVoiceSetting.UseVisualStyleBackColor = true;
 			this.PostVoiceSetting.Click += new System.EventHandler(this.PostVoiceSetting_Click);
 			// 
-			// openFileDialog
-			// 
-			this.openFileDialog.FileName = "openFileDialog";
-			// 
 			// ExitVoiceSetting
 			// 
-			this.ExitVoiceSetting.Location = new System.Drawing.Point(248, 357);
+			this.ExitVoiceSetting.Location = new System.Drawing.Point(469, 313);
 			this.ExitVoiceSetting.Name = "ExitVoiceSetting";
-			this.ExitVoiceSetting.Size = new System.Drawing.Size(124, 23);
+			this.ExitVoiceSetting.Size = new System.Drawing.Size(33, 23);
 			this.ExitVoiceSetting.TabIndex = 15;
-			this.ExitVoiceSetting.Text = "ExitVoice Setting";
+			this.ExitVoiceSetting.Text = "...";
 			this.ExitVoiceSetting.UseVisualStyleBackColor = true;
 			this.ExitVoiceSetting.Click += new System.EventHandler(this.ExitVoiceSetting_Click);
 			// 
@@ -174,7 +169,7 @@
 			// 
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label5.Location = new System.Drawing.Point(13, 305);
+			this.label5.Location = new System.Drawing.Point(26, 315);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(73, 18);
 			this.label5.TabIndex = 16;
@@ -183,9 +178,9 @@
 			// ExitVoicePath
 			// 
 			this.ExitVoicePath.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.ExitVoicePath.Location = new System.Drawing.Point(105, 302);
+			this.ExitVoicePath.Location = new System.Drawing.Point(105, 312);
 			this.ExitVoicePath.Name = "ExitVoicePath";
-			this.ExitVoicePath.Size = new System.Drawing.Size(397, 25);
+			this.ExitVoicePath.Size = new System.Drawing.Size(358, 25);
 			this.ExitVoicePath.TabIndex = 17;
 			// 
 			// SettingWindow
@@ -227,7 +222,6 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.TextBox PostVoicePath;
 		private System.Windows.Forms.Button PostVoiceSetting;
-		private System.Windows.Forms.OpenFileDialog openFileDialog;
 		private System.Windows.Forms.Button ExitVoiceSetting;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.TextBox ExitVoicePath;

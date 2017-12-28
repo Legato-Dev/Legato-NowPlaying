@@ -10,14 +10,14 @@ namespace Legato.NowPlaying
 	/// </summary>
 	internal class LegatoMessageBox
 	{
-		#region Field Variable
+		#region Fields
 
 		private System.Threading.Timer _timer;
 		private string _caption;
 
 		#endregion
 
-		#region DLL's
+		#region External APIs
 
 		[DllImport("user32.dll", SetLastError = true)]
 		public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);

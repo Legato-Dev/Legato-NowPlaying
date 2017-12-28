@@ -58,12 +58,6 @@
     <Compile Include="Legato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Legato.AlbumArtExtraction\Legato.AlbumArtExtraction.csproj">
-      <Project>{89bd928a-0196-47d5-be87-9deb0947b9a5}</Project>
-      <Name>Legato.AlbumArtExtraction</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
