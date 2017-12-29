@@ -1,21 +1,37 @@
 ![Logo](logo.png)
-# Legato-NowPlaying
-Using Legato API .NET for Twitter Posting NowPlaying.
+# Legato-NowPlaying(en)
+A NowPlaying Application for Twitter with AIMP Remote API library "Legato".
 
-Let's post your track information Twitter!  
+Let's share on Twitter for your track information!
 
-----
-
-このプロジェクトは、Legato を使用したなうぷれを実現します。
-あなたの聴いている曲を Twitter で共有しましょう！
-
-## License for Legato-NowPlaying
-MIT
-
-## Sample
 ![sample](sample.png)
 
-### Legato.NowPlayingで利用しているライブラリとそのライセンス
+## License for Legato-NowPlaying itself
+MIT License
+
+### Libraries used in Legato-NowPlaying, and its licenses
 - Legato : MIT License
+- AlbumArtExtraction : MIT License
 - CoreTweet : MIT License
 - Json.NET(Newtonsoft.Json) : MIT License
+
+----
+----
+
+![Logo](logo.png)
+
+# Legato-NowPlaying(ja)
+AIMP Remote API ライブラリ「Legato」を利用したTwitter向けNowPlayingアプリケーションです。
+
+あなたの聴いている曲を Twitter で共有しよう！
+
+![sample](sample.png)
+
+## Legato-NowPlaying自体のライセンス
+MIT ライセンス
+
+### Legato-NowPlayingで利用しているライブラリとそのライセンス
+- Legato : MIT ライセンス
+- AlbumArtExtraction : MIT ライセンス
+- CoreTweet : MIT ライセンス
+- Json.NET(Newtonsoft.Json) : MIT ライセンス
