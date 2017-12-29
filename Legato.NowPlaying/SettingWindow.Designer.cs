@@ -1,4 +1,4 @@
-﻿namespace Legato.NowPlaying
+﻿namespace LegatoNowPlaying
 {
 	partial class SettingWindow
 	{

@@ -3,7 +3,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Legato.NowPlaying {
+namespace LegatoNowPlaying {
 	public class SoundService : IDisposable {
 
 		private SoundService(string filePath, string aliasName) {

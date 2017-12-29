@@ -3,7 +3,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
-namespace Legato.NowPlaying
+namespace LegatoNowPlaying
 {
 	/// <summary>
 	/// Legato-NowPlaying 終了時のメッセージウィンドウ管理クラス。

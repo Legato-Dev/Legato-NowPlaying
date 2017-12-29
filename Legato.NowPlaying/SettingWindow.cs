@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 
-namespace Legato.NowPlaying
+namespace LegatoNowPlaying
 {
 	public partial class SettingWindow : Form
 	{

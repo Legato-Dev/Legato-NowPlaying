@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Legato.NowPlaying.Properties
+namespace LegatoNowPlaying.Properties
 {
 
 

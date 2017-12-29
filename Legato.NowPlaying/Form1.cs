@@ -11,8 +11,9 @@ using Newtonsoft.Json;
 using Legato.Interop.AimpRemote.Entities;
 using AlbumArtExtraction;
 using System.Drawing;
+using Legato;
 
-namespace Legato.NowPlaying {
+namespace LegatoNowPlaying {
 	public partial class Form1 : Form {
 		#region Constractor
 
@@ -119,21 +120,11 @@ namespace Legato.NowPlaying {
 				await Task.Delay(1000);
 				return sound;
 			}
-			catch (FileNotFoundException ex) {
+			catch (FileNotFoundException) {
 				sound?.Close();
 
 				MessageBox.Show(
 					$"mp3 再生エラーが発生しました。\r\nファイルが見つかりません: {filePath}",
-					"mp3 再生エラー",
-					MessageBoxButtons.OK,
-					MessageBoxIcon.Error);
-				return null;
-			}
-			catch (ApplicationException ex) {
-				sound?.Close();
-
-				MessageBox.Show(
-					$"mp3 再生エラーが発生しました。\r\n{ex.StackTrace}",
 					"mp3 再生エラー",
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Error);

@@ -7,8 +7,8 @@
     <ProjectGuid>{98ED99F2-1323-4153-B1D1-44874270FD31}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Legato.NowPlaying</RootNamespace>
-    <AssemblyName>Legato.NowPlaying</AssemblyName>
+    <RootNamespace>LegatoNowPlaying</RootNamespace>
+    <AssemblyName>LegatoNowPlaying</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -88,9 +88,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="SettingWindow.resx">
-      <DependentUpon>SettingWindow.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
