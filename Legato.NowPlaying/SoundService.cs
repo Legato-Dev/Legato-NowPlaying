@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -30,6 +31,10 @@ namespace Legato.NowPlaying {
 
 		public static SoundService Open(string filePath) {
 			var aliasName = $"{_Random.Next(0, 1000)}";
+
+			if (!File.Exists(filePath)) {
+				throw new FileNotFoundException($"file not found: {filePath}");
+			}
 
 			if (_MciCommand($"open \"{filePath}\" type mpegvideo alias {aliasName}") != 0) {
 				throw new ApplicationException($"failed to open sound file \"{filePath}\"");

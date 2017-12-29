@@ -33,9 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AlbumArtExtraction, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AlbumArtExtraction.0.0.0\lib\net461\AlbumArtExtraction.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="CoreTweet, Version=0.8.1.394, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CoreTweet.0.8.1.394\lib\net45\CoreTweet.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Legato, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Legato\Legato.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -70,9 +78,6 @@
       <DependentUpon>SettingWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="SoundService.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -99,16 +104,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Legato.AlbumArtExtraction\Legato.AlbumArtExtraction.csproj">
-      <Project>{89bd928a-0196-47d5-be87-9deb0947b9a5}</Project>
-      <Name>Legato.AlbumArtExtraction</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Legato\Legato.csproj">
-      <Project>{fe129430-6d84-4d1b-8002-20a12a2d936e}</Project>
-      <Name>Legato</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo.png" />
