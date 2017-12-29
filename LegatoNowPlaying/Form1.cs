@@ -25,11 +25,6 @@ namespace LegatoNowPlaying {
 
 		#region Constants
 
-		private static readonly string _DefaultPostingFormat = "{TrackNum}. {Title}\r\nArtist: {Artist}\r\nAlbum: {Album}\r\n#nowplaying";
-		private static readonly string _DefaultPostingVoice = "please your hope voice file.";
-		private static readonly string _DefaultExitingVoice = "please your hope voice file.";
-		private static readonly string _DefaultTokensKey = "please your tokens";
-
 		private bool _IsClosed;
 
 		#endregion Constants
@@ -40,15 +35,12 @@ namespace LegatoNowPlaying {
 		private AimpCommands _AimpCommands { get; set; } = new AimpCommands();
 		private AimpObserver _AimpObserver { get; set; } = new AimpObserver();
 
+		private SettingJsonObject _Setting { get; set; }
+		private CredentialsJsonObject _Credentials { get; set; }
 		private Tokens _Twitter { get; set; }
 		private TimeSpan _NotifyTime { get; set; }
 
-		private string _PostingFormat { get; set; }
-		private string _PostingSound { get; set; }
-		private string _ExitingSound { get; set; }
-
 		#endregion Properties
-
 
 		#region Methods
 
@@ -71,7 +63,7 @@ namespace LegatoNowPlaying {
 				var track = _AimpProperties.CurrentTrack;
 
 				// 投稿内容を構築
-				var stringBuilder = new StringBuilder(_PostingFormat);
+				var stringBuilder = new StringBuilder(_Setting.PostingFormat);
 				stringBuilder = stringBuilder.Replace("{Title}", "{0}");
 				stringBuilder = stringBuilder.Replace("{Artist}", "{1}");
 				stringBuilder = stringBuilder.Replace("{Album}", "{2}");
@@ -185,97 +177,29 @@ namespace LegatoNowPlaying {
 		#region File IO Methods
 
 		/// <summary>
-		/// settings.json から設定を読み込みます
-		/// <para>settings.json が存在しないときは新規に生成します</para>
+		/// tokens.json からアカウント情報を読み込み、その有効性を検証します
 		/// </summary>
-		private async Task _LoadSettingsAsync() {
-			try {
-				string jsonString = null;
-				using (var reader = new StreamReader("settings.json", Encoding.UTF8))
-					jsonString = await reader.ReadToEndAsync();
+		private async Task<Tokens> _LoadAndVerifyCredentialsAsync() {
+			var data = await CredentialsJsonObject.LoadAsync();
+			var ck = data.ConsumerKey;
+			var cs = data.ConsumerSecret;
+			var at = data.AccessToken;
+			var ats = data.AccessTokenSecret;
 
-				dynamic json = JsonConvert.DeserializeObject(jsonString);
+			var defaultTokensKey = "";
 
-				_PostingFormat = json.format ?? _DefaultPostingFormat;
-				_PostingSound = json.postsound ?? _DefaultPostingVoice;
-				_ExitingSound = json.exitsound ?? _DefaultExitingVoice;
-			}
-			catch {
-				_PostingFormat = _DefaultPostingFormat;
-				_PostingSound = _DefaultPostingVoice;
-				_ExitingSound = _DefaultExitingVoice;
-				await _SaveSettingsAsync();
-			}
-		}
+			var isNotDefaultTokens = ck != defaultTokensKey && cs != defaultTokensKey && at != defaultTokensKey && ats != defaultTokensKey;
+			if (isNotDefaultTokens) {
+				var tokens = Tokens.Create(ck, cs, at, ats);
 
-		/// <summary>
-		/// settings.json に設定を保存します
-		/// </summary>
-		private async Task _SaveSettingsAsync() {
-			// 設定ファイルに保存すべき情報がある場合
-			if (_PostingFormat != null) {
-				var data = new { format = _PostingFormat, postsound = _PostingSound, exitsound = _ExitingSound };
-
-				var jsonString = JsonConvert.SerializeObject(data, new JsonSerializerSettings {
-					StringEscapeHandling = StringEscapeHandling.EscapeNonAscii
-				});
-
-				using (var writer = new StreamWriter("settings.json", false, Encoding.UTF8))
-					await writer.WriteAsync(jsonString);
-			}
-		}
-
-		/// <summary>
-		/// tokens.json からアカウント情報を読み込みます
-		/// </summary>
-		private async Task _LoadTokensFileAsync() {
-			try {
-				string jsonString = null;
-				using (var reader = new StreamReader("tokens.json", Encoding.UTF8))
-					jsonString = await reader.ReadToEndAsync();
-
-				dynamic json = JsonConvert.DeserializeObject(jsonString);
-
-				var ck = (string)json.ConsumerKey;
-				var cs = (string)json.ConsumerSecret;
-				var at = (string)json.AccessToken;
-				var ats = (string)json.AccessTokenSecret;
-
-				var isNotDefaultTokens = ck != _DefaultTokensKey && cs != _DefaultTokensKey && at != _DefaultTokensKey && ats != _DefaultTokensKey;
-				if (isNotDefaultTokens) {
-					var tokens = Tokens.Create(ck, cs, at, ats);
-
-					// トークンの有効性を検証
-					try {
-						var account = await tokens.Account.VerifyCredentialsAsync(include_entities: false, skip_status: true);
-						_Twitter = tokens;
-					}
-					catch { }
+				// トークンの有効性を検証
+				try {
+					var account = await tokens.Account.VerifyCredentialsAsync(include_entities: false, skip_status: true);
+					return tokens;
 				}
+				catch { }
 			}
-			catch {
-				// JSONの構造が間違っている、もしくは存在しなかった場合
-				await _CreateTokensFileAsync();
-			}
-		}
-
-		/// <summary>
-		/// tokens.json を生成します
-		/// </summary>
-		private async Task _CreateTokensFileAsync() {
-			var data = new {
-				ConsumerKey = _DefaultTokensKey,
-				ConsumerSecret = _DefaultTokensKey,
-				AccessToken = _DefaultTokensKey,
-				AccessTokenSecret = _DefaultTokensKey
-			};
-
-			var jsonString = JsonConvert.SerializeObject(data, new JsonSerializerSettings {
-				StringEscapeHandling = StringEscapeHandling.EscapeNonAscii
-			});
-
-			using (var writer = new StreamWriter("tokens.json", false, Encoding.UTF8))
-				await writer.WriteAsync(jsonString);
+			return null;
 		}
 
 		#endregion File IO Methods
@@ -289,7 +213,7 @@ namespace LegatoNowPlaying {
 			_NotifyTime = new TimeSpan(0, 0, 1);
 			_IsClosed = false;
 
-			await _LoadTokensFileAsync();
+			_Twitter = await _LoadAndVerifyCredentialsAsync();
 
 			if (_Twitter == null) {
 				MessageBox.Show(
@@ -302,7 +226,7 @@ namespace LegatoNowPlaying {
 				return;
 			}
 
-			await _LoadSettingsAsync();
+			_Setting = await SettingJsonObject.LoadAsync();
 
 			_AimpObserver.CurrentTrackChanged += async (track) => {
 				_UpdateFormTrackInfo(track);
@@ -310,7 +234,7 @@ namespace LegatoNowPlaying {
 
 				// auto posting
 				if (checkBoxAutoPosting.Checked) {
-					var voice = await _PlayVoiceAsync(_PostingSound);
+					var voice = await _PlayVoiceAsync(_Setting.PostingSound);
 					await _PostAsync();
 					await _StopVoiceAsync(voice);
 				}
@@ -323,15 +247,22 @@ namespace LegatoNowPlaying {
 		}
 
 		private async void Form1_FormClosed(object sender, FormClosedEventArgs e) {
-			_IsClosed = true;
-			var voice = await _PlayVoiceAsync(_ExitingSound);
+
+			SoundService voice = null;
+			if (_Setting != null) {
+				_IsClosed = true;
+				voice = await _PlayVoiceAsync(_Setting.ExitingSound);
+			}
 
 			_AimpObserver.Dispose();
-			await _StopVoiceAsync(voice);
+
+			if (_Setting != null) {
+				await _StopVoiceAsync(voice);
+			}
 		}
 
 		private async void buttonPostNowPlaying_Click(object sender, EventArgs e) {
-			var voice = await _PlayVoiceAsync(_PostingSound);
+			var voice = await _PlayVoiceAsync(_Setting.PostingSound);
 			await _PostAsync();
 			await _StopVoiceAsync(voice);
 		}
@@ -350,14 +281,14 @@ namespace LegatoNowPlaying {
 		}
 
 		private async void buttonShowSettingWindow_Click(object sender, EventArgs e) {
-			var settingWindow = new SettingWindow(_PostingFormat, _PostingSound, _ExitingSound);
+			var settingWindow = new SettingWindow(_Setting.PostingFormat, _Setting.PostingSound, _Setting.ExitingSound);
 
 			if (settingWindow.ShowDialog() == DialogResult.OK) {
-				_PostingFormat = settingWindow.PostingFormat;
-				_NotifyTime = settingWindow.notifyTime;
-				_PostingSound = settingWindow.PostingSound;
-				_ExitingSound = settingWindow.ExitingSound;
-				await _SaveSettingsAsync();
+				_Setting.PostingFormat = settingWindow.PostingFormat;
+				_Setting.PostingSound = settingWindow.PostingSound;
+				_Setting.ExitingSound = settingWindow.ExitingSound;
+				_NotifyTime = settingWindow.notifyTime; // TODO: 多分、設定ファイルへの項目追加忘れ
+				await _Setting.SaveAsync();
 			}
 		}
 
