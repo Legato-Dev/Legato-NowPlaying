@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,14 +12,35 @@ namespace LegatoNowPlaying {
 	public class SettingJsonObject {
 		private SettingJsonObject() { }
 
-		[JsonProperty("format"), DefaultValue("{TrackNum}. {Title}\r\nArtist: {Artist}\r\nAlbum: {Album}\r\n#nowplaying")]
+		[JsonProperty("format")]
 		public string PostingFormat { get; set; }
+		public static string PostingFormatDefault = "{TrackNum}. {Title}\r\nArtist: {Artist}\r\nAlbum: {Album}\r\n#nowplaying";
 
-		[JsonProperty("postsound"), DefaultValue("please your hope voice file.")]
+		[JsonProperty("postsound")]
 		public string PostingSound { get; set; }
 
-		[JsonProperty("exitsound"), DefaultValue("please your hope voice file.")]
+		[JsonProperty("exitsound")]
 		public string ExitingSound { get; set; }
+
+		[JsonProperty("notifyTime")]
+		public TimeSpan? NotifyTime { get; set; }
+
+		/// <summary>
+		/// 適宜、デフォルト値を設定することによって値の整合性を取ります
+		/// </summary>
+		/// <param name="target"></param>
+		private static void _Normalize(SettingJsonObject target) {
+			target.PostingFormat = target.PostingFormat ?? PostingFormatDefault;
+
+			if (!target.NotifyTime.HasValue)
+				target.NotifyTime = new TimeSpan(0, 0, 1);
+
+			if (target.PostingSound == "")
+				target.PostingSound = null;
+
+			if (target.ExitingSound == "")
+				target.ExitingSound = null;
+		}
 
 		/// <summary>
 		/// settings.json から設定を読み込みます
@@ -30,7 +52,12 @@ namespace LegatoNowPlaying {
 				using (var reader = new StreamReader("settings.json", Encoding.UTF8))
 					jsonString = await reader.ReadToEndAsync();
 
-				return JsonConvert.DeserializeObject<SettingJsonObject>(jsonString);
+				var data = JsonConvert.DeserializeObject<SettingJsonObject>(jsonString);
+
+				// 整合性を取る
+				_Normalize(data);
+
+				return data;
 			}
 			catch {
 				var data = new SettingJsonObject();
@@ -44,10 +71,16 @@ namespace LegatoNowPlaying {
 		/// settings.json に設定を保存します
 		/// </summary>
 		public async Task SaveAsync() {
+
+			// 整合性を取る
+			_Normalize(this);
+
+			// JSON生成
 			var jsonString = JsonConvert.SerializeObject(this, new JsonSerializerSettings {
 				StringEscapeHandling = StringEscapeHandling.EscapeNonAscii
 			});
 
+			// ファイルへ書き込み
 			using (var writer = new StreamWriter("settings.json", false, Encoding.UTF8))
 				await writer.WriteAsync(jsonString);
 		}

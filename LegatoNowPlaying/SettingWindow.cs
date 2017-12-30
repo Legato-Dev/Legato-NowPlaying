@@ -9,11 +9,7 @@ namespace LegatoNowPlaying
 		#region Properties
 
 		private OpenFileDialog _OpenFileDialog { get; set; } = new OpenFileDialog();
-
-		public string PostingFormat { get; set; }
-		public TimeSpan notifyTime { get; private set; }
-		public string PostingSound { get; set; }
-		public string ExitingSound { get; set; }
+		public SettingJsonObject SettingSource { get; set; }
 
 		#endregion
 
@@ -22,13 +18,11 @@ namespace LegatoNowPlaying
 		/// <summary>
 		/// SettingWindow コンストラクタ
 		/// </summary>
-		public SettingWindow(string postingFormat, string postingSound, string exitingSound)
+		public SettingWindow(SettingJsonObject settingSource)
 		{
 			InitializeComponent();
 
-			PostingFormat = postingFormat;
-			PostingSound = postingSound;
-			ExitingSound = exitingSound;
+			SettingSource = settingSource;
 		}
 
 		#endregion
@@ -40,9 +34,9 @@ namespace LegatoNowPlaying
 		/// </summary>
 		private void SettingWindow_Load(object sender, EventArgs e)
 		{
-			textBoxPostingFormat.Text = PostingFormat;
-			PostVoicePath.Text = PostingSound;
-			ExitVoicePath.Text = ExitingSound;
+			textBoxPostingFormat.Text = SettingSource.PostingFormat;
+			PostVoicePath.Text = SettingSource.PostingSound;
+			ExitVoicePath.Text = SettingSource.ExitingSound;
 		}
 
 		/// <summary>
@@ -50,10 +44,11 @@ namespace LegatoNowPlaying
 		/// </summary>
 		private void buttonOk_Click(object sender, EventArgs e)
 		{
-			PostingFormat = textBoxPostingFormat.Text;
-			notifyTime = TimeSpan.FromSeconds((double)UpDownNotifyTime.Value);
-			PostingSound = PostVoicePath.Text;
-			ExitingSound = ExitVoicePath.Text;
+			// 結果に反映
+			SettingSource.PostingFormat = textBoxPostingFormat.Text;
+			SettingSource.NotifyTime = TimeSpan.FromSeconds((double)UpDownNotifyTime.Value);
+			SettingSource.PostingSound = PostVoicePath.Text;
+			SettingSource.ExitingSound = ExitVoicePath.Text;
 
 			DialogResult = DialogResult.OK;
 			Close();
