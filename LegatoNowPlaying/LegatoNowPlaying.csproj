@@ -71,7 +71,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TokensJsonObject.cs" />
+    <Compile Include="CredentialsJsonObject.cs" />
     <Compile Include="SettingJsonObject.cs" />
     <Compile Include="SettingWindow.cs">
       <SubType>Form</SubType>

@@ -11,16 +11,14 @@ namespace LegatoNowPlaying {
 	public class CredentialsJsonObject {
 		private CredentialsJsonObject() { }
 
-		[DefaultValue("please set your tokens")]
+		public static string DefaultValue = "please set your tokens";
+
 		public string ConsumerKey { get; set; }
 
-		[DefaultValue("please set your tokens")]
 		public string ConsumerSecret { get; set; }
 
-		[DefaultValue("please set your tokens")]
 		public string AccessToken { get; set; }
 
-		[DefaultValue("please set your tokens")]
 		public string AccessTokenSecret { get; set; }
 
 		/// <summary>
@@ -32,7 +30,7 @@ namespace LegatoNowPlaying {
 				using (var reader = new StreamReader("tokens.json", Encoding.UTF8))
 					jsonString = await reader.ReadToEndAsync();
 
-				return JsonConvert.DeserializeObject<CredentialsJsonObject>(jsonString, new JsonSerializerSettings { });
+				return JsonConvert.DeserializeObject<CredentialsJsonObject>(jsonString);
 			}
 			catch {
 				// JSONの構造が間違っている、もしくは存在しなかった場合は新規に生成

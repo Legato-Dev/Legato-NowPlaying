@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using CoreTweet;
-using Newtonsoft.Json;
 using Legato.Interop.AimpRemote.Entities;
 using AlbumArtExtraction;
 using System.Drawing;
 using Legato;
+using Newtonsoft.Json;
 
 namespace LegatoNowPlaying {
 	public partial class Form1 : Form {
+
 		#region Constractor
 
 		public Form1() {
@@ -22,12 +23,6 @@ namespace LegatoNowPlaying {
 		}
 
 		#endregion
-
-		#region Constants
-
-		private bool _IsClosed;
-
-		#endregion Constants
 
 		#region Properties
 
@@ -38,7 +33,6 @@ namespace LegatoNowPlaying {
 		private SettingJsonObject _Setting { get; set; }
 		private CredentialsJsonObject _Credentials { get; set; }
 		private Tokens _Twitter { get; set; }
-		private TimeSpan _NotifyTime { get; set; }
 
 		#endregion Properties
 
@@ -91,24 +85,25 @@ namespace LegatoNowPlaying {
 		/// <summary>
 		/// 非同期でボイスファイルを再生します。
 		/// </summary>
-		private async Task<SoundService> _PlayVoiceAsync(string filePath) {
+		private async Task<SoundService> _PlayVoiceAsync(string filePath, bool isClosing) {
 			SoundService sound = null;
+
+			if (filePath == null)
+				return null;
+
 			try {
 				// ファイルを開く
 				sound = SoundService.Open(filePath);
 
-				// Legato-NowPlaying が終了される時
-				if (_IsClosed) {
-					_IsClosed = false;
+				// ボイスを再生 (ボイスが指定されない場合は、例外発生)
+				sound.Play();
 
-					// 終了メッセージ、ボイスを再生 (ボイスが指定されない場合は、例外発生)
-					sound.Play();
+				// Legato-NowPlaying が終了される時
+				if (isClosing) {
+					// 終了メッセージ
 					new LegatoMessageBox("Legato-NowPlaying を終了します。", "れがーとなうぷれしゅーりょー", 1500);
 				}
-				else {
-					// ボイスを再生
-					sound.Play();
-				}
+
 				await Task.Delay(1000);
 				return sound;
 			}
@@ -128,11 +123,14 @@ namespace LegatoNowPlaying {
 		/// 非同期でボイスファイルを停止します。
 		/// </summary>
 		private async Task _StopVoiceAsync(SoundService sound) {
+			if (sound == null)
+				return;
+
 			// Voice を停止する
-			sound?.Stop();
+			sound.Stop();
 
 			// 閉じる
-			sound?.Close();
+			sound.Close();
 
 			await Task.Delay(100);
 		}
@@ -171,7 +169,7 @@ namespace LegatoNowPlaying {
 				notifyIcon.BalloonTipText = $"{track.Title} - {track.Artist}\r\nAlbum : {track.Album}";
 				Debug.WriteLine("バルーン通知が表示されました。");
 			}
-			notifyIcon.ShowBalloonTip((int)_NotifyTime.TotalMilliseconds);
+			notifyIcon.ShowBalloonTip((int)_Setting.NotifyTime.Value.TotalMilliseconds);
 		}
 
 		#region File IO Methods
@@ -210,11 +208,8 @@ namespace LegatoNowPlaying {
 
 		private async void Form1_Load(object sender, EventArgs e) {
 			Icon = Properties.Resources.legato;
-			_NotifyTime = new TimeSpan(0, 0, 1);
-			_IsClosed = false;
 
 			_Twitter = await _LoadAndVerifyCredentialsAsync();
-
 			if (_Twitter == null) {
 				MessageBox.Show(
 					"有効なTwitterのトークン情報の設定が必要です。tokens.jsonの中身を編集してからアプリケーションを再実行してください。",
@@ -234,7 +229,7 @@ namespace LegatoNowPlaying {
 
 				// auto posting
 				if (checkBoxAutoPosting.Checked) {
-					var voice = await _PlayVoiceAsync(_Setting.PostingSound);
+					var voice = await _PlayVoiceAsync(_Setting.PostingSound, false);
 					await _PostAsync();
 					await _StopVoiceAsync(voice);
 				}
@@ -250,8 +245,7 @@ namespace LegatoNowPlaying {
 
 			SoundService voice = null;
 			if (_Setting != null) {
-				_IsClosed = true;
-				voice = await _PlayVoiceAsync(_Setting.ExitingSound);
+				voice = await _PlayVoiceAsync(_Setting.ExitingSound, true);
 			}
 
 			_AimpObserver.Dispose();
@@ -262,7 +256,7 @@ namespace LegatoNowPlaying {
 		}
 
 		private async void buttonPostNowPlaying_Click(object sender, EventArgs e) {
-			var voice = await _PlayVoiceAsync(_Setting.PostingSound);
+			var voice = await _PlayVoiceAsync(_Setting.PostingSound, false);
 			await _PostAsync();
 			await _StopVoiceAsync(voice);
 		}
@@ -281,13 +275,9 @@ namespace LegatoNowPlaying {
 		}
 
 		private async void buttonShowSettingWindow_Click(object sender, EventArgs e) {
-			var settingWindow = new SettingWindow(_Setting.PostingFormat, _Setting.PostingSound, _Setting.ExitingSound);
+			var settingWindow = new SettingWindow(_Setting);
 
 			if (settingWindow.ShowDialog() == DialogResult.OK) {
-				_Setting.PostingFormat = settingWindow.PostingFormat;
-				_Setting.PostingSound = settingWindow.PostingSound;
-				_Setting.ExitingSound = settingWindow.ExitingSound;
-				_NotifyTime = settingWindow.notifyTime; // TODO: 多分、設定ファイルへの項目追加忘れ
 				await _Setting.SaveAsync();
 			}
 		}
