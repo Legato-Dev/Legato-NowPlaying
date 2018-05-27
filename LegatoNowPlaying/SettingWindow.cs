@@ -6,14 +6,8 @@ namespace LegatoNowPlaying
 {
 	public partial class SettingWindow : Form
 	{
-		#region Properties
 
-		private OpenFileDialog _OpenFileDialog { get; set; } = new OpenFileDialog();
-		public SettingJsonObject SettingSource { get; set; }
-
-		#endregion
-
-		#region Constractor
+		#region Constractors
 
 		/// <summary>
 		/// SettingWindow コンストラクタ
@@ -25,9 +19,17 @@ namespace LegatoNowPlaying
 			SettingSource = settingSource;
 		}
 
-		#endregion
+		#endregion Constractors
 
-		#region Settings
+		#region Properties
+
+		private OpenFileDialog _OpenFileDialog { get; set; } = new OpenFileDialog();
+
+		public SettingJsonObject SettingSource { get; set; }
+
+		#endregion Properties
+
+		#region Event Hndlers
 
 		/// <summary>
 		/// SettingWindow が読み込まれる際に動作します。
@@ -77,6 +79,8 @@ namespace LegatoNowPlaying
 				ExitVoicePath.Text = Path.GetDirectoryName(str) + @"\" + Path.GetFileName(str);
 			}
 		}
-		#endregion
+
+		#endregion Event Hndlers
+
 	}
 }

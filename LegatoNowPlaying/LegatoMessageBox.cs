@@ -10,12 +10,30 @@ namespace LegatoNowPlaying
 	/// </summary>
 	internal class LegatoMessageBox
 	{
-		#region Fields
 
-		private System.Threading.Timer _timer;
-		private string _caption;
+		#region Constractors
 
-		#endregion
+		public LegatoMessageBox(string text, string caption, int timeout)
+		{
+			_Timer = new System.Threading.Timer((state) => {
+				var mbWnd = FindWindow(null, caption);
+
+				if (mbWnd != IntPtr.Zero)
+					SendMessage(mbWnd, 0x0010, IntPtr.Zero, IntPtr.Zero);
+
+				_Timer.Dispose();
+			}, null, timeout, Timeout.Infinite);
+
+			MessageBox.Show(text, caption);
+		}
+
+		#endregion Constractors
+
+		#region Properties
+
+		private System.Threading.Timer _Timer { get; set; }
+
+		#endregion Properties
 
 		#region External APIs
 
@@ -25,32 +43,7 @@ namespace LegatoNowPlaying
 		[DllImport("user32.dll", CharSet = CharSet.Auto)]
 		public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
-		#endregion
+		#endregion External APIs
 
-		#region Constractor 
-
-		public LegatoMessageBox(string text, string caption, int timeout)
-		{
-			this._caption = caption;
-			_timer = new System.Threading.Timer(_OnTimerElapsed, null, timeout, Timeout.Infinite);
-
-			MessageBox.Show(text, caption);
-		}
-
-		#endregion
-
-		#region Method
-
-		private void _OnTimerElapsed(object state)
-		{
-			var mbWnd = FindWindow(null, _caption);
-
-			if (mbWnd != IntPtr.Zero)
-				SendMessage(mbWnd, 0x0010, IntPtr.Zero, IntPtr.Zero);
-
-			_timer.Dispose();
-		}
-
-		#endregion
 	}
 }

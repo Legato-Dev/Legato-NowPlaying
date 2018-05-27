@@ -11,7 +11,14 @@ namespace LegatoNowPlaying
 	/// </summary>
 	public class SettingJsonObject
 	{
+
+		#region Constractors
+
 		private SettingJsonObject() { }
+
+		#endregion Constractors
+
+		#region Properties/Fields
 
 		[JsonProperty("format")]
 		public string PostingFormat { get; set; }
@@ -25,6 +32,10 @@ namespace LegatoNowPlaying
 
 		[JsonProperty("notifyTime")]
 		public TimeSpan? NotifyTime { get; set; }
+
+		#endregion Properties/Fields
+
+		#region Methods
 
 		/// <summary>
 		/// 適宜、デフォルト値を設定することによって値の整合性を取ります
@@ -91,5 +102,8 @@ namespace LegatoNowPlaying
 			using (var writer = new StreamWriter("settings.json", false, Encoding.UTF8))
 				await writer.WriteAsync(jsonString);
 		}
+
+		#endregion Methods
+
 	}
 }

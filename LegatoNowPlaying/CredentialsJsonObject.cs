@@ -10,7 +10,14 @@ namespace LegatoNowPlaying
 	/// </summary>
 	public class CredentialsJsonObject
 	{
+
+		#region Constractors
+
 		private CredentialsJsonObject() { }
+
+		#endregion Constractors
+
+		#region Properties/Fields
 
 		public static string DefaultValue = "please set your tokens";
 
@@ -21,6 +28,10 @@ namespace LegatoNowPlaying
 		public string AccessToken { get; set; }
 
 		public string AccessTokenSecret { get; set; }
+
+		#endregion Properties/Fields
+
+		#region Methods
 
 		/// <summary>
 		/// tokens.json からアカウント情報を読み込みます
@@ -61,5 +72,8 @@ namespace LegatoNowPlaying
 				await writer.WriteAsync(jsonString);
 			}
 		}
+
+		#endregion Methods
+
 	}
 }

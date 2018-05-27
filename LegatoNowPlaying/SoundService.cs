@@ -8,23 +8,32 @@ namespace LegatoNowPlaying
 	public class SoundService : IDisposable
 	{
 
+		#region Constractors
+
 		private SoundService(string filePath, string aliasName)
 		{
 			FilePath = filePath;
 			AliasName = aliasName;
 		}
 
+		#endregion Constractors
+
+		#region Properties
+
 		public string FilePath { get; private set; }
+
 		public string AliasName { get; private set; }
 
 		private static Random _Random { get; set; } = new Random();
+
+		#endregion Properties
 
 		#region External APIs
 
 		[DllImport("winmm.dll")]
 		private static extern int mciSendString(string command, StringBuilder buffer, int bufferSize, IntPtr hwndCallback);
 
-		#endregion
+		#endregion External APIs
 
 		#region Methods
 
@@ -70,6 +79,7 @@ namespace LegatoNowPlaying
 			Close();
 		}
 
-		#endregion
+		#endregion Methods
+
 	}
 }

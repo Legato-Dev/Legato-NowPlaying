@@ -16,23 +16,27 @@ namespace LegatoNowPlaying
 	public partial class Form1 : Form
 	{
 
-		#region Constractor
+		#region Constractors
 
 		public Form1()
 		{
 			InitializeComponent();
 		}
 
-		#endregion
+		#endregion Constractors
 
 		#region Properties
 
 		private AimpProperties _AimpProperties { get; set; } = new AimpProperties();
+
 		private AimpCommands _AimpCommands { get; set; } = new AimpCommands();
+
 		private AimpObserver _AimpObserver { get; set; } = new AimpObserver();
 
 		private SettingJsonObject _Setting { get; set; }
+
 		private CredentialsJsonObject _Credentials { get; set; }
+
 		private Tokens _Twitter { get; set; }
 
 		#endregion Properties
@@ -226,7 +230,7 @@ namespace LegatoNowPlaying
 
 		#endregion Methods
 
-		#region Procedures
+		#region Event Handlers
 
 		private async void Form1_Load(object sender, EventArgs e)
 		{
@@ -318,6 +322,7 @@ namespace LegatoNowPlaying
 			}
 		}
 
-		#endregion Procedures
+		#endregion Event Handlers
+
 	}
 }
