@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AlbumArtExtraction, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AlbumArtExtraction.0.0.0\lib\net461\AlbumArtExtraction.dll</HintPath>
+      <HintPath>..\packages\AlbumArtExtraction.0.1.0\lib\net461\AlbumArtExtraction.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CoreTweet, Version=0.8.1.394, Culture=neutral, processorArchitecture=MSIL">
