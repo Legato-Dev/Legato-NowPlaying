@@ -28,13 +28,6 @@ namespace LegatoNowPlaying
 
 		#endregion Properties
 
-		#region External APIs
-
-		[DllImport("winmm.dll")]
-		private static extern int mciSendString(string command, StringBuilder buffer, int bufferSize, IntPtr hwndCallback);
-
-		#endregion External APIs
-
 		#region Methods
 
 		private static int _MciCommand(string command)
@@ -80,6 +73,13 @@ namespace LegatoNowPlaying
 		}
 
 		#endregion Methods
+
+		#region External APIs
+
+		[DllImport("winmm.dll")]
+		private static extern int mciSendString(string command, StringBuilder buffer, int bufferSize, IntPtr hwndCallback);
+
+		#endregion External APIs
 
 	}
 }
