@@ -1,15 +1,16 @@
-﻿using System;
-using System.ComponentModel;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
-namespace LegatoNowPlaying {
+namespace LegatoNowPlaying
+{
 	/// <summary>
 	/// 設定のJSONファイルを管理します
 	/// </summary>
-	public class SettingJsonObject {
+	public class SettingJsonObject
+	{
 		private SettingJsonObject() { }
 
 		[JsonProperty("format")]
@@ -29,7 +30,8 @@ namespace LegatoNowPlaying {
 		/// 適宜、デフォルト値を設定することによって値の整合性を取ります
 		/// </summary>
 		/// <param name="target"></param>
-		private static void _Normalize(SettingJsonObject target) {
+		private static void _Normalize(SettingJsonObject target)
+		{
 			target.PostingFormat = target.PostingFormat ?? PostingFormatDefault;
 
 			if (!target.NotifyTime.HasValue)
@@ -46,8 +48,10 @@ namespace LegatoNowPlaying {
 		/// settings.json から設定を読み込みます
 		/// <para>settings.json が存在しないときは新規に生成します</para>
 		/// </summary>
-		public static async Task<SettingJsonObject> LoadAsync() {
-			try {
+		public static async Task<SettingJsonObject> LoadAsync()
+		{
+			try
+			{
 				string jsonString = null;
 				using (var reader = new StreamReader("settings.json", Encoding.UTF8))
 					jsonString = await reader.ReadToEndAsync();
@@ -59,7 +63,8 @@ namespace LegatoNowPlaying {
 
 				return data;
 			}
-			catch {
+			catch
+			{
 				var data = new SettingJsonObject();
 				await data.SaveAsync();
 
@@ -70,13 +75,15 @@ namespace LegatoNowPlaying {
 		/// <summary>
 		/// settings.json に設定を保存します
 		/// </summary>
-		public async Task SaveAsync() {
+		public async Task SaveAsync()
+		{
 
 			// 整合性を取る
 			_Normalize(this);
 
 			// JSON生成
-			var jsonString = JsonConvert.SerializeObject(this, new JsonSerializerSettings {
+			var jsonString = JsonConvert.SerializeObject(this, new JsonSerializerSettings
+			{
 				StringEscapeHandling = StringEscapeHandling.EscapeNonAscii
 			});
 

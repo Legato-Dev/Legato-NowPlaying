@@ -1,24 +1,25 @@
-﻿using System;
+﻿using AlbumArtExtraction;
+using CoreTweet;
+using Legato;
+using Legato.Interop.AimpRemote.Entities;
+using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using CoreTweet;
-using Legato.Interop.AimpRemote.Entities;
-using AlbumArtExtraction;
-using System.Drawing;
-using Legato;
-using Newtonsoft.Json;
-
-namespace LegatoNowPlaying {
-	public partial class Form1 : Form {
+namespace LegatoNowPlaying
+{
+	public partial class Form1 : Form
+	{
 
 		#region Constractor
 
-		public Form1() {
+		public Form1()
+		{
 			InitializeComponent();
 		}
 
@@ -38,22 +39,27 @@ namespace LegatoNowPlaying {
 
 		#region Methods
 
-		private Image _GetAlbumArt() {
-			try {
+		private Image _GetAlbumArt()
+		{
+			try
+			{
 				var trackFilePath = _AimpProperties.CurrentTrack.FilePath;
 				var selector = new Selector();
 				var extractor = selector.SelectAlbumArtExtractor(trackFilePath);
 				return extractor.Extract(trackFilePath);
 			}
-			catch (Exception ex) {
+			catch (Exception ex)
+			{
 				Console.WriteLine("album art extraction error:");
 				Console.WriteLine(ex);
 				return null;
 			}
 		}
 
-		private async Task _PostAsync() {
-			try {
+		private async Task _PostAsync()
+		{
+			try
+			{
 				var track = _AimpProperties.CurrentTrack;
 
 				// 投稿内容を構築
@@ -66,7 +72,8 @@ namespace LegatoNowPlaying {
 
 				var albumArt = _GetAlbumArt();
 
-				if (checkBoxNeedAlbumArt.Checked && albumArt != null) {
+				if (checkBoxNeedAlbumArt.Checked && albumArt != null)
+				{
 					using (var memory = new MemoryStream())
 						albumArt.Save("temp.png", ImageFormat.Png);
 
@@ -77,7 +84,8 @@ namespace LegatoNowPlaying {
 
 				Console.WriteLine("Twitter への投稿が完了しました");
 			}
-			catch (Exception ex) {
+			catch (Exception ex)
+			{
 				Console.Error.WriteLine(ex.Message);
 			}
 		}
@@ -85,13 +93,15 @@ namespace LegatoNowPlaying {
 		/// <summary>
 		/// 非同期でボイスファイルを再生します。
 		/// </summary>
-		private async Task<SoundService> _PlayVoiceAsync(string filePath, bool isClosing) {
+		private async Task<SoundService> _PlayVoiceAsync(string filePath, bool isClosing)
+		{
 			SoundService sound = null;
 
 			if (filePath == null)
 				return null;
 
-			try {
+			try
+			{
 				// ファイルを開く
 				sound = SoundService.Open(filePath);
 
@@ -99,7 +109,8 @@ namespace LegatoNowPlaying {
 				sound.Play();
 
 				// Legato-NowPlaying が終了される時
-				if (isClosing) {
+				if (isClosing)
+				{
 					// 終了メッセージ
 					new LegatoMessageBox("Legato-NowPlaying を終了します。", "れがーとなうぷれしゅーりょー", 1500);
 				}
@@ -107,7 +118,8 @@ namespace LegatoNowPlaying {
 				await Task.Delay(1000);
 				return sound;
 			}
-			catch (FileNotFoundException) {
+			catch (FileNotFoundException)
+			{
 				sound?.Close();
 
 				MessageBox.Show(
@@ -122,7 +134,8 @@ namespace LegatoNowPlaying {
 		/// <summary>
 		/// 非同期でボイスファイルを停止します。
 		/// </summary>
-		private async Task _StopVoiceAsync(SoundService sound) {
+		private async Task _StopVoiceAsync(SoundService sound)
+		{
 			if (sound == null)
 				return;
 
@@ -138,17 +151,21 @@ namespace LegatoNowPlaying {
 		/// <summary>
 		/// フォームに表示されているアルバムアートを更新します
 		/// </summary>
-		private void _UpdateAlbumArt() {
-			if (_AimpProperties.IsRunning) {
+		private void _UpdateAlbumArt()
+		{
+			if (_AimpProperties.IsRunning)
+			{
 				var albumArt = _GetAlbumArt();
 				pictureBoxAlbumArt.Image = albumArt ?? Properties.Resources.logo;
 			}
-			else {
+			else
+			{
 				pictureBoxAlbumArt.Image = Properties.Resources.logo;
 			}
 		}
 
-		private void _UpdateFormTrackInfo(TrackInfo track) {
+		private void _UpdateFormTrackInfo(TrackInfo track)
+		{
 			labelTrackNumber.Text = $"{track.TrackNumber:D2}.";
 			labelTitle.Text = track.Title;
 			labelArtist.Text = track.Artist;
@@ -158,13 +175,15 @@ namespace LegatoNowPlaying {
 			notifyIcon.Icon = Properties.Resources.legato;
 
 			// トースト通知
-			if (os.Version.Major >= 6 && os.Version.Minor >= 2) {
+			if (os.Version.Major >= 6 && os.Version.Minor >= 2)
+			{
 				notifyIcon.BalloonTipTitle = $"Legato NowPlaying\r\n{track.Title} - {track.Artist}";
 				notifyIcon.BalloonTipText = $"Album : {track.Album}";
 				Debug.WriteLine("トースト通知が表示されました。");
 			}
 			// バルーン通知
-			else {
+			else
+			{
 				notifyIcon.BalloonTipTitle = $"Legato NowPlaying";
 				notifyIcon.BalloonTipText = $"{track.Title} - {track.Artist}\r\nAlbum : {track.Album}";
 				Debug.WriteLine("バルーン通知が表示されました。");
@@ -177,7 +196,8 @@ namespace LegatoNowPlaying {
 		/// <summary>
 		/// tokens.json からアカウント情報を読み込み、その有効性を検証します
 		/// </summary>
-		private async Task<Tokens> _LoadAndVerifyCredentialsAsync() {
+		private async Task<Tokens> _LoadAndVerifyCredentialsAsync()
+		{
 			var data = await CredentialsJsonObject.LoadAsync();
 			var ck = data.ConsumerKey;
 			var cs = data.ConsumerSecret;
@@ -187,11 +207,13 @@ namespace LegatoNowPlaying {
 			var defaultTokensKey = "";
 
 			var isNotDefaultTokens = ck != defaultTokensKey && cs != defaultTokensKey && at != defaultTokensKey && ats != defaultTokensKey;
-			if (isNotDefaultTokens) {
+			if (isNotDefaultTokens)
+			{
 				var tokens = Tokens.Create(ck, cs, at, ats);
 
 				// トークンの有効性を検証
-				try {
+				try
+				{
 					var account = await tokens.Account.VerifyCredentialsAsync(include_entities: false, skip_status: true);
 					return tokens;
 				}
@@ -206,11 +228,13 @@ namespace LegatoNowPlaying {
 
 		#region Procedures
 
-		private async void Form1_Load(object sender, EventArgs e) {
+		private async void Form1_Load(object sender, EventArgs e)
+		{
 			Icon = Properties.Resources.legato;
 
 			_Twitter = await _LoadAndVerifyCredentialsAsync();
-			if (_Twitter == null) {
+			if (_Twitter == null)
+			{
 				MessageBox.Show(
 					"有効なTwitterのトークン情報の設定が必要です。tokens.jsonの中身を編集してからアプリケーションを再実行してください。",
 					"情報",
@@ -223,61 +247,73 @@ namespace LegatoNowPlaying {
 
 			_Setting = await SettingJsonObject.LoadAsync();
 
-			_AimpObserver.CurrentTrackChanged += async (track) => {
+			_AimpObserver.CurrentTrackChanged += async (track) =>
+			{
 				_UpdateFormTrackInfo(track);
 				_UpdateAlbumArt();
 
 				// auto posting
-				if (checkBoxAutoPosting.Checked) {
+				if (checkBoxAutoPosting.Checked)
+				{
 					var voice = await _PlayVoiceAsync(_Setting.PostingSound, false);
 					await _PostAsync();
 					await _StopVoiceAsync(voice);
 				}
 			};
 
-			if (_AimpProperties.IsRunning) {
+			if (_AimpProperties.IsRunning)
+			{
 				_UpdateFormTrackInfo(_AimpProperties.CurrentTrack);
 				_UpdateAlbumArt();
 			}
 		}
 
-		private async void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+		private async void Form1_FormClosed(object sender, FormClosedEventArgs e)
+		{
 
 			SoundService voice = null;
-			if (_Setting != null) {
+			if (_Setting != null)
+			{
 				voice = await _PlayVoiceAsync(_Setting.ExitingSound, true);
 			}
 
 			_AimpObserver.Dispose();
 
-			if (_Setting != null) {
+			if (_Setting != null)
+			{
 				await _StopVoiceAsync(voice);
 			}
 		}
 
-		private async void buttonPostNowPlaying_Click(object sender, EventArgs e) {
+		private async void buttonPostNowPlaying_Click(object sender, EventArgs e)
+		{
 			var voice = await _PlayVoiceAsync(_Setting.PostingSound, false);
 			await _PostAsync();
 			await _StopVoiceAsync(voice);
 		}
 
-		private void pictureBoxAlbumArt_Click(object sender, EventArgs e) {
+		private void pictureBoxAlbumArt_Click(object sender, EventArgs e)
+		{
 			var albumArt = _GetAlbumArt();
 
-			if (albumArt != null) {
+			if (albumArt != null)
+			{
 				albumArt.Save("temp.png", ImageFormat.Png);
 				Process.Start("temp.png");
 			}
 		}
 
-		private void checkBoxAutoPosting_CheckedChanged(object sender, EventArgs e) {
+		private void checkBoxAutoPosting_CheckedChanged(object sender, EventArgs e)
+		{
 			buttonPostNowPlaying.Enabled = !checkBoxAutoPosting.Checked;
 		}
 
-		private async void buttonShowSettingWindow_Click(object sender, EventArgs e) {
+		private async void buttonShowSettingWindow_Click(object sender, EventArgs e)
+		{
 			var settingWindow = new SettingWindow(_Setting);
 
-			if (settingWindow.ShowDialog() == DialogResult.OK) {
+			if (settingWindow.ShowDialog() == DialogResult.OK)
+			{
 				await _Setting.SaveAsync();
 			}
 		}

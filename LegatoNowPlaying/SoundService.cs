@@ -3,10 +3,13 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace LegatoNowPlaying {
-	public class SoundService : IDisposable {
+namespace LegatoNowPlaying
+{
+	public class SoundService : IDisposable
+	{
 
-		private SoundService(string filePath, string aliasName) {
+		private SoundService(string filePath, string aliasName)
+		{
 			FilePath = filePath;
 			AliasName = aliasName;
 		}
@@ -25,37 +28,45 @@ namespace LegatoNowPlaying {
 
 		#region Methods
 
-		private static int _MciCommand(string command) {
+		private static int _MciCommand(string command)
+		{
 			return mciSendString(command, null, 0, IntPtr.Zero);
 		}
 
-		public static SoundService Open(string filePath) {
+		public static SoundService Open(string filePath)
+		{
 			var aliasName = $"{_Random.Next(0, 1000)}";
 
-			if (!File.Exists(filePath)) {
+			if (!File.Exists(filePath))
+			{
 				throw new FileNotFoundException($"file not found: {filePath}");
 			}
 
-			if (_MciCommand($"open \"{filePath}\" type mpegvideo alias {aliasName}") != 0) {
+			if (_MciCommand($"open \"{filePath}\" type mpegvideo alias {aliasName}") != 0)
+			{
 				throw new ApplicationException($"failed to open sound file \"{filePath}\"");
 			}
 
 			return new SoundService(filePath, aliasName);
 		}
 
-		public void Play() {
+		public void Play()
+		{
 			_MciCommand($"play {AliasName}");
 		}
 
-		public void Stop() {
+		public void Stop()
+		{
 			_MciCommand($"stop {AliasName}");
 		}
 
-		public void Close() {
+		public void Close()
+		{
 			_MciCommand($"close {AliasName}");
 		}
 
-		public void Dispose() {
+		public void Dispose()
+		{
 			Close();
 		}
 

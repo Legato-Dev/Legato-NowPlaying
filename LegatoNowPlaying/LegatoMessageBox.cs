@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
 
 namespace LegatoNowPlaying
 {
@@ -40,7 +40,7 @@ namespace LegatoNowPlaying
 		#endregion
 
 		#region Method
-		 
+
 		private void _OnTimerElapsed(object state)
 		{
 			var mbWnd = FindWindow(null, _caption);
