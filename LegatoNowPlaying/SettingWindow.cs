@@ -36,6 +36,8 @@ namespace LegatoNowPlaying
 		/// </summary>
 		private void SettingWindow_Load(object sender, EventArgs e)
 		{
+			Icon = Properties.Resources.legato;
+
 			textBoxPostingFormat.Text = SettingSource.PostingFormat;
 			PostVoicePath.Text = SettingSource.PostingSound;
 			ExitVoicePath.Text = SettingSource.ExitingSound;

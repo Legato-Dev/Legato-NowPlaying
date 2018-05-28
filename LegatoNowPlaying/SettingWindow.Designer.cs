@@ -69,9 +69,9 @@
 			// 
 			this.buttonOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonOk.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.buttonOk.Location = new System.Drawing.Point(378, 357);
+			this.buttonOk.Location = new System.Drawing.Point(407, 357);
 			this.buttonOk.Name = "buttonOk";
-			this.buttonOk.Size = new System.Drawing.Size(124, 23);
+			this.buttonOk.Size = new System.Drawing.Size(95, 23);
 			this.buttonOk.TabIndex = 2;
 			this.buttonOk.Text = "OK";
 			this.buttonOk.UseVisualStyleBackColor = true;
@@ -102,7 +102,7 @@
 			// UpDownNotifyTime
 			// 
 			this.UpDownNotifyTime.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.UpDownNotifyTime.Location = new System.Drawing.Point(105, 256);
+			this.UpDownNotifyTime.Location = new System.Drawing.Point(105, 248);
 			this.UpDownNotifyTime.Minimum = new decimal(new int[] {
             1,
             0,
@@ -121,7 +121,7 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label3.Location = new System.Drawing.Point(13, 257);
+			this.label3.Location = new System.Drawing.Point(13, 249);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(86, 18);
 			this.label3.TabIndex = 11;
@@ -131,7 +131,7 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label4.Location = new System.Drawing.Point(23, 286);
+			this.label4.Location = new System.Drawing.Point(23, 278);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(76, 18);
 			this.label4.TabIndex = 12;
@@ -139,15 +139,18 @@
 			// 
 			// PostVoicePath
 			// 
+			this.PostVoicePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.PostVoicePath.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.PostVoicePath.Location = new System.Drawing.Point(105, 283);
+			this.PostVoicePath.Location = new System.Drawing.Point(105, 275);
 			this.PostVoicePath.Name = "PostVoicePath";
 			this.PostVoicePath.Size = new System.Drawing.Size(358, 25);
 			this.PostVoicePath.TabIndex = 13;
 			// 
 			// PostVoiceSetting
 			// 
-			this.PostVoiceSetting.Location = new System.Drawing.Point(469, 284);
+			this.PostVoiceSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.PostVoiceSetting.Location = new System.Drawing.Point(469, 276);
 			this.PostVoiceSetting.Name = "PostVoiceSetting";
 			this.PostVoiceSetting.Size = new System.Drawing.Size(33, 23);
 			this.PostVoiceSetting.TabIndex = 14;
@@ -157,7 +160,8 @@
 			// 
 			// ExitVoiceSetting
 			// 
-			this.ExitVoiceSetting.Location = new System.Drawing.Point(469, 313);
+			this.ExitVoiceSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.ExitVoiceSetting.Location = new System.Drawing.Point(469, 305);
 			this.ExitVoiceSetting.Name = "ExitVoiceSetting";
 			this.ExitVoiceSetting.Size = new System.Drawing.Size(33, 23);
 			this.ExitVoiceSetting.TabIndex = 15;
@@ -169,7 +173,7 @@
 			// 
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label5.Location = new System.Drawing.Point(26, 315);
+			this.label5.Location = new System.Drawing.Point(26, 307);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(73, 18);
 			this.label5.TabIndex = 16;
@@ -177,8 +181,10 @@
 			// 
 			// ExitVoicePath
 			// 
+			this.ExitVoicePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.ExitVoicePath.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.ExitVoicePath.Location = new System.Drawing.Point(105, 312);
+			this.ExitVoicePath.Location = new System.Drawing.Point(105, 304);
 			this.ExitVoicePath.Name = "ExitVoicePath";
 			this.ExitVoicePath.Size = new System.Drawing.Size(358, 25);
 			this.ExitVoicePath.TabIndex = 17;
@@ -201,8 +207,10 @@
 			this.Controls.Add(this.buttonOk);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.textBoxPostingFormat);
-			this.MinimumSize = new System.Drawing.Size(322, 324);
+			this.MaximumSize = new System.Drawing.Size(1024, 430);
+			this.MinimumSize = new System.Drawing.Size(322, 430);
 			this.Name = "SettingWindow";
+			this.Text = "Settings";
 			this.Load += new System.EventHandler(this.SettingWindow_Load);
 			((System.ComponentModel.ISupportInitialize)(this.UpDownNotifyTime)).EndInit();
 			this.ResumeLayout(false);
