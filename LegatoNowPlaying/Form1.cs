@@ -95,9 +95,9 @@ namespace LegatoNowPlaying
 		}
 
 		/// <summary>
-		/// 非同期でボイスファイルを再生します。
+		/// 非同期で音声ファイルを再生します。
 		/// </summary>
-		private async Task<SoundService> _PlayVoiceAsync(string filePath, bool isClosing)
+		private async Task<SoundService> _PlaySoundAsync(string filePath, bool isClosing)
 		{
 			SoundService sound = null;
 
@@ -109,7 +109,7 @@ namespace LegatoNowPlaying
 				// ファイルを開く
 				sound = SoundService.Open(filePath);
 
-				// ボイスを再生 (ボイスが指定されない場合は、例外発生)
+				// 音声を再生 (音声が指定されない場合は、例外発生)
 				sound.Play();
 
 				// Legato-NowPlaying が終了される時
@@ -136,14 +136,14 @@ namespace LegatoNowPlaying
 		}
 
 		/// <summary>
-		/// 非同期でボイスファイルを停止します。
+		/// 非同期で音声ファイルを停止します。
 		/// </summary>
-		private async Task _StopVoiceAsync(SoundService sound)
+		private async Task _StopSoundAsync(SoundService sound)
 		{
 			if (sound == null)
 				return;
 
-			// Voice を停止する
+			// Sound を停止する
 			sound.Stop();
 
 			// 閉じる
@@ -259,9 +259,9 @@ namespace LegatoNowPlaying
 				// auto posting
 				if (checkBoxAutoPosting.Checked)
 				{
-					var voice = await _PlayVoiceAsync(_Setting.PostingSound, false);
+					var sound = await _PlaySoundAsync(_Setting.PostingSound, false);
 					await _PostAsync();
-					await _StopVoiceAsync(voice);
+					await _StopSoundAsync(sound);
 				}
 			};
 
@@ -275,25 +275,25 @@ namespace LegatoNowPlaying
 		private async void Form1_FormClosed(object sender, FormClosedEventArgs e)
 		{
 
-			SoundService voice = null;
+			SoundService sound = null;
 			if (_Setting != null)
 			{
-				voice = await _PlayVoiceAsync(_Setting.ExitingSound, true);
+				sound = await _PlaySoundAsync(_Setting.ExitingSound, true);
 			}
 
 			_AimpObserver.Dispose();
 
 			if (_Setting != null)
 			{
-				await _StopVoiceAsync(voice);
+				await _StopSoundAsync(sound);
 			}
 		}
 
 		private async void buttonPostNowPlaying_Click(object sender, EventArgs e)
 		{
-			var voice = await _PlayVoiceAsync(_Setting.PostingSound, false);
+			var sound = await _PlaySoundAsync(_Setting.PostingSound, false);
 			await _PostAsync();
-			await _StopVoiceAsync(voice);
+			await _StopSoundAsync(sound);
 		}
 
 		private void pictureBoxAlbumArt_Click(object sender, EventArgs e)

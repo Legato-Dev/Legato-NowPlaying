@@ -36,11 +36,11 @@
 			this.UpDownNotifyTime = new System.Windows.Forms.NumericUpDown();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
-			this.PostVoicePath = new System.Windows.Forms.TextBox();
-			this.PostVoiceSetting = new System.Windows.Forms.Button();
-			this.ExitVoiceSetting = new System.Windows.Forms.Button();
+			this.textBoxPostSoundPath = new System.Windows.Forms.TextBox();
+			this.buttonOpenPostSound = new System.Windows.Forms.Button();
+			this.buttonOpenExitSound = new System.Windows.Forms.Button();
 			this.label5 = new System.Windows.Forms.Label();
-			this.ExitVoicePath = new System.Windows.Forms.TextBox();
+			this.textBoxExitSoundPath = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.UpDownNotifyTime)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -102,7 +102,7 @@
 			// UpDownNotifyTime
 			// 
 			this.UpDownNotifyTime.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.UpDownNotifyTime.Location = new System.Drawing.Point(105, 248);
+			this.UpDownNotifyTime.Location = new System.Drawing.Point(100, 248);
 			this.UpDownNotifyTime.Minimum = new decimal(new int[] {
             1,
             0,
@@ -121,84 +121,84 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label3.Location = new System.Drawing.Point(13, 249);
+			this.label3.Location = new System.Drawing.Point(12, 249);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(86, 18);
+			this.label3.Size = new System.Drawing.Size(82, 18);
 			this.label3.TabIndex = 11;
-			this.label3.Text = "NotifyTime : ";
+			this.label3.Text = "NotifyTime :";
 			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label4.Location = new System.Drawing.Point(23, 278);
+			this.label4.Location = new System.Drawing.Point(12, 278);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(76, 18);
+			this.label4.Size = new System.Drawing.Size(82, 18);
 			this.label4.TabIndex = 12;
-			this.label4.Text = "PostVoice : ";
+			this.label4.Text = "Post Sound :";
 			// 
-			// PostVoicePath
+			// textBoxPostSoundPath
 			// 
-			this.PostVoicePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.textBoxPostSoundPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.PostVoicePath.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.PostVoicePath.Location = new System.Drawing.Point(105, 275);
-			this.PostVoicePath.Name = "PostVoicePath";
-			this.PostVoicePath.Size = new System.Drawing.Size(358, 25);
-			this.PostVoicePath.TabIndex = 13;
+			this.textBoxPostSoundPath.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.textBoxPostSoundPath.Location = new System.Drawing.Point(100, 275);
+			this.textBoxPostSoundPath.Name = "textBoxPostSoundPath";
+			this.textBoxPostSoundPath.Size = new System.Drawing.Size(363, 25);
+			this.textBoxPostSoundPath.TabIndex = 13;
 			// 
-			// PostVoiceSetting
+			// buttonOpenPostSound
 			// 
-			this.PostVoiceSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.PostVoiceSetting.Location = new System.Drawing.Point(469, 276);
-			this.PostVoiceSetting.Name = "PostVoiceSetting";
-			this.PostVoiceSetting.Size = new System.Drawing.Size(33, 23);
-			this.PostVoiceSetting.TabIndex = 14;
-			this.PostVoiceSetting.Text = "...";
-			this.PostVoiceSetting.UseVisualStyleBackColor = true;
-			this.PostVoiceSetting.Click += new System.EventHandler(this.PostVoiceSetting_Click);
+			this.buttonOpenPostSound.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonOpenPostSound.Location = new System.Drawing.Point(469, 276);
+			this.buttonOpenPostSound.Name = "buttonOpenPostSound";
+			this.buttonOpenPostSound.Size = new System.Drawing.Size(33, 23);
+			this.buttonOpenPostSound.TabIndex = 14;
+			this.buttonOpenPostSound.Text = "...";
+			this.buttonOpenPostSound.UseVisualStyleBackColor = true;
+			this.buttonOpenPostSound.Click += new System.EventHandler(this.buttonOpenPostSound_Click);
 			// 
-			// ExitVoiceSetting
+			// buttonOpenExitSound
 			// 
-			this.ExitVoiceSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.ExitVoiceSetting.Location = new System.Drawing.Point(469, 305);
-			this.ExitVoiceSetting.Name = "ExitVoiceSetting";
-			this.ExitVoiceSetting.Size = new System.Drawing.Size(33, 23);
-			this.ExitVoiceSetting.TabIndex = 15;
-			this.ExitVoiceSetting.Text = "...";
-			this.ExitVoiceSetting.UseVisualStyleBackColor = true;
-			this.ExitVoiceSetting.Click += new System.EventHandler(this.ExitVoiceSetting_Click);
+			this.buttonOpenExitSound.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonOpenExitSound.Location = new System.Drawing.Point(469, 305);
+			this.buttonOpenExitSound.Name = "buttonOpenExitSound";
+			this.buttonOpenExitSound.Size = new System.Drawing.Size(33, 23);
+			this.buttonOpenExitSound.TabIndex = 15;
+			this.buttonOpenExitSound.Text = "...";
+			this.buttonOpenExitSound.UseVisualStyleBackColor = true;
+			this.buttonOpenExitSound.Click += new System.EventHandler(this.buttonOpenExitSound_Click);
 			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label5.Location = new System.Drawing.Point(26, 307);
+			this.label5.Location = new System.Drawing.Point(15, 307);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(73, 18);
+			this.label5.Size = new System.Drawing.Size(79, 18);
 			this.label5.TabIndex = 16;
-			this.label5.Text = "ExitVoice : ";
+			this.label5.Text = "Exit Sound :";
 			// 
-			// ExitVoicePath
+			// textBoxExitSoundPath
 			// 
-			this.ExitVoicePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.textBoxExitSoundPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.ExitVoicePath.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.ExitVoicePath.Location = new System.Drawing.Point(105, 304);
-			this.ExitVoicePath.Name = "ExitVoicePath";
-			this.ExitVoicePath.Size = new System.Drawing.Size(358, 25);
-			this.ExitVoicePath.TabIndex = 17;
+			this.textBoxExitSoundPath.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.textBoxExitSoundPath.Location = new System.Drawing.Point(100, 304);
+			this.textBoxExitSoundPath.Name = "textBoxExitSoundPath";
+			this.textBoxExitSoundPath.Size = new System.Drawing.Size(363, 25);
+			this.textBoxExitSoundPath.TabIndex = 17;
 			// 
 			// SettingWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(514, 392);
-			this.Controls.Add(this.ExitVoicePath);
+			this.Controls.Add(this.textBoxExitSoundPath);
 			this.Controls.Add(this.label5);
-			this.Controls.Add(this.ExitVoiceSetting);
-			this.Controls.Add(this.PostVoiceSetting);
-			this.Controls.Add(this.PostVoicePath);
+			this.Controls.Add(this.buttonOpenExitSound);
+			this.Controls.Add(this.buttonOpenPostSound);
+			this.Controls.Add(this.textBoxPostSoundPath);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.UpDownNotifyTime);
@@ -228,10 +228,10 @@
 		private System.Windows.Forms.NumericUpDown UpDownNotifyTime;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.TextBox PostVoicePath;
-		private System.Windows.Forms.Button PostVoiceSetting;
-		private System.Windows.Forms.Button ExitVoiceSetting;
+		private System.Windows.Forms.TextBox textBoxPostSoundPath;
+		private System.Windows.Forms.Button buttonOpenPostSound;
+		private System.Windows.Forms.Button buttonOpenExitSound;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.TextBox ExitVoicePath;
+		private System.Windows.Forms.TextBox textBoxExitSoundPath;
 	}
 }

@@ -39,8 +39,8 @@ namespace LegatoNowPlaying
 			Icon = Properties.Resources.legato;
 
 			textBoxPostingFormat.Text = SettingSource.PostingFormat;
-			PostVoicePath.Text = SettingSource.PostingSound;
-			ExitVoicePath.Text = SettingSource.ExitingSound;
+			textBoxPostSoundPath.Text = SettingSource.PostingSound;
+			textBoxExitSoundPath.Text = SettingSource.ExitingSound;
 		}
 
 		/// <summary>
@@ -51,34 +51,34 @@ namespace LegatoNowPlaying
 			// 結果に反映
 			SettingSource.PostingFormat = textBoxPostingFormat.Text;
 			SettingSource.NotifyTime = TimeSpan.FromSeconds((double)UpDownNotifyTime.Value);
-			SettingSource.PostingSound = PostVoicePath.Text;
-			SettingSource.ExitingSound = ExitVoicePath.Text;
+			SettingSource.PostingSound = textBoxPostSoundPath.Text;
+			SettingSource.ExitingSound = textBoxExitSoundPath.Text;
 
 			DialogResult = DialogResult.OK;
 			Close();
 		}
 
 		/// <summary>
-		/// 投稿時にお知らせを行うボイスファイルを決定します。
+		/// 投稿時にお知らせを行う音声ファイルを決定します。
 		/// </summary>
-		private void PostVoiceSetting_Click(object sender, EventArgs e)
+		private void buttonOpenPostSound_Click(object sender, EventArgs e)
 		{
 			if (_OpenFileDialog.ShowDialog() == DialogResult.OK)
 			{
 				string str = _OpenFileDialog.FileName;
-				PostVoicePath.Text = Path.GetDirectoryName(str) + @"\" + Path.GetFileName(str);
+				textBoxPostSoundPath.Text = Path.GetDirectoryName(str) + @"\" + Path.GetFileName(str);
 			}
 		}
 
 		/// <summary>
-		/// Lagato-NowPlaying 終了時に再生するボイスファイルを決定します。
+		/// アプリケーション終了時に再生する音声ファイルを選択します。
 		/// </summary>
-		private void ExitVoiceSetting_Click(object sender, EventArgs e)
+		private void buttonOpenExitSound_Click(object sender, EventArgs e)
 		{
 			if (_OpenFileDialog.ShowDialog() == DialogResult.OK)
 			{
 				string str = _OpenFileDialog.FileName;
-				ExitVoicePath.Text = Path.GetDirectoryName(str) + @"\" + Path.GetFileName(str);
+				textBoxExitSoundPath.Text = Path.GetDirectoryName(str) + @"\" + Path.GetFileName(str);
 			}
 		}
 
