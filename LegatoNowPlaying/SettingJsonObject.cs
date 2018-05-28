@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LegatoNowPlaying
@@ -9,14 +7,8 @@ namespace LegatoNowPlaying
 	/// <summary>
 	/// 設定のJSONファイルを管理します
 	/// </summary>
-	public class SettingJsonObject
+	public class SettingJsonFile : JsonFile
 	{
-
-		#region Constractors
-
-		private SettingJsonObject() { }
-
-		#endregion Constractors
 
 		#region Properties/Fields
 
@@ -41,66 +33,39 @@ namespace LegatoNowPlaying
 		/// 適宜、デフォルト値を設定することによって値の整合性を取ります
 		/// </summary>
 		/// <param name="target"></param>
-		private static void _Normalize(SettingJsonObject target)
+		private void _Normalize()
 		{
-			target.PostingFormat = target.PostingFormat ?? PostingFormatDefault;
+			PostingFormat = PostingFormat ?? PostingFormatDefault;
 
-			if (!target.NotifyTime.HasValue)
-				target.NotifyTime = new TimeSpan(0, 0, 1);
+			if (!NotifyTime.HasValue)
+				NotifyTime = new TimeSpan(0, 0, 1);
 
-			if (target.PostingSound == "")
-				target.PostingSound = null;
+			if (PostingSound == "")
+				PostingSound = null;
 
-			if (target.ExitingSound == "")
-				target.ExitingSound = null;
+			if (ExitingSound == "")
+				ExitingSound = null;
 		}
 
 		/// <summary>
 		/// settings.json から設定を読み込みます
 		/// <para>settings.json が存在しないときは新規に生成します</para>
 		/// </summary>
-		public static async Task<SettingJsonObject> LoadAsync()
+		public static async Task<SettingJsonFile> LoadAsync()
 		{
-			try
-			{
-				string jsonString = null;
-				using (var reader = new StreamReader("settings.json", Encoding.UTF8))
-					jsonString = await reader.ReadToEndAsync();
+			var setting = await LoadAsync<SettingJsonFile>("settings.json");
+			setting._Normalize();
 
-				var data = JsonConvert.DeserializeObject<SettingJsonObject>(jsonString);
-
-				// 整合性を取る
-				_Normalize(data);
-
-				return data;
-			}
-			catch
-			{
-				var data = new SettingJsonObject();
-				await data.SaveAsync();
-
-				return data;
-			}
+			return setting;
 		}
 
 		/// <summary>
 		/// settings.json に設定を保存します
 		/// </summary>
-		public async Task SaveAsync()
+		public Task SaveAsync()
 		{
-
-			// 整合性を取る
-			_Normalize(this);
-
-			// JSON生成
-			var jsonString = JsonConvert.SerializeObject(this, new JsonSerializerSettings
-			{
-				StringEscapeHandling = StringEscapeHandling.EscapeNonAscii
-			});
-
-			// ファイルへ書き込み
-			using (var writer = new StreamWriter("settings.json", false, Encoding.UTF8))
-				await writer.WriteAsync(jsonString);
+			_Normalize();
+			return SaveAsync("settings.json", this);
 		}
 
 		#endregion Methods

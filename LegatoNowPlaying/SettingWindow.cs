@@ -12,7 +12,7 @@ namespace LegatoNowPlaying
 		/// <summary>
 		/// SettingWindow コンストラクタ
 		/// </summary>
-		public SettingWindow(SettingJsonObject settingSource)
+		public SettingWindow(SettingJsonFile settingSource)
 		{
 			InitializeComponent();
 
@@ -25,7 +25,7 @@ namespace LegatoNowPlaying
 
 		private OpenFileDialog _OpenFileDialog { get; set; } = new OpenFileDialog();
 
-		public SettingJsonObject SettingSource { get; set; }
+		public SettingJsonFile SettingSource { get; set; }
 
 		#endregion Properties
 

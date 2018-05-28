@@ -33,9 +33,9 @@ namespace LegatoNowPlaying
 
 		private AimpObserver _AimpObserver { get; set; } = new AimpObserver();
 
-		private SettingJsonObject _Setting { get; set; }
+		private SettingJsonFile _Setting { get; set; }
 
-		private CredentialsJsonObject _Credentials { get; set; }
+		private CredentialsJsonFile _Credentials { get; set; }
 
 		private Tokens _Twitter { get; set; }
 
@@ -202,7 +202,7 @@ namespace LegatoNowPlaying
 		/// </summary>
 		private async Task<Tokens> _LoadAndVerifyCredentialsAsync()
 		{
-			var data = await CredentialsJsonObject.LoadAsync();
+			var data = await CredentialsJsonFile.LoadAsync();
 			var ck = data.ConsumerKey;
 			var cs = data.ConsumerSecret;
 			var at = data.AccessToken;
@@ -249,7 +249,7 @@ namespace LegatoNowPlaying
 				return;
 			}
 
-			_Setting = await SettingJsonObject.LoadAsync();
+			_Setting = await SettingJsonFile.LoadAsync();
 
 			_AimpObserver.CurrentTrackChanged += async (track) =>
 			{
