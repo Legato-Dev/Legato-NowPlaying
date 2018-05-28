@@ -19,7 +19,7 @@
             AIMP の実行ファイルのパスを取得します
             </summary>
             <exception cref="T:System.ApplicationException" />
-            <exception cref="!:FileNotFoundException" />
+            <exception cref="T:System.IO.FileNotFoundException" />
         </member>
         <member name="P:Legato.AimpProperties.State">
             <summary>
@@ -99,6 +99,11 @@
         <member name="M:Legato.AimpCommands.Close">
             <summary>
             AIMP を終了します
+            </summary>
+        </member>
+        <member name="T:Legato.Interop.AimpRemote.Enum.ChannelType">
+            <summary>
+            
             </summary>
         </member>
         <member name="F:Legato.Interop.AimpRemote.Enum.ChannelType.None">
@@ -266,6 +271,11 @@
             プロパティを設定することを示す値
             </summary>
         </member>
+        <member name="T:Legato.Interop.AimpRemote.Enum.PlayerProperty">
+            <summary>
+            音楽プレーヤーのプロパティの種類を表します
+            </summary>
+        </member>
         <member name="F:Legato.Interop.AimpRemote.Enum.PlayerProperty.Position">
             <summary>
             <para>再生中の曲の位置を示すプロパティです(単位:ミリ秒)</para>
@@ -345,14 +355,14 @@
             イベント通知を行うウィンドウを AIMP に登録します
             <para>この操作はスレッドセーフです</para>
             </summary>
-            <param name="communicationWindow">イベント通知を受け取る通信ウィンドウ</param>
+            <param name="messageReceiver">イベント通知を受け取る通信ウィンドウ</param>
         </member>
         <member name="M:Legato.Interop.AimpRemote.Helper.UnregisterNotify(Legato.Entities.MessageReceiver)">
             <summary>
             イベント通知を行うウィンドウを AIMP から登録解除します
             <para>この操作はスレッドセーフです</para>
             </summary>
-            <param name="communicationWindow">イベント通知を受け取る通信ウィンドウ</param>
+            <param name="messageReceiver">イベント通知を受け取る通信ウィンドウ</param>
         </member>
         <member name="T:Legato.Interop.AimpRemote.Entities.TrackInfo">
             <summary>
@@ -1742,6 +1752,20 @@
             Volume プロパティが変更された時に発生します
             </summary>
         </member>
+        <member name="M:Legato.AimpObserver.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="pollingIntervalMilliseconds"></param>
+            <param name="isAutoSubscribing"></param>
+        </member>
+        <member name="M:Legato.AimpObserver.#ctor(System.TimeSpan,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="pollingInterval"></param>
+            <param name="isAutoSubscribing"></param>
+        </member>
         <member name="M:Legato.AimpObserver.Subscribe">
             <summary>
             AIMP のイベント通知を購読します
@@ -1754,9 +1778,19 @@
             </summary>
             <exception cref="T:System.ApplicationException" />
         </member>
+        <member name="M:Legato.AimpObserver.Dispose">
+            <summary>
+            解放します
+            </summary>
+        </member>
         <member name="T:Legato.Entities.MessageReceiver">
             <summary>
             AIMP と通信するためのメッセージ専用ウィンドウ
+            </summary>
+        </member>
+        <member name="M:Legato.Entities.MessageReceiver.#ctor">
+            <summary>
+            メッセージ専用ウインドウに変更
             </summary>
         </member>
     </members>
