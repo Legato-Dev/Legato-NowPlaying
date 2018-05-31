@@ -22,16 +22,16 @@ namespace LegatoNowPlaying
 			catch
 			{
 				var data = new T();
-				await SaveAsync(fileName, data);
+				await data.SaveAsync(fileName);
 
 				return data;
 			}
 		}
 
-		protected static async Task SaveAsync(string fileName, JsonFile source)
+		protected async Task SaveAsync(string fileName)
 		{
 			// JSON生成
-			var jsonString = JsonConvert.SerializeObject(source, new JsonSerializerSettings
+			var jsonString = JsonConvert.SerializeObject(this, new JsonSerializerSettings
 			{
 				StringEscapeHandling = StringEscapeHandling.EscapeNonAscii
 			});

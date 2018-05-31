@@ -37,7 +37,7 @@ namespace LegatoNowPlaying
 		/// </summary>
 		public Task SaveAsync()
 		{
-			return SaveAsync("tokens.json", this);
+			return SaveAsync("tokens.json");
 		}
 
 		#endregion Methods

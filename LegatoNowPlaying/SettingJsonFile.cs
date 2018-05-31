@@ -65,7 +65,7 @@ namespace LegatoNowPlaying
 		public Task SaveAsync()
 		{
 			_Normalize();
-			return SaveAsync("settings.json", this);
+			return SaveAsync("settings.json");
 		}
 
 		#endregion Methods
