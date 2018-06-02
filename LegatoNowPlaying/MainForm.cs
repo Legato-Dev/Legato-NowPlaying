@@ -1,4 +1,4 @@
-﻿using AlbumArtExtraction;
+using AlbumArtExtraction;
 using Legato;
 using Legato.Interop.AimpRemote.Entities;
 using System;
@@ -9,16 +9,15 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LegatoNowPlaying.Services;
 
 namespace LegatoNowPlaying
 {
-	public partial class Form1 : Form
+  public partial class MainForm : Form
 	{
 
 		#region Constractors
 
-		public Form1()
+		public MainForm()
 		{
 			InitializeComponent();
 		}
