@@ -1,4 +1,4 @@
-﻿using Misq;
+using Misq;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Net.Http;
@@ -8,6 +8,8 @@ namespace LegatoNowPlaying.Services.Misskey
 {
 	public class Service : IService
 	{
+		public const string appKey = "z31SlkbuIonQ5G1tdx4j7xvGRL7XS51y";
+
 		private Misq.Me me;
 
 		public Service(Me me)
@@ -34,7 +36,7 @@ namespace LegatoNowPlaying.Services.Misskey
 
 			if (config.Token != null)
 			{
-				return new Service(new Misq.Me(config.Host, config.Token, "z31SlkbuIonQ5G1tdx4j7xvGRL7XS51y"));
+				return new Service(new Misq.Me(config.Host, config.Token, appKey));
 			}
 			else
 			{
