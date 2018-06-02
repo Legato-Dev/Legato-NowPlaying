@@ -44,12 +44,15 @@
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.button1 = new System.Windows.Forms.Button();
-			this.label6 = new System.Windows.Forms.Label();
+			this.label10 = new System.Windows.Forms.Label();
+			this.label9 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
 			this.button2 = new System.Windows.Forms.Button();
+			this.label6 = new System.Windows.Forms.Label();
+			this.button1 = new System.Windows.Forms.Button();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.label8 = new System.Windows.Forms.Label();
+			this.label11 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.UpDownNotifyTime)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -240,6 +243,9 @@
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.label11);
+			this.tabPage2.Controls.Add(this.label10);
+			this.tabPage2.Controls.Add(this.label9);
 			this.tabPage2.Controls.Add(this.label7);
 			this.tabPage2.Controls.Add(this.button2);
 			this.tabPage2.Controls.Add(this.label6);
@@ -252,29 +258,28 @@
 			this.tabPage2.Text = "Accounts";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
-			// button1
+			// label10
 			// 
-			this.button1.Location = new System.Drawing.Point(68, 6);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 0;
-			this.button1.Text = "Connect";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.label10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.label10.Location = new System.Drawing.Point(6, 94);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(485, 2);
+			this.label10.TabIndex = 5;
 			// 
-			// label6
+			// label9
 			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(6, 11);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(50, 18);
-			this.label6.TabIndex = 1;
-			this.label6.Text = "Twitter";
+			this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.label9.Location = new System.Drawing.Point(6, 55);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(485, 2);
+			this.label9.TabIndex = 4;
 			// 
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(6, 40);
+			this.label7.Location = new System.Drawing.Point(12, 65);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(54, 18);
 			this.label7.TabIndex = 3;
@@ -282,7 +287,8 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(68, 35);
+			this.button2.Location = new System.Drawing.Point(73, 63);
+			this.button2.Margin = new System.Windows.Forms.Padding(8);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(75, 23);
 			this.button2.TabIndex = 2;
@@ -290,13 +296,33 @@
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(12, 26);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(50, 18);
+			this.label6.TabIndex = 1;
+			this.label6.Text = "Twitter";
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(73, 24);
+			this.button1.Margin = new System.Windows.Forms.Padding(8);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.TabIndex = 0;
+			this.button1.Text = "Connect";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// tabPage3
 			// 
 			this.tabPage3.Controls.Add(this.label8);
-			this.tabPage3.Location = new System.Drawing.Point(4, 22);
+			this.tabPage3.Location = new System.Drawing.Point(4, 27);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(497, 332);
+			this.tabPage3.Size = new System.Drawing.Size(497, 337);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "About";
 			this.tabPage3.UseVisualStyleBackColor = true;
@@ -309,6 +335,15 @@
 			this.label8.Size = new System.Drawing.Size(22, 18);
 			this.label8.TabIndex = 0;
 			this.label8.Text = "Yo";
+			// 
+			// label11
+			// 
+			this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.label11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.label11.Location = new System.Drawing.Point(6, 14);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(485, 2);
+			this.label11.TabIndex = 6;
 			// 
 			// SettingWindow
 			// 
@@ -359,5 +394,8 @@
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.TabPage tabPage3;
 		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.Label label11;
 	}
 }
