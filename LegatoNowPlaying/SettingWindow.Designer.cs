@@ -54,6 +54,8 @@
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.label8 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.label12 = new System.Windows.Forms.Label();
+			this.previewLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.UpDownNotifyTime)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -71,6 +73,7 @@
 			this.textBoxPostingFormat.Name = "textBoxPostingFormat";
 			this.textBoxPostingFormat.Size = new System.Drawing.Size(485, 96);
 			this.textBoxPostingFormat.TabIndex = 0;
+			this.textBoxPostingFormat.TextChanged += new System.EventHandler(this.textBoxPostingFormat_TextChanged);
 			// 
 			// label1
 			// 
@@ -221,6 +224,8 @@
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.Controls.Add(this.previewLabel);
+			this.tabPage1.Controls.Add(this.label12);
 			this.tabPage1.Controls.Add(this.textBox1);
 			this.tabPage1.Controls.Add(this.label1);
 			this.tabPage1.Controls.Add(this.textBoxExitSoundPath);
@@ -349,6 +354,7 @@
 			// 
 			this.textBox1.BackColor = System.Drawing.Color.White;
 			this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.textBox1.ForeColor = System.Drawing.Color.DimGray;
 			this.textBox1.Location = new System.Drawing.Point(6, 128);
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
@@ -357,6 +363,23 @@
 			this.textBox1.TabIndex = 18;
 			this.textBox1.Text = "Available tags:\r\n{Title} : Embed track title\r\n{TrackNum} : Embed track number\r\n{A" +
     "rtist} : Embed artist name\r\n{Album} : Embed album name\r\n";
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(290, 128);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(54, 18);
+			this.label12.TabIndex = 19;
+			this.label12.Text = "Preview";
+			// 
+			// previewLabel
+			// 
+			this.previewLabel.ForeColor = System.Drawing.Color.Navy;
+			this.previewLabel.Location = new System.Drawing.Point(290, 146);
+			this.previewLabel.Name = "previewLabel";
+			this.previewLabel.Size = new System.Drawing.Size(201, 90);
+			this.previewLabel.TabIndex = 20;
 			// 
 			// SettingWindow
 			// 
@@ -411,5 +434,7 @@
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Label label11;
 	private System.Windows.Forms.TextBox textBox1;
+	private System.Windows.Forms.Label previewLabel;
+	private System.Windows.Forms.Label label12;
   }
 }

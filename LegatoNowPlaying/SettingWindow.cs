@@ -1,3 +1,4 @@
+using Legato.Interop.AimpRemote.Entities;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -44,6 +45,8 @@ namespace LegatoNowPlaying
 			textBoxPostingFormat.Text = SettingSource.PostingFormat;
 			textBoxPostSoundPath.Text = SettingSource.PostingSound;
 			textBoxExitSoundPath.Text = SettingSource.ExitingSound;
+
+			this.renderPreview();
 		}
 
 		/// <summary>
@@ -95,6 +98,24 @@ namespace LegatoNowPlaying
 		private void button2_Click(object sender, EventArgs e)
 		{
 			Services.Misskey.Service.Install(this.Accounts);
+		}
+
+		private void textBoxPostingFormat_TextChanged(object sender, EventArgs e)
+		{
+			this.renderPreview();
+		}
+
+		private void renderPreview()
+		{
+			var track = new TrackInfo();
+			track.Album = "Colory Starry";
+			track.Artist = "ななひら";
+			track.Title = "ほしにねがいを";
+			track.TrackNumber = 10;
+			track.Year = "2015";
+			track.Genre = "Electronic";
+
+			this.previewLabel.Text = Common.ComposeText(textBoxPostingFormat.Text, track);
 		}
 	}
 }

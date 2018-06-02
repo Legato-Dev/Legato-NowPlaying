@@ -61,13 +61,7 @@ namespace LegatoNowPlaying
 		{
 			var track = _AimpProperties.CurrentTrack;
 
-			// 投稿内容を構築
-			var stringBuilder = new StringBuilder(_Setting.PostingFormat);
-			stringBuilder = stringBuilder.Replace("{Title}", "{0}");
-			stringBuilder = stringBuilder.Replace("{Artist}", "{1}");
-			stringBuilder = stringBuilder.Replace("{Album}", "{2}");
-			stringBuilder = stringBuilder.Replace("{TrackNum}", "{3:D2}");
-			var text = string.Format(stringBuilder.ToString(), track.Title, track.Artist, track.Album, track.TrackNumber);
+			var text = Common.ComposeText(_Setting.PostingFormat, track);
 
 			var albumArt = _GetAlbumArt();
 
