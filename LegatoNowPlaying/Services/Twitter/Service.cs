@@ -49,7 +49,7 @@ namespace LegatoNowPlaying.Services.Twitter
 			}
 		}
 
-		public async void Post(string text, Image albumArt)
+		public async Task Post(string text, Image albumArt)
 		{
 			try
 			{

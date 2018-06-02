@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Threading.Tasks;
 
 namespace LegatoNowPlaying
 {
@@ -13,10 +14,10 @@ namespace LegatoNowPlaying
 			this.Twitter = await Services.Twitter.Service.Use();
 		}
 
-		public void Post(string text, Image albumArt)
+		public async Task Post(string text, Image albumArt)
 		{
-			if (this.Misskey != null) this.Misskey.Post(text, albumArt);
-			if (this.Twitter != null) this.Twitter.Post(text, albumArt);
+			if (this.Misskey != null) await this.Misskey.Post(text, albumArt);
+			if (this.Twitter != null) await this.Twitter.Post(text, albumArt);
 		}
 	}
 }

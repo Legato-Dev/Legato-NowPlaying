@@ -1,9 +1,10 @@
 ﻿using System.Drawing;
+using System.Threading.Tasks;
 
 namespace LegatoNowPlaying.Services
 {
 	interface IService
 	{
-		void Post(string text, Image albumArt);
+		Task Post(string text, Image albumArt);
 	}
 }

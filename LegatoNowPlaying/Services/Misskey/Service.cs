@@ -42,7 +42,7 @@ namespace LegatoNowPlaying.Services.Misskey
 			}
 		}
 
-		public async void Post(string text, Image albumArt)
+		public async Task Post(string text, Image albumArt)
 		{
 			var ps = new Dictionary<string, object>
 			{

@@ -72,7 +72,7 @@ namespace LegatoNowPlaying
 
 			var albumArt = _GetAlbumArt();
 
-			Accounts.Post(text, checkBoxNeedAlbumArt.Checked ? albumArt : null);
+			await Accounts.Post(text, checkBoxNeedAlbumArt.Checked ? albumArt : null);
 		}
 
 		/// <summary>
