@@ -43,6 +43,9 @@
 			this.textBoxExitSoundPath = new System.Windows.Forms.TextBox();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
+			this.previewLabel = new System.Windows.Forms.Label();
+			this.label12 = new System.Windows.Forms.Label();
+			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.label11 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
@@ -53,9 +56,6 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.label8 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.label12 = new System.Windows.Forms.Label();
-			this.previewLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.UpDownNotifyTime)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -246,6 +246,37 @@
 			this.tabPage1.Text = "General";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
+			// previewLabel
+			// 
+			this.previewLabel.ForeColor = System.Drawing.Color.Navy;
+			this.previewLabel.Location = new System.Drawing.Point(290, 146);
+			this.previewLabel.Name = "previewLabel";
+			this.previewLabel.Size = new System.Drawing.Size(201, 90);
+			this.previewLabel.TabIndex = 20;
+			// 
+			// label12
+			// 
+			this.label12.AutoSize = true;
+			this.label12.Location = new System.Drawing.Point(290, 128);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(59, 18);
+			this.label12.TabIndex = 19;
+			this.label12.Text = "Preview:";
+			// 
+			// textBox1
+			// 
+			this.textBox1.BackColor = System.Drawing.Color.White;
+			this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.textBox1.ForeColor = System.Drawing.Color.DimGray;
+			this.textBox1.Location = new System.Drawing.Point(6, 128);
+			this.textBox1.Multiline = true;
+			this.textBox1.Name = "textBox1";
+			this.textBox1.ReadOnly = true;
+			this.textBox1.Size = new System.Drawing.Size(241, 108);
+			this.textBox1.TabIndex = 18;
+			this.textBox1.Text = "Available tags:\r\n{Title} : Embed track title\r\n{TrackNum} : Embed track number\r\n{A" +
+    "rtist} : Embed artist name\r\n{Album} : Embed album name\r\n";
+			// 
 			// tabPage2
 			// 
 			this.tabPage2.Controls.Add(this.label11);
@@ -349,37 +380,6 @@
 			this.label8.Size = new System.Drawing.Size(22, 18);
 			this.label8.TabIndex = 0;
 			this.label8.Text = "Yo";
-			// 
-			// textBox1
-			// 
-			this.textBox1.BackColor = System.Drawing.Color.White;
-			this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.textBox1.ForeColor = System.Drawing.Color.DimGray;
-			this.textBox1.Location = new System.Drawing.Point(6, 128);
-			this.textBox1.Multiline = true;
-			this.textBox1.Name = "textBox1";
-			this.textBox1.ReadOnly = true;
-			this.textBox1.Size = new System.Drawing.Size(241, 108);
-			this.textBox1.TabIndex = 18;
-			this.textBox1.Text = "Available tags:\r\n{Title} : Embed track title\r\n{TrackNum} : Embed track number\r\n{A" +
-    "rtist} : Embed artist name\r\n{Album} : Embed album name\r\n";
-			// 
-			// label12
-			// 
-			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(290, 128);
-			this.label12.Name = "label12";
-			this.label12.Size = new System.Drawing.Size(54, 18);
-			this.label12.TabIndex = 19;
-			this.label12.Text = "Preview";
-			// 
-			// previewLabel
-			// 
-			this.previewLabel.ForeColor = System.Drawing.Color.Navy;
-			this.previewLabel.Location = new System.Drawing.Point(290, 146);
-			this.previewLabel.Name = "previewLabel";
-			this.previewLabel.Size = new System.Drawing.Size(201, 90);
-			this.previewLabel.TabIndex = 20;
 			// 
 			// SettingWindow
 			// 
