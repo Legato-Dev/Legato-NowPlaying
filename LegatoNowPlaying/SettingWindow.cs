@@ -12,11 +12,12 @@ namespace LegatoNowPlaying
 		/// <summary>
 		/// SettingWindow コンストラクタ
 		/// </summary>
-		public SettingWindow(SettingJsonFile settingSource)
+		public SettingWindow(SettingJsonFile settingSource, Accounts accounts)
 		{
 			InitializeComponent();
 
 			SettingSource = settingSource;
+			this.Accounts = accounts;
 		}
 
 		#endregion Constractors
@@ -26,6 +27,8 @@ namespace LegatoNowPlaying
 		private OpenFileDialog _OpenFileDialog { get; set; } = new OpenFileDialog();
 
 		public SettingJsonFile SettingSource { get; set; }
+
+		private Accounts Accounts;
 
 		#endregion Properties
 
@@ -84,5 +87,14 @@ namespace LegatoNowPlaying
 
 		#endregion Event Hndlers
 
+		private void button1_Click(object sender, EventArgs e)
+		{
+			Services.Twitter.Service.Install(this.Accounts);
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			Services.Misskey.Service.Install(this.Accounts);
+		}
 	}
 }

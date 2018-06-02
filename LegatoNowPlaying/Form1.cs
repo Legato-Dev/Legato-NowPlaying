@@ -1,5 +1,4 @@
 ﻿using AlbumArtExtraction;
-using CoreTweet;
 using Legato;
 using Legato.Interop.AimpRemote.Entities;
 using System;
@@ -10,6 +9,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LegatoNowPlaying.Services;
 
 namespace LegatoNowPlaying
 {
@@ -35,9 +35,7 @@ namespace LegatoNowPlaying
 
 		private SettingJsonFile _Setting { get; set; }
 
-		private CredentialsJsonFile _Credentials { get; set; }
-
-		private Tokens _Twitter { get; set; }
+		private Accounts Accounts;
 
 		#endregion Properties
 
@@ -62,36 +60,19 @@ namespace LegatoNowPlaying
 
 		private async Task _PostAsync()
 		{
-			try
-			{
-				var track = _AimpProperties.CurrentTrack;
+			var track = _AimpProperties.CurrentTrack;
 
-				// 投稿内容を構築
-				var stringBuilder = new StringBuilder(_Setting.PostingFormat);
-				stringBuilder = stringBuilder.Replace("{Title}", "{0}");
-				stringBuilder = stringBuilder.Replace("{Artist}", "{1}");
-				stringBuilder = stringBuilder.Replace("{Album}", "{2}");
-				stringBuilder = stringBuilder.Replace("{TrackNum}", "{3:D2}");
-				var text = string.Format(stringBuilder.ToString(), track.Title, track.Artist, track.Album, track.TrackNumber);
+			// 投稿内容を構築
+			var stringBuilder = new StringBuilder(_Setting.PostingFormat);
+			stringBuilder = stringBuilder.Replace("{Title}", "{0}");
+			stringBuilder = stringBuilder.Replace("{Artist}", "{1}");
+			stringBuilder = stringBuilder.Replace("{Album}", "{2}");
+			stringBuilder = stringBuilder.Replace("{TrackNum}", "{3:D2}");
+			var text = string.Format(stringBuilder.ToString(), track.Title, track.Artist, track.Album, track.TrackNumber);
 
-				var albumArt = _GetAlbumArt();
+			var albumArt = _GetAlbumArt();
 
-				if (checkBoxNeedAlbumArt.Checked && albumArt != null)
-				{
-					using (var memory = new MemoryStream())
-						albumArt.Save("temp.png", ImageFormat.Png);
-
-					await _Twitter.Statuses.UpdateWithMediaAsync(text, new FileInfo("temp.png"));
-				}
-				else
-					await _Twitter.Statuses.UpdateAsync(text);
-
-				Console.WriteLine("Twitter への投稿が完了しました");
-			}
-			catch (Exception ex)
-			{
-				Console.Error.WriteLine(ex.Message);
-			}
+			Accounts.Post(text, checkBoxNeedAlbumArt.Checked ? albumArt : null);
 		}
 
 		/// <summary>
@@ -195,39 +176,6 @@ namespace LegatoNowPlaying
 			notifyIcon.ShowBalloonTip((int)_Setting.NotifyTime.Value.TotalMilliseconds);
 		}
 
-		#region File IO Methods
-
-		/// <summary>
-		/// tokens.json からアカウント情報を読み込み、その有効性を検証します
-		/// </summary>
-		private async Task<Tokens> _LoadAndVerifyCredentialsAsync()
-		{
-			var data = await CredentialsJsonFile.LoadAsync();
-			var ck = data.ConsumerKey;
-			var cs = data.ConsumerSecret;
-			var at = data.AccessToken;
-			var ats = data.AccessTokenSecret;
-
-			var defaultTokensKey = "";
-
-			var isNotDefaultTokens = ck != defaultTokensKey && cs != defaultTokensKey && at != defaultTokensKey && ats != defaultTokensKey;
-			if (isNotDefaultTokens)
-			{
-				var tokens = Tokens.Create(ck, cs, at, ats);
-
-				// トークンの有効性を検証
-				try
-				{
-					var account = await tokens.Account.VerifyCredentialsAsync(include_entities: false, skip_status: true);
-					return tokens;
-				}
-				catch { }
-			}
-			return null;
-		}
-
-		#endregion File IO Methods
-
 		#endregion Methods
 
 		#region Event Handlers
@@ -235,19 +183,6 @@ namespace LegatoNowPlaying
 		private async void Form1_Load(object sender, EventArgs e)
 		{
 			Icon = Properties.Resources.legato;
-
-			_Twitter = await _LoadAndVerifyCredentialsAsync();
-			if (_Twitter == null)
-			{
-				MessageBox.Show(
-					"有効なTwitterのトークン情報の設定が必要です。tokens.jsonの中身を編集してからアプリケーションを再実行してください。",
-					"情報",
-					MessageBoxButtons.OK,
-					MessageBoxIcon.Information);
-
-				Close();
-				return;
-			}
 
 			_Setting = await SettingJsonFile.LoadAsync();
 
@@ -270,6 +205,9 @@ namespace LegatoNowPlaying
 				_UpdateFormTrackInfo(_AimpProperties.CurrentTrack);
 				_UpdateAlbumArt();
 			}
+
+			this.Accounts = new Accounts();
+			this.Accounts.Init();
 		}
 
 		private async void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -314,7 +252,7 @@ namespace LegatoNowPlaying
 
 		private async void buttonShowSettingWindow_Click(object sender, EventArgs e)
 		{
-			var settingWindow = new SettingWindow(_Setting);
+			var settingWindow = new SettingWindow(_Setting, this.Accounts);
 
 			if (settingWindow.ShowDialog() == DialogResult.OK)
 			{
