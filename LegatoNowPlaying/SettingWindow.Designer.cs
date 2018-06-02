@@ -44,6 +44,7 @@
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.label11 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
@@ -52,7 +53,7 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.label8 = new System.Windows.Forms.Label();
-			this.label11 = new System.Windows.Forms.Label();
+			this.textBox1 = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.UpDownNotifyTime)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -99,10 +100,8 @@
 			this.label2.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.label2.Location = new System.Drawing.Point(6, 125);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(236, 100);
+			this.label2.Size = new System.Drawing.Size(0, 20);
 			this.label2.TabIndex = 3;
-			this.label2.Text = "Available tags:\r\n{Title} : Embed track title\r\n{TrackNum} : Embed track number\r\n{A" +
-    "rtist} : Embed artist name\r\n{Album} : Embed album name\r\n";
 			// 
 			// panel1
 			// 
@@ -222,6 +221,7 @@
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.Controls.Add(this.textBox1);
 			this.tabPage1.Controls.Add(this.label1);
 			this.tabPage1.Controls.Add(this.textBoxExitSoundPath);
 			this.tabPage1.Controls.Add(this.textBoxPostingFormat);
@@ -257,6 +257,15 @@
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Accounts";
 			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// label11
+			// 
+			this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.label11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.label11.Location = new System.Drawing.Point(6, 14);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(485, 2);
+			this.label11.TabIndex = 6;
 			// 
 			// label10
 			// 
@@ -336,14 +345,18 @@
 			this.label8.TabIndex = 0;
 			this.label8.Text = "Yo";
 			// 
-			// label11
+			// textBox1
 			// 
-			this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-			this.label11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.label11.Location = new System.Drawing.Point(6, 14);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(485, 2);
-			this.label11.TabIndex = 6;
+			this.textBox1.BackColor = System.Drawing.Color.White;
+			this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.textBox1.Location = new System.Drawing.Point(6, 128);
+			this.textBox1.Multiline = true;
+			this.textBox1.Name = "textBox1";
+			this.textBox1.ReadOnly = true;
+			this.textBox1.Size = new System.Drawing.Size(241, 108);
+			this.textBox1.TabIndex = 18;
+			this.textBox1.Text = "Available tags:\r\n{Title} : Embed track title\r\n{TrackNum} : Embed track number\r\n{A" +
+    "rtist} : Embed artist name\r\n{Album} : Embed album name\r\n";
 			// 
 			// SettingWindow
 			// 
@@ -397,5 +410,6 @@
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Label label11;
-	}
+	private System.Windows.Forms.TextBox textBox1;
+  }
 }
