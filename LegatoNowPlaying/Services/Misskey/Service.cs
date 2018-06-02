@@ -58,14 +58,16 @@ namespace LegatoNowPlaying.Services.Misskey
 				albumArt.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
 				var img = stream.ToArray();
 
-				form.Add(new ByteArrayContent(img, 0, img.Length), "file");
+				var data = new ByteArrayContent(img);
+
+				form.Add(data, "file", "cover.jpg");
 
 				var file = await this.me.RequestWithBinary("drive/files/create", form);
 
-				ps.Add("fileIds", new string[] { file.id });
+				ps.Add("mediaIds", new string[] { file.id });
 			}
 
-			//await this.me.Request("notes/create", ps);
+			await this.me.Request("notes/create", ps);
 		}
 	}
 
