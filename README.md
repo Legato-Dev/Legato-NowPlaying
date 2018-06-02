@@ -14,6 +14,7 @@ MIT License
 - AlbumArtExtraction : MIT License
 - CoreTweet : MIT License
 - Json.NET(Newtonsoft.Json) : MIT License
+- Misq : MIT License
 
 ----
 ----
@@ -35,3 +36,4 @@ MIT ライセンス
 - AlbumArtExtraction : MIT ライセンス
 - CoreTweet : MIT ライセンス
 - Json.NET(Newtonsoft.Json) : MIT ライセンス
+- Misq : MIT ライセンス
