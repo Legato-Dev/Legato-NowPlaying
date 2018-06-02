@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LegatoNowPlaying.Services.Misskey
 {
-	class Service : IService
+	public class Service : IService
 	{
 		private Misq.Me me;
 
@@ -15,9 +15,16 @@ namespace LegatoNowPlaying.Services.Misskey
 			this.me = me;
 		}
 
-		static public void Install()
+		static public void Install(Accounts accounts)
 		{
-			var form = new Services.Misskey.AuthForm(OnComplete);
+			var form = new Services.Misskey.AuthForm(async (Misq.Me me) => {
+				var config = await CredentialsJsonFile.LoadAsync();
+				config.Token = me.UserToken;
+				config.Host = me.Host;
+				await config.SaveAsync();
+
+				accounts.Misskey = await Use();
+			});
 			form.Show();
 		}
 
@@ -33,16 +40,6 @@ namespace LegatoNowPlaying.Services.Misskey
 			{
 				return null;
 			}
-		}
-
-		static private async void OnComplete(Misq.Me me)
-		{
-			var config = await CredentialsJsonFile.LoadAsync();
-			config.Token = me.UserToken;
-			config.Host = me.Host;
-			await config.SaveAsync();
-
-			Core.Misskey = await Use();
 		}
 
 		public async void Post(string text, Image albumArt)

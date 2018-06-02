@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace LegatoNowPlaying.Services.Twitter
 {
-	class Service : IService
+	public class Service : IService
 	{
 		private Tokens _Twitter { get; set; }
 
@@ -17,7 +17,7 @@ namespace LegatoNowPlaying.Services.Twitter
 			_Twitter = Twitter;
 		}
 
-		static public async void Install()
+		static public async void Install(Accounts accounts)
 		{
 			var _Twitter = await _LoadAndVerifyCredentialsAsync();
 			if (_Twitter == null)
@@ -32,7 +32,7 @@ namespace LegatoNowPlaying.Services.Twitter
 			}
 			else
 			{
-				Core.Twitter = await Use();
+				accounts.Twitter = await Use();
 			}
 		}
 

@@ -35,6 +35,8 @@ namespace LegatoNowPlaying
 
 		private SettingJsonFile _Setting { get; set; }
 
+		private Accounts Core;
+
 		#endregion Properties
 
 		#region Methods
@@ -204,7 +206,8 @@ namespace LegatoNowPlaying
 				_UpdateAlbumArt();
 			}
 
-			Core.Init();
+			this.Core = new Accounts();
+			this.Core.Init();
 		}
 
 		private async void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -249,7 +252,7 @@ namespace LegatoNowPlaying
 
 		private async void buttonShowSettingWindow_Click(object sender, EventArgs e)
 		{
-			var settingWindow = new SettingWindow(_Setting);
+			var settingWindow = new SettingWindow(_Setting, this.Core);
 
 			if (settingWindow.ShowDialog() == DialogResult.OK)
 			{

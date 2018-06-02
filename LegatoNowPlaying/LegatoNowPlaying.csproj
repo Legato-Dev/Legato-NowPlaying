@@ -75,7 +75,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Core.cs" />
+    <Compile Include="Accounts.cs" />
     <Compile Include="Services\IService.cs" />
     <Compile Include="Services\Misskey\AuthForm.cs">
       <SubType>Form</SubType>
