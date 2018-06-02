@@ -1,5 +1,4 @@
 ﻿using AlbumArtExtraction;
-using CoreTweet;
 using Legato;
 using Legato.Interop.AimpRemote.Entities;
 using System;
@@ -10,6 +9,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LegatoNowPlaying.Services;
 
 namespace LegatoNowPlaying
 {
@@ -21,6 +21,9 @@ namespace LegatoNowPlaying
 		public Form1()
 		{
 			InitializeComponent();
+
+			var misskey = new Services.Misskey.Service();
+			misskey.Install();
 		}
 
 		#endregion Constractors
@@ -34,10 +37,6 @@ namespace LegatoNowPlaying
 		private AimpObserver _AimpObserver { get; set; } = new AimpObserver();
 
 		private SettingJsonFile _Setting { get; set; }
-
-		private CredentialsJsonFile _Credentials { get; set; }
-
-		private Tokens _Twitter { get; set; }
 
 		#endregion Properties
 
@@ -195,39 +194,6 @@ namespace LegatoNowPlaying
 			notifyIcon.ShowBalloonTip((int)_Setting.NotifyTime.Value.TotalMilliseconds);
 		}
 
-		#region File IO Methods
-
-		/// <summary>
-		/// tokens.json からアカウント情報を読み込み、その有効性を検証します
-		/// </summary>
-		private async Task<Tokens> _LoadAndVerifyCredentialsAsync()
-		{
-			var data = await CredentialsJsonFile.LoadAsync();
-			var ck = data.ConsumerKey;
-			var cs = data.ConsumerSecret;
-			var at = data.AccessToken;
-			var ats = data.AccessTokenSecret;
-
-			var defaultTokensKey = "";
-
-			var isNotDefaultTokens = ck != defaultTokensKey && cs != defaultTokensKey && at != defaultTokensKey && ats != defaultTokensKey;
-			if (isNotDefaultTokens)
-			{
-				var tokens = Tokens.Create(ck, cs, at, ats);
-
-				// トークンの有効性を検証
-				try
-				{
-					var account = await tokens.Account.VerifyCredentialsAsync(include_entities: false, skip_status: true);
-					return tokens;
-				}
-				catch { }
-			}
-			return null;
-		}
-
-		#endregion File IO Methods
-
 		#endregion Methods
 
 		#region Event Handlers
@@ -236,19 +202,7 @@ namespace LegatoNowPlaying
 		{
 			Icon = Properties.Resources.legato;
 
-			_Twitter = await _LoadAndVerifyCredentialsAsync();
-			if (_Twitter == null)
-			{
-				MessageBox.Show(
-					"有効なTwitterのトークン情報の設定が必要です。tokens.jsonの中身を編集してからアプリケーションを再実行してください。",
-					"情報",
-					MessageBoxButtons.OK,
-					MessageBoxIcon.Information);
-
-				Close();
-				return;
-			}
-
+		
 			_Setting = await SettingJsonFile.LoadAsync();
 
 			_AimpObserver.CurrentTrackChanged += async (track) =>
