@@ -46,11 +46,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Legato\Legato.dll</HintPath>
     </Reference>
-    <Reference Include="Misq, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Misq.3.0.0\lib\net461\Misq.dll</HintPath>
+    <Reference Include="Misq, Version=5.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Misq.5.0.1\lib\net461\Misq.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Misq.3.0.0\lib\net461\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Misq.5.0.1\lib\net461\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

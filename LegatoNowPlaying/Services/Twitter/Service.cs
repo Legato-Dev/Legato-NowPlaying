@@ -37,19 +37,11 @@ namespace LegatoNowPlaying.Services.Twitter
 
 		}
 
-		public async void Post(TrackInfo track, Image albumArt, Boolean withAlbumArt)
+		public async void Post(string text, Image albumArt)
 		{
 			try
 			{
-				// 投稿内容を構築
-				var stringBuilder = new StringBuilder(this.settings.PostingFormat);
-				stringBuilder = stringBuilder.Replace("{Title}", "{0}");
-				stringBuilder = stringBuilder.Replace("{Artist}", "{1}");
-				stringBuilder = stringBuilder.Replace("{Album}", "{2}");
-				stringBuilder = stringBuilder.Replace("{TrackNum}", "{3:D2}");
-				var text = string.Format(stringBuilder.ToString(), track.Title, track.Artist, track.Album, track.TrackNumber);
-
-				if (withAlbumArt && albumArt != null)
+				if (albumArt != null)
 				{
 					using (var memory = new MemoryStream())
 						albumArt.Save("temp.png", ImageFormat.Png);

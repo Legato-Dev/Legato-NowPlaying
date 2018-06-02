@@ -11,6 +11,6 @@ namespace LegatoNowPlaying.Services
 	interface IService
 	{
 		void Install(SettingJsonFile settings);
-		void Post(TrackInfo track, Image albumArt, Boolean withAlbumArt);
+		void Post(string text, Image albumArt);
 	}
 }

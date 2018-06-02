@@ -6,32 +6,66 @@ using System.Threading.Tasks;
 using Misq;
 using Legato.Interop.AimpRemote.Entities;
 using System.Drawing;
+using System.Net.Http;
 
 namespace LegatoNowPlaying.Services.Misskey
 {
 	class Service : IService
 	{
 		private SettingJsonFile settings;
+		private CredentialsJsonFile config;
 
-		private Misq.App app;
+		private Misq.Me me;
 
 		public async void Install(SettingJsonFile settings)
 		{
 			this.settings = settings;
 
-			var config = await CredentialsJsonFile.LoadAsync();
-			var token = config.Token;
+			this.config = await CredentialsJsonFile.LoadAsync();
 
-			if (token == null)
+			if (this.config.Token == null)
 			{
-				new Services.Misskey.AuthForm();
+				var form = new Services.Misskey.AuthForm(this.OnComplete);
+				form.Show();
+			}
+			else
+			{
+				this.me = new Misq.Me(this.config.Host, this.config.Token, "z31SlkbuIonQ5G1tdx4j7xvGRL7XS51y");
 			}
 
 		}
 
-		public async void Post(TrackInfo track, Image albumArt, Boolean withAlbumArt)
+		private void OnComplete(Misq.Me me)
 		{
-			
+			this.config.Token = me.UserToken;
+			this.config.Host = me.Host;
+			this.config.SaveAsync();
+			this.me = me;
+		}
+
+		public async void Post(string text, Image albumArt)
+		{
+			var ps = new Dictionary<string, object>
+			{
+				{ "text", text }
+			};
+
+			if (albumArt != null)
+			{
+				var form = new MultipartFormDataContent();
+
+				var stream = new System.IO.MemoryStream();
+				albumArt.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+				var img = stream.ToArray();
+
+				form.Add(new ByteArrayContent(img, 0, img.Length), "file");
+
+				var file = await this.me.RequestWithBinary("drive/files/create", form);
+
+				ps.Add("fileIds", new string[] { file.id });
+			}
+
+			//await this.me.Request("notes/create", ps);
 		}
 	}
 
@@ -41,6 +75,7 @@ namespace LegatoNowPlaying.Services.Misskey
 		#region Properties/Fields
 
 		public string Token { get; set; }
+		public string Host { get; set; }
 
 		#endregion Properties/Fields
 

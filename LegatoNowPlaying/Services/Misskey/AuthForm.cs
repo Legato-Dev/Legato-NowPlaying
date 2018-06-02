@@ -12,14 +12,30 @@ namespace LegatoNowPlaying.Services.Misskey
 {
 	public partial class AuthForm : Form
 	{
-		public AuthForm()
+		public delegate void OnComplete(Misq.Me me);
+
+		private OnComplete onComplete;
+
+		public AuthForm(OnComplete onComplete)
 		{
+			this.onComplete = onComplete;
 			InitializeComponent();
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private async void AuthForm_Load(object sender, EventArgs e)
 		{
+			var app = new Misq.App("https://misskey.xyz", "z31SlkbuIonQ5G1tdx4j7xvGRL7XS51y");
+			var done = await app.Authorize();
+			Console.WriteLine(done);
 
+			this.button1.Click += async (_1, _2) =>
+			{
+				var me = await done();
+
+				this.Close();
+
+				this.onComplete(me);
+			};
 		}
 	}
 }

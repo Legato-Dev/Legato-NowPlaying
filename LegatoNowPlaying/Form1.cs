@@ -21,9 +21,6 @@ namespace LegatoNowPlaying
 		public Form1()
 		{
 			InitializeComponent();
-
-			var misskey = new Services.Misskey.Service();
-			misskey.Install();
 		}
 
 		#endregion Constractors
@@ -37,6 +34,8 @@ namespace LegatoNowPlaying
 		private AimpObserver _AimpObserver { get; set; } = new AimpObserver();
 
 		private SettingJsonFile _Setting { get; set; }
+
+		private Services.Misskey.Service Misskey;
 
 		#endregion Properties
 
@@ -62,7 +61,17 @@ namespace LegatoNowPlaying
 		private async Task _PostAsync()
 		{
 			var track = _AimpProperties.CurrentTrack;
+
+			// 投稿内容を構築
+			var stringBuilder = new StringBuilder(_Setting.PostingFormat);
+			stringBuilder = stringBuilder.Replace("{Title}", "{0}");
+			stringBuilder = stringBuilder.Replace("{Artist}", "{1}");
+			stringBuilder = stringBuilder.Replace("{Album}", "{2}");
+			stringBuilder = stringBuilder.Replace("{TrackNum}", "{3:D2}");
+			var text = string.Format(stringBuilder.ToString(), track.Title, track.Artist, track.Album, track.TrackNumber);
+
 			var albumArt = _GetAlbumArt();
+			this.Misskey.Post(text, checkBoxNeedAlbumArt.Checked ? albumArt : null);
 		}
 
 		/// <summary>
@@ -174,7 +183,6 @@ namespace LegatoNowPlaying
 		{
 			Icon = Properties.Resources.legato;
 
-		
 			_Setting = await SettingJsonFile.LoadAsync();
 
 			_AimpObserver.CurrentTrackChanged += async (track) =>
@@ -196,6 +204,12 @@ namespace LegatoNowPlaying
 				_UpdateFormTrackInfo(_AimpProperties.CurrentTrack);
 				_UpdateAlbumArt();
 			}
+
+			this.Misskey = new Services.Misskey.Service();
+			this.Misskey.Install(_Setting);
+
+			//var twitter = new Services.Twitter.Service();
+			//twitter.Install(_Setting);
 		}
 
 		private async void Form1_FormClosed(object sender, FormClosedEventArgs e)
