@@ -26,7 +26,6 @@ namespace LegatoNowPlaying.Services.Misskey
 		{
 			var app = new Misq.App("https://misskey.xyz", "z31SlkbuIonQ5G1tdx4j7xvGRL7XS51y");
 			var done = await app.Authorize();
-			Console.WriteLine(done);
 
 			this.button1.Click += async (_1, _2) =>
 			{
