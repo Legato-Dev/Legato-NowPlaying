@@ -5,17 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using CoreTweet;
 using System.Windows.Forms;
+using System.Drawing;
+using Legato.Interop.AimpRemote.Entities;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace LegatoNowPlaying.Services.Twitter
 {
 	class Service : IService
 	{
+		private SettingJsonFile settings;
 		private CredentialsJsonFile _Credentials { get; set; }
 
 		private Tokens _Twitter { get; set; }
 
-		public async void Install()
+		public async void Install(SettingJsonFile settings)
 		{
+			this.settings = settings;
+
 			_Twitter = await _LoadAndVerifyCredentialsAsync();
 			if (_Twitter == null)
 			{
@@ -30,9 +37,34 @@ namespace LegatoNowPlaying.Services.Twitter
 
 		}
 
-		public void Post()
+		public async void Post(TrackInfo track, Image albumArt, Boolean withAlbumArt)
 		{
+			try
+			{
+				// 投稿内容を構築
+				var stringBuilder = new StringBuilder(this.settings.PostingFormat);
+				stringBuilder = stringBuilder.Replace("{Title}", "{0}");
+				stringBuilder = stringBuilder.Replace("{Artist}", "{1}");
+				stringBuilder = stringBuilder.Replace("{Album}", "{2}");
+				stringBuilder = stringBuilder.Replace("{TrackNum}", "{3:D2}");
+				var text = string.Format(stringBuilder.ToString(), track.Title, track.Artist, track.Album, track.TrackNumber);
 
+				if (withAlbumArt && albumArt != null)
+				{
+					using (var memory = new MemoryStream())
+						albumArt.Save("temp.png", ImageFormat.Png);
+
+					await _Twitter.Statuses.UpdateWithMediaAsync(text, new FileInfo("temp.png"));
+				}
+				else
+					await _Twitter.Statuses.UpdateAsync(text);
+
+				Console.WriteLine("Twitter への投稿が完了しました");
+			}
+			catch (Exception ex)
+			{
+				Console.Error.WriteLine(ex.Message);
+			}
 		}
 
 		#region File IO Methods

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Legato.Interop.AimpRemote.Entities;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace LegatoNowPlaying.Services
 {
 	interface IService
 	{
-		void Install();
-		void Post(Image albumArt);
+		void Install(SettingJsonFile settings);
+		void Post(TrackInfo track, Image albumArt, Boolean withAlbumArt);
 	}
 }
