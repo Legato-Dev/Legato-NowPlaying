@@ -173,7 +173,7 @@ namespace LegatoNowPlaying
 
 		#region Event Handlers
 
-		private async void Form1_Load(object sender, EventArgs e)
+		private async void MainForm_Load(object sender, EventArgs e)
 		{
 			Icon = Properties.Resources.legato;
 
@@ -203,7 +203,7 @@ namespace LegatoNowPlaying
 			this.Accounts.Init();
 		}
 
-		private async void Form1_FormClosed(object sender, FormClosedEventArgs e)
+		private async void MainForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
 
 			SoundService sound = null;

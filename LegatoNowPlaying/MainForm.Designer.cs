@@ -186,8 +186,8 @@
 			this.MinimumSize = new System.Drawing.Size(393, 231);
 			this.Name = "Form1";
 			this.Text = "Legato NowPlaying";
-			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
-			this.Load += new System.EventHandler(this.Form1_Load);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
+			this.Load += new System.EventHandler(this.MainForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbumArt)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
