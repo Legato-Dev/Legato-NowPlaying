@@ -203,6 +203,8 @@ namespace LegatoNowPlaying
 				_UpdateFormTrackInfo(_AimpProperties.CurrentTrack);
 				_UpdateAlbumArt();
 			}
+
+			Core.Init();
 		}
 
 		private async void Form1_FormClosed(object sender, FormClosedEventArgs e)
