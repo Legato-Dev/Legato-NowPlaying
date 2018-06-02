@@ -53,15 +53,14 @@ namespace LegatoNowPlaying.Services.Misskey
 
 			if (albumArt != null)
 			{
-				var form = new MultipartFormDataContent();
-
 				var stream = new System.IO.MemoryStream();
 				albumArt.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
 				var img = stream.ToArray();
 
-				var data = new ByteArrayContent(img);
-
-				form.Add(data, "file", "cover.jpg");
+				var form = new MultipartFormDataContent
+				{
+					{ new ByteArrayContent(img), "file", "cover.jpg" }
+				};
 
 				var file = await this.me.RequestWithBinary("drive/files/create", form);
 
