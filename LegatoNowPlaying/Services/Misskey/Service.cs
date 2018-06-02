@@ -4,15 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Misq;
+using Legato.Interop.AimpRemote.Entities;
+using System.Drawing;
 
 namespace LegatoNowPlaying.Services.Misskey
 {
 	class Service : IService
 	{
+		private SettingJsonFile settings;
+
 		private Misq.App app;
 
-		public async void Install()
+		public async void Install(SettingJsonFile settings)
 		{
+			this.settings = settings;
+
 			var config = await CredentialsJsonFile.LoadAsync();
 			var token = config.Token;
 
@@ -23,7 +29,7 @@ namespace LegatoNowPlaying.Services.Misskey
 
 		}
 
-		public void Post()
+		public async void Post(TrackInfo track, Image albumArt, Boolean withAlbumArt)
 		{
 			
 		}

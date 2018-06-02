@@ -61,36 +61,8 @@ namespace LegatoNowPlaying
 
 		private async Task _PostAsync()
 		{
-			try
-			{
-				var track = _AimpProperties.CurrentTrack;
-
-				// 投稿内容を構築
-				var stringBuilder = new StringBuilder(_Setting.PostingFormat);
-				stringBuilder = stringBuilder.Replace("{Title}", "{0}");
-				stringBuilder = stringBuilder.Replace("{Artist}", "{1}");
-				stringBuilder = stringBuilder.Replace("{Album}", "{2}");
-				stringBuilder = stringBuilder.Replace("{TrackNum}", "{3:D2}");
-				var text = string.Format(stringBuilder.ToString(), track.Title, track.Artist, track.Album, track.TrackNumber);
-
-				var albumArt = _GetAlbumArt();
-
-				if (checkBoxNeedAlbumArt.Checked && albumArt != null)
-				{
-					using (var memory = new MemoryStream())
-						albumArt.Save("temp.png", ImageFormat.Png);
-
-					await _Twitter.Statuses.UpdateWithMediaAsync(text, new FileInfo("temp.png"));
-				}
-				else
-					await _Twitter.Statuses.UpdateAsync(text);
-
-				Console.WriteLine("Twitter への投稿が完了しました");
-			}
-			catch (Exception ex)
-			{
-				Console.Error.WriteLine(ex.Message);
-			}
+			var track = _AimpProperties.CurrentTrack;
+			var albumArt = _GetAlbumArt();
 		}
 
 		/// <summary>
