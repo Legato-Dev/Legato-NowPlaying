@@ -35,7 +35,7 @@ namespace LegatoNowPlaying
 
 		private SettingJsonFile _Setting { get; set; }
 
-		private Accounts Core;
+		private Accounts Accounts;
 
 		#endregion Properties
 
@@ -72,7 +72,7 @@ namespace LegatoNowPlaying
 
 			var albumArt = _GetAlbumArt();
 
-			Core.Post(text, checkBoxNeedAlbumArt.Checked ? albumArt : null);
+			Accounts.Post(text, checkBoxNeedAlbumArt.Checked ? albumArt : null);
 		}
 
 		/// <summary>
@@ -206,8 +206,8 @@ namespace LegatoNowPlaying
 				_UpdateAlbumArt();
 			}
 
-			this.Core = new Accounts();
-			this.Core.Init();
+			this.Accounts = new Accounts();
+			this.Accounts.Init();
 		}
 
 		private async void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -252,7 +252,7 @@ namespace LegatoNowPlaying
 
 		private async void buttonShowSettingWindow_Click(object sender, EventArgs e)
 		{
-			var settingWindow = new SettingWindow(_Setting, this.Core);
+			var settingWindow = new SettingWindow(_Setting, this.Accounts);
 
 			if (settingWindow.ShowDialog() == DialogResult.OK)
 			{
