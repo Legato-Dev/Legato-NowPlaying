@@ -35,8 +35,6 @@ namespace LegatoNowPlaying
 
 		private SettingJsonFile _Setting { get; set; }
 
-		private Services.Misskey.Service Misskey;
-
 		#endregion Properties
 
 		#region Methods
@@ -71,7 +69,8 @@ namespace LegatoNowPlaying
 			var text = string.Format(stringBuilder.ToString(), track.Title, track.Artist, track.Album, track.TrackNumber);
 
 			var albumArt = _GetAlbumArt();
-			this.Misskey.Post(text, checkBoxNeedAlbumArt.Checked ? albumArt : null);
+
+			Core.Post(text, checkBoxNeedAlbumArt.Checked ? albumArt : null);
 		}
 
 		/// <summary>
@@ -204,12 +203,6 @@ namespace LegatoNowPlaying
 				_UpdateFormTrackInfo(_AimpProperties.CurrentTrack);
 				_UpdateAlbumArt();
 			}
-
-			this.Misskey = new Services.Misskey.Service();
-			this.Misskey.Install(_Setting);
-
-			//var twitter = new Services.Twitter.Service();
-			//twitter.Install(_Setting);
 		}
 
 		private async void Form1_FormClosed(object sender, FormClosedEventArgs e)

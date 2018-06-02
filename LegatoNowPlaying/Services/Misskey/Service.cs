@@ -12,35 +12,41 @@ namespace LegatoNowPlaying.Services.Misskey
 {
 	class Service : IService
 	{
-		private SettingJsonFile settings;
-		private CredentialsJsonFile config;
-
 		private Misq.Me me;
 
-		public async void Install(SettingJsonFile settings)
+		public Service(Me me)
 		{
-			this.settings = settings;
+			this.me = me;
+		}
 
-			this.config = await CredentialsJsonFile.LoadAsync();
+		static public void Install()
+		{
+			var form = new Services.Misskey.AuthForm(OnComplete);
+			form.Show();
+		}
 
-			if (this.config.Token == null)
+		static public async Task<Service> Use()
+		{
+			var config = await CredentialsJsonFile.LoadAsync();
+
+			if (config.Token != null)
 			{
-				var form = new Services.Misskey.AuthForm(this.OnComplete);
-				form.Show();
+				return new Service(new Misq.Me(config.Host, config.Token, "z31SlkbuIonQ5G1tdx4j7xvGRL7XS51y"));
 			}
 			else
 			{
-				this.me = new Misq.Me(this.config.Host, this.config.Token, "z31SlkbuIonQ5G1tdx4j7xvGRL7XS51y");
+				return null;
 			}
-
 		}
 
-		private void OnComplete(Misq.Me me)
+		static private async void OnComplete(Misq.Me me)
 		{
-			this.config.Token = me.UserToken;
-			this.config.Host = me.Host;
-			this.config.SaveAsync();
-			this.me = me;
+			var config = await CredentialsJsonFile.LoadAsync();
+			config.Token = me.UserToken;
+			config.Host = me.Host;
+			await config.SaveAsync();
+
+			Core.Misskey = await Use();
 		}
 
 		public async void Post(string text, Image albumArt)

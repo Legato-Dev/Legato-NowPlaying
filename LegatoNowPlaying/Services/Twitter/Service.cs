@@ -14,16 +14,16 @@ namespace LegatoNowPlaying.Services.Twitter
 {
 	class Service : IService
 	{
-		private SettingJsonFile settings;
-		private CredentialsJsonFile _Credentials { get; set; }
-
 		private Tokens _Twitter { get; set; }
 
-		public async void Install(SettingJsonFile settings)
+		public Service(Tokens Twitter)
 		{
-			this.settings = settings;
+			_Twitter = Twitter;
+		}
 
-			_Twitter = await _LoadAndVerifyCredentialsAsync();
+		static public async void Install()
+		{
+			var _Twitter = await _LoadAndVerifyCredentialsAsync();
 			if (_Twitter == null)
 			{
 				MessageBox.Show(
@@ -34,7 +34,23 @@ namespace LegatoNowPlaying.Services.Twitter
 
 				return;
 			}
+			else
+			{
+				Core.Twitter = await Use();
+			}
+		}
 
+		static public async Task<Service> Use()
+		{
+			var _Twitter = await _LoadAndVerifyCredentialsAsync();
+			if (_Twitter != null)
+			{
+				return new Service(_Twitter);
+			}
+			else
+			{
+				return null;
+			}
 		}
 
 		public async void Post(string text, Image albumArt)
@@ -64,7 +80,7 @@ namespace LegatoNowPlaying.Services.Twitter
 		/// <summary>
 		/// tokens.json からアカウント情報を読み込み、その有効性を検証します
 		/// </summary>
-		private async Task<Tokens> _LoadAndVerifyCredentialsAsync()
+		static private async Task<Tokens> _LoadAndVerifyCredentialsAsync()
 		{
 			var data = await CredentialsJsonFile.LoadAsync();
 			var ck = data.ConsumerKey;

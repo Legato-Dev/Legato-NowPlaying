@@ -10,7 +10,6 @@ namespace LegatoNowPlaying.Services
 {
 	interface IService
 	{
-		void Install(SettingJsonFile settings);
 		void Post(string text, Image albumArt);
 	}
 }

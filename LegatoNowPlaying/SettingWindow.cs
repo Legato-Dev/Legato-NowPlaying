@@ -84,5 +84,14 @@ namespace LegatoNowPlaying
 
 		#endregion Event Hndlers
 
+		private void button1_Click(object sender, EventArgs e)
+		{
+			Services.Twitter.Service.Install();
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			Services.Misskey.Service.Install();
+		}
 	}
 }
