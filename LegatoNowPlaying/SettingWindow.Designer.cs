@@ -82,7 +82,7 @@
 			// 
 			this.buttonOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonOk.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.buttonOk.Location = new System.Drawing.Point(422, 387);
+			this.buttonOk.Location = new System.Drawing.Point(422, 397);
 			this.buttonOk.Name = "buttonOk";
 			this.buttonOk.Size = new System.Drawing.Size(95, 23);
 			this.buttonOk.TabIndex = 2;
@@ -107,7 +107,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel1.Cursor = System.Windows.Forms.Cursors.Default;
-			this.panel1.Location = new System.Drawing.Point(12, 376);
+			this.panel1.Location = new System.Drawing.Point(12, 386);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(505, 1);
 			this.panel1.TabIndex = 9;
@@ -210,10 +210,11 @@
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Controls.Add(this.tabPage3);
+			this.tabControl1.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.tabControl1.Location = new System.Drawing.Point(12, 12);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(505, 358);
+			this.tabControl1.Size = new System.Drawing.Size(505, 368);
 			this.tabControl1.TabIndex = 18;
 			// 
 			// tabPage1
@@ -229,10 +230,10 @@
 			this.tabPage1.Controls.Add(this.label3);
 			this.tabPage1.Controls.Add(this.textBoxPostSoundPath);
 			this.tabPage1.Controls.Add(this.label4);
-			this.tabPage1.Location = new System.Drawing.Point(4, 22);
+			this.tabPage1.Location = new System.Drawing.Point(4, 27);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(497, 332);
+			this.tabPage1.Size = new System.Drawing.Size(497, 337);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "General";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -243,10 +244,10 @@
 			this.tabPage2.Controls.Add(this.button2);
 			this.tabPage2.Controls.Add(this.label6);
 			this.tabPage2.Controls.Add(this.button1);
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Location = new System.Drawing.Point(4, 27);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(497, 332);
+			this.tabPage2.Size = new System.Drawing.Size(497, 337);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Accounts";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -266,7 +267,7 @@
 			this.label6.AutoSize = true;
 			this.label6.Location = new System.Drawing.Point(6, 11);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(41, 12);
+			this.label6.Size = new System.Drawing.Size(50, 18);
 			this.label6.TabIndex = 1;
 			this.label6.Text = "Twitter";
 			// 
@@ -275,7 +276,7 @@
 			this.label7.AutoSize = true;
 			this.label7.Location = new System.Drawing.Point(6, 40);
 			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(47, 12);
+			this.label7.Size = new System.Drawing.Size(54, 18);
 			this.label7.TabIndex = 3;
 			this.label7.Text = "Misskey";
 			// 
@@ -305,7 +306,7 @@
 			this.label8.AutoSize = true;
 			this.label8.Location = new System.Drawing.Point(48, 73);
 			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(18, 12);
+			this.label8.Size = new System.Drawing.Size(22, 18);
 			this.label8.TabIndex = 0;
 			this.label8.Text = "Yo";
 			// 
@@ -313,12 +314,12 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(529, 421);
+			this.ClientSize = new System.Drawing.Size(529, 431);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.buttonOk);
-			this.MaximumSize = new System.Drawing.Size(1024, 460);
-			this.MinimumSize = new System.Drawing.Size(322, 460);
+			this.MaximumSize = new System.Drawing.Size(1024, 470);
+			this.MinimumSize = new System.Drawing.Size(322, 470);
 			this.Name = "SettingWindow";
 			this.Text = "Settings";
 			this.Load += new System.EventHandler(this.SettingWindow_Load);
