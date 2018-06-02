@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CoreTweet;
-using System.Windows.Forms;
+﻿using CoreTweet;
+using System;
 using System.Drawing;
-using Legato.Interop.AimpRemote.Entities;
-using System.IO;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LegatoNowPlaying.Services.Twitter
 {

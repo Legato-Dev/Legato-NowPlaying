@@ -1,12 +1,8 @@
-﻿using System;
+﻿using Misq;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Misq;
-using Legato.Interop.AimpRemote.Entities;
 using System.Drawing;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace LegatoNowPlaying.Services.Misskey
 {
