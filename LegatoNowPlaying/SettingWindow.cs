@@ -33,7 +33,7 @@ namespace LegatoNowPlaying
 
 		#endregion Properties
 
-		#region Event Hndlers
+		#region Event Handlers
 
 		/// <summary>
 		/// SettingWindow が読み込まれる際に動作します。
@@ -88,7 +88,7 @@ namespace LegatoNowPlaying
 			}
 		}
 
-		#endregion Event Hndlers
+		#endregion Event Handlers
 
 		private void button1_Click(object sender, EventArgs e)
 		{

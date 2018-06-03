@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace LegatoNowPlaying.Services.Misskey
 {
-  public partial class AuthForm : Form
+	public partial class AuthForm : Form
 	{
 		public delegate void OnComplete(Misq.Me me);
 

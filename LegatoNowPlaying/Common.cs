@@ -1,14 +1,10 @@
 using Legato.Interop.AimpRemote.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace LegatoNowPlaying
 {
-  public static class Common
-  {
+	public static class Common
+	{
 		public static string ComposeText(string pattern, TrackInfo track)
 		{
 			var stringBuilder = new StringBuilder(pattern);
@@ -18,5 +14,5 @@ namespace LegatoNowPlaying
 			stringBuilder = stringBuilder.Replace("{TrackNum}", "{3:D2}");
 			return string.Format(stringBuilder.ToString(), track.Title, track.Artist, track.Album, track.TrackNumber);
 		}
-  }
+	}
 }

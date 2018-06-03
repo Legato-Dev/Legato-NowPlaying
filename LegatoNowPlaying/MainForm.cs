@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace LegatoNowPlaying
 {
-  public partial class MainForm : Form
+	public partial class MainForm : Form
 	{
 
 		#region Constractors
