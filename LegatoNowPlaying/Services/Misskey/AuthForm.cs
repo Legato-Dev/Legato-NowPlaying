@@ -18,16 +18,16 @@ namespace LegatoNowPlaying.Services.Misskey
 		private async void AuthForm_Load(object sender, EventArgs e)
 		{
 			var app = new Misq.App("https://misskey.xyz", Service.appKey);
-			var done = await app.Authorize();
+			var me = await app.Authorize();
+			this.Close();
+			this.onComplete(me);
 
-			this.button1.Click += async (_1, _2) =>
-			{
-				var me = await done();
+			MessageBox.Show(
+				$"WELCOME {me.Username}",
+				"Done",
+				MessageBoxButtons.OK,
+				MessageBoxIcon.Information);
 
-				this.Close();
-
-				this.onComplete(me);
-			};
 		}
 	}
 }
