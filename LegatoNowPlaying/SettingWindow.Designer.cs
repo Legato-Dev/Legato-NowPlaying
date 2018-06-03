@@ -56,6 +56,7 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.label8 = new System.Windows.Forms.Label();
+			this.button3 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.UpDownNotifyTime)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -88,10 +89,11 @@
 			// buttonOk
 			// 
 			this.buttonOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonOk.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.buttonOk.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.buttonOk.Location = new System.Drawing.Point(422, 397);
+			this.buttonOk.Location = new System.Drawing.Point(422, 394);
 			this.buttonOk.Name = "buttonOk";
-			this.buttonOk.Size = new System.Drawing.Size(95, 23);
+			this.buttonOk.Size = new System.Drawing.Size(95, 25);
 			this.buttonOk.TabIndex = 2;
 			this.buttonOk.Text = "OK";
 			this.buttonOk.UseVisualStyleBackColor = true;
@@ -279,6 +281,7 @@
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.button3);
 			this.tabPage2.Controls.Add(this.label11);
 			this.tabPage2.Controls.Add(this.label10);
 			this.tabPage2.Controls.Add(this.label9);
@@ -307,7 +310,7 @@
 			// 
 			this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.label10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.label10.Location = new System.Drawing.Point(6, 94);
+			this.label10.Location = new System.Drawing.Point(6, 100);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(485, 2);
 			this.label10.TabIndex = 5;
@@ -316,7 +319,7 @@
 			// 
 			this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.label9.Location = new System.Drawing.Point(6, 55);
+			this.label9.Location = new System.Drawing.Point(6, 57);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(485, 2);
 			this.label9.TabIndex = 4;
@@ -324,7 +327,7 @@
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(12, 65);
+			this.label7.Location = new System.Drawing.Point(12, 70);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(54, 18);
 			this.label7.TabIndex = 3;
@@ -332,10 +335,11 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(73, 63);
+			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.button2.Location = new System.Drawing.Point(73, 67);
 			this.button2.Margin = new System.Windows.Forms.Padding(8);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
+			this.button2.Size = new System.Drawing.Size(87, 25);
 			this.button2.TabIndex = 2;
 			this.button2.Text = "Connect";
 			this.button2.UseVisualStyleBackColor = true;
@@ -344,7 +348,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(12, 26);
+			this.label6.Location = new System.Drawing.Point(12, 27);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(50, 18);
 			this.label6.TabIndex = 1;
@@ -352,10 +356,11 @@
 			// 
 			// button1
 			// 
+			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.button1.Location = new System.Drawing.Point(73, 24);
 			this.button1.Margin = new System.Windows.Forms.Padding(8);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.Size = new System.Drawing.Size(87, 25);
 			this.button1.TabIndex = 0;
 			this.button1.Text = "Connect";
 			this.button1.UseVisualStyleBackColor = true;
@@ -380,6 +385,18 @@
 			this.label8.Size = new System.Drawing.Size(22, 18);
 			this.label8.TabIndex = 0;
 			this.label8.Text = "Yo";
+			// 
+			// button3
+			// 
+			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button3.Location = new System.Drawing.Point(406, 67);
+			this.button3.Margin = new System.Windows.Forms.Padding(8);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(80, 25);
+			this.button3.TabIndex = 7;
+			this.button3.Text = "Setting";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// SettingWindow
 			// 
@@ -436,5 +453,6 @@
 	private System.Windows.Forms.TextBox textBox1;
 	private System.Windows.Forms.Label previewLabel;
 	private System.Windows.Forms.Label label12;
-  }
+		private System.Windows.Forms.Button button3;
+	}
 }

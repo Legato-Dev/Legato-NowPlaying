@@ -11,6 +11,7 @@ namespace LegatoNowPlaying.Services.Misskey
 		public const string appKey = "z31SlkbuIonQ5G1tdx4j7xvGRL7XS51y";
 
 		private Misq.Me me;
+		private CredentialsJsonFile config;
 
 		public Service(Me me)
 		{
@@ -30,6 +31,12 @@ namespace LegatoNowPlaying.Services.Misskey
 			form.Show();
 		}
 
+		static public void Setting()
+		{
+			var form = new Services.Misskey.SettingForm();
+			form.Show();
+		}
+
 		static public async Task<Service> Use()
 		{
 			var config = await CredentialsJsonFile.LoadAsync();
@@ -46,10 +53,17 @@ namespace LegatoNowPlaying.Services.Misskey
 
 		public async Task Post(string text, Image albumArt)
 		{
+			var config = await CredentialsJsonFile.LoadAsync();
+
 			var ps = new Dictionary<string, object>
 			{
 				{ "text", text }
 			};
+
+			if (!config.PostToLtl)
+			{
+				ps.Add("visibility", "home");
+			}
 
 			if (albumArt != null)
 			{
@@ -78,6 +92,7 @@ namespace LegatoNowPlaying.Services.Misskey
 
 		public string Token { get; set; }
 		public string Host { get; set; }
+		public bool PostToLtl { get; set; }
 
 		#endregion Properties/Fields
 

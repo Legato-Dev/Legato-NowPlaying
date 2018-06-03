@@ -117,5 +117,10 @@ namespace LegatoNowPlaying
 
 			this.previewLabel.Text = Common.ComposeText(textBoxPostingFormat.Text, track);
 		}
+
+		private void button3_Click(object sender, EventArgs e)
+		{
+			Services.Misskey.Service.Setting();
+		}
 	}
 }
