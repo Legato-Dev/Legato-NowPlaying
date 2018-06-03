@@ -1,4 +1,4 @@
-﻿using CoreTweet;
+using CoreTweet;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -128,19 +128,19 @@ namespace LegatoNowPlaying.Services.Twitter
 		#region Methods
 
 		/// <summary>
-		/// tokens.json からアカウント情報を読み込みます
+		/// twitter.json からアカウント情報を読み込みます
 		/// </summary>
 		public static Task<CredentialsJsonFile> LoadAsync()
 		{
-			return LoadAsync<CredentialsJsonFile>("tokens.json");
+			return LoadAsync<CredentialsJsonFile>("twitter.json");
 		}
 
 		/// <summary>
-		/// tokens.json を生成します
+		/// twitter.json を生成します
 		/// </summary>
 		public Task SaveAsync()
 		{
-			return SaveAsync("tokens.json");
+			return SaveAsync("twitter.json");
 		}
 
 		#endregion Methods
