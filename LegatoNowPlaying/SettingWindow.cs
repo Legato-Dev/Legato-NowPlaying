@@ -116,7 +116,7 @@ namespace LegatoNowPlaying
 
 		private void licenseLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			Process.Start("https://github.com/Legato-Dev/Legato-NowPlaying/blob/master/LICENSE.md");
+			Process.Start("https://github.com/Legato-Dev/Legato-NowPlaying/blob/22d7312e4b24645e92d1facbee23350f499ad7bf/LICENSE.md");
 		}
 
 		#endregion Event Handlers
