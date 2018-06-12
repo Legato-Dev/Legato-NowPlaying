@@ -45,9 +45,8 @@
       <HintPath>..\packages\CoreTweet.0.8.1.394\lib\net45\CoreTweet.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Legato, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Legato\Legato.dll</HintPath>
+    <Reference Include="Legato, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Legato.1.1.2\lib\net461\Legato.dll</HintPath>
     </Reference>
     <Reference Include="Misq, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Misq.6.0.0\lib\net461\Misq.dll</HintPath>
