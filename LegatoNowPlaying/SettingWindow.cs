@@ -1,6 +1,8 @@
 using Legato.Interop.AimpRemote.Entities;
 using System;
+using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace LegatoNowPlaying
@@ -46,6 +48,10 @@ namespace LegatoNowPlaying
 			textBoxPostSoundPath.Text = SettingSource.PostingSound;
 			textBoxExitSoundPath.Text = SettingSource.ExitingSound;
 
+			var assembly = Assembly.GetExecutingAssembly();
+			var v = assembly.GetName().Version;
+			versionLabel.Text = $"Version: {v.Major}.{v.Minor}.{v.Revision}";
+
 			this.renderPreview();
 		}
 
@@ -88,8 +94,6 @@ namespace LegatoNowPlaying
 			}
 		}
 
-		#endregion Event Handlers
-
 		private void button1_Click(object sender, EventArgs e)
 		{
 			Services.Twitter.Service.Install(this.Accounts);
@@ -105,6 +109,20 @@ namespace LegatoNowPlaying
 			this.renderPreview();
 		}
 
+		private void button3_Click(object sender, EventArgs e)
+		{
+			Services.Misskey.Service.Setting();
+		}
+
+		private void licenseLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			Process.Start("https://github.com/Legato-Dev/Legato-NowPlaying/blob/master/LICENSE.md");
+		}
+
+		#endregion Event Handlers
+
+		#region Methods
+
 		private void renderPreview()
 		{
 			var track = new TrackInfo();
@@ -118,9 +136,7 @@ namespace LegatoNowPlaying
 			this.previewLabel.Text = Common.ComposeText(textBoxPostingFormat.Text, track);
 		}
 
-		private void button3_Click(object sender, EventArgs e)
-		{
-			Services.Misskey.Service.Setting();
-		}
+		#endregion Methods
+
 	}
 }

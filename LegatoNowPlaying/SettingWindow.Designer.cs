@@ -1,4 +1,4 @@
-﻿namespace LegatoNowPlaying
+namespace LegatoNowPlaying
 {
 	partial class SettingWindow
 	{
@@ -47,6 +47,7 @@
 			this.label12 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.button3 = new System.Windows.Forms.Button();
 			this.label11 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
@@ -56,7 +57,8 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.label8 = new System.Windows.Forms.Label();
-			this.button3 = new System.Windows.Forms.Button();
+			this.licenseLinkLabel = new System.Windows.Forms.LinkLabel();
+			this.versionLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.UpDownNotifyTime)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -297,6 +299,18 @@
 			this.tabPage2.Text = "Accounts";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
+			// button3
+			// 
+			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button3.Location = new System.Drawing.Point(406, 67);
+			this.button3.Margin = new System.Windows.Forms.Padding(8);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(80, 25);
+			this.button3.TabIndex = 7;
+			this.button3.Text = "Setting";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
+			// 
 			// label11
 			// 
 			this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -368,6 +382,7 @@
 			// 
 			// tabPage3
 			// 
+			this.tabPage3.Controls.Add(this.versionLabel);
 			this.tabPage3.Controls.Add(this.label8);
 			this.tabPage3.Location = new System.Drawing.Point(4, 27);
 			this.tabPage3.Name = "tabPage3";
@@ -380,29 +395,38 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(48, 73);
+			this.label8.Location = new System.Drawing.Point(19, 157);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(22, 18);
 			this.label8.TabIndex = 0;
 			this.label8.Text = "Yo";
 			// 
-			// button3
+			// licenseLinkLabel
 			// 
-			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button3.Location = new System.Drawing.Point(406, 67);
-			this.button3.Margin = new System.Windows.Forms.Padding(8);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(80, 25);
-			this.button3.TabIndex = 7;
-			this.button3.Text = "Setting";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
+			this.licenseLinkLabel.AutoSize = true;
+			this.licenseLinkLabel.Location = new System.Drawing.Point(12, 400);
+			this.licenseLinkLabel.Name = "licenseLinkLabel";
+			this.licenseLinkLabel.Size = new System.Drawing.Size(44, 12);
+			this.licenseLinkLabel.TabIndex = 19;
+			this.licenseLinkLabel.TabStop = true;
+			this.licenseLinkLabel.Text = "License";
+			this.licenseLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.licenseLinkLabel_LinkClicked);
+			// 
+			// versionLabel
+			// 
+			this.versionLabel.AutoSize = true;
+			this.versionLabel.Location = new System.Drawing.Point(19, 20);
+			this.versionLabel.Name = "versionLabel";
+			this.versionLabel.Size = new System.Drawing.Size(85, 18);
+			this.versionLabel.TabIndex = 1;
+			this.versionLabel.Text = "(version info)";
 			// 
 			// SettingWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(529, 431);
+			this.ClientSize = new System.Drawing.Size(529, 432);
+			this.Controls.Add(this.licenseLinkLabel);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.buttonOk);
@@ -420,6 +444,7 @@
 			this.tabPage3.ResumeLayout(false);
 			this.tabPage3.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -454,5 +479,7 @@
 	private System.Windows.Forms.Label previewLabel;
 	private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.LinkLabel licenseLinkLabel;
+		private System.Windows.Forms.Label versionLabel;
 	}
 }
