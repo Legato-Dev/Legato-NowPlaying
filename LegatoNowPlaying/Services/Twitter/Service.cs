@@ -1,5 +1,4 @@
 using CoreTweet;
-using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -8,67 +7,67 @@ using System.Windows.Forms;
 
 namespace LegatoNowPlaying.Services.Twitter
 {
-	public class Service : IService
+	public class Service : Services.Service
 	{
 		private Tokens _Twitter { get; set; }
 
-		public Service(Tokens Twitter)
-		{
-			_Twitter = Twitter;
-		}
+		public override string Name { get; } = "Twitter";
+		public override bool IsInstalled => _Twitter.AccessToken != null;
+		public override bool HasSetting { get; } = false;
 
-		static public async void Install(Accounts accounts)
+		public override async Task<bool> Install()
 		{
-			var _Twitter = await _LoadAndVerifyCredentialsAsync();
-			if (_Twitter == null)
+			var twitter = await _LoadAndVerifyCredentialsAsync();
+			if (twitter == null)
 			{
 				MessageBox.Show(
-					"有効なTwitterのトークン情報の設定が必要です。tokens.jsonの中身を編集してからアプリケーションを再実行してください。",
-					"情報",
+					"有効なTwitterトークンの設定が必要です。twitter.jsonの中身を編集してからアプリケーションを再実行してください。",
+					"Information",
 					MessageBoxButtons.OK,
 					MessageBoxIcon.Information);
 
-				return;
+				return false;
+			}
+			await Setup();
+
+			MessageBox.Show($"Hello @{_Twitter.ScreenName}", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+			return true;
+		}
+
+		public override async Task Setup()
+		{
+			var twitter = await _LoadAndVerifyCredentialsAsync();
+
+			if (twitter == null) return;
+
+			twitter.UserId = long.Parse(twitter.AccessToken.Split('-')[0]);
+			var user = await twitter.Users.ShowAsync(twitter.UserId);
+			twitter.ScreenName = user.ScreenName;
+
+			_Twitter = twitter;
+		}
+
+		public override async Task Post(string text, Image albumArt)
+		{
+			if (_Twitter == null) return;
+
+			if (albumArt != null)
+			{
+				using (var memory = new MemoryStream())
+					albumArt.Save("temp.png", ImageFormat.Png);
+
+				await _Twitter.Statuses.UpdateWithMediaAsync(text, new FileInfo("temp.png"));
 			}
 			else
 			{
-				accounts.Twitter = await Use();
+				await _Twitter.Statuses.UpdateAsync(text);
 			}
 		}
 
-		static public async Task<Service> Use()
+		public override Task Setting()
 		{
-			var _Twitter = await _LoadAndVerifyCredentialsAsync();
-			if (_Twitter != null)
-			{
-				return new Service(_Twitter);
-			}
-			else
-			{
-				return null;
-			}
-		}
-
-		public async Task Post(string text, Image albumArt)
-		{
-			try
-			{
-				if (albumArt != null)
-				{
-					using (var memory = new MemoryStream())
-						albumArt.Save("temp.png", ImageFormat.Png);
-
-					await _Twitter.Statuses.UpdateWithMediaAsync(text, new FileInfo("temp.png"));
-				}
-				else
-					await _Twitter.Statuses.UpdateAsync(text);
-
-				Console.WriteLine("Twitter への投稿が完了しました");
-			}
-			catch (Exception ex)
-			{
-				Console.Error.WriteLine(ex.Message);
-			}
+			return Task.CompletedTask;
 		}
 
 		#region File IO Methods

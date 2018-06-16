@@ -1,23 +1,42 @@
-﻿using System.Drawing;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
 
 namespace LegatoNowPlaying
 {
 	public class Accounts
 	{
-		public Services.Misskey.Service Misskey;
-		public Services.Twitter.Service Twitter;
+		public List<Services.Service> Services { get; set; } = new List<Services.Service>();
 
 		public async void Init()
 		{
-			this.Misskey = await Services.Misskey.Service.Use();
-			this.Twitter = await Services.Twitter.Service.Use();
+			Services.Add(new Services.Misskey.Service());
+			Services.Add(new Services.Twitter.Service());
+
+			foreach (var service in Services)
+			{
+				await service.Setup();
+			}
 		}
 
 		public async Task Post(string text, Image albumArt)
 		{
-			if (this.Misskey != null) await this.Misskey.Post(text, albumArt);
-			if (this.Twitter != null) await this.Twitter.Post(text, albumArt);
+			foreach (var service in Services)
+			{
+				if (service.Enabled)
+				{
+					try
+					{
+						await service.Post(text, albumArt);
+						Console.WriteLine($"{service.Name} への投稿が完了しました");
+					}
+					catch (Exception ex)
+					{
+						Console.Error.WriteLine(ex.Message);
+					}
+				}
+			}
 		}
 	}
 }

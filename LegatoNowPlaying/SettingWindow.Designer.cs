@@ -47,18 +47,17 @@ namespace LegatoNowPlaying
 			this.label12 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.button3 = new System.Windows.Forms.Button();
-			this.label11 = new System.Windows.Forms.Label();
-			this.label10 = new System.Windows.Forms.Label();
-			this.label9 = new System.Windows.Forms.Label();
-			this.label7 = new System.Windows.Forms.Label();
-			this.button2 = new System.Windows.Forms.Button();
-			this.label6 = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
+			this.label13 = new System.Windows.Forms.Label();
+			this.button6 = new System.Windows.Forms.Button();
+			this.button5 = new System.Windows.Forms.Button();
+			this.button4 = new System.Windows.Forms.Button();
+			this.servicesListView = new System.Windows.Forms.ListView();
+			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.versionLabel = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.licenseLinkLabel = new System.Windows.Forms.LinkLabel();
-			this.versionLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.UpDownNotifyTime)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -283,14 +282,11 @@ namespace LegatoNowPlaying
 			// 
 			// tabPage2
 			// 
-			this.tabPage2.Controls.Add(this.button3);
-			this.tabPage2.Controls.Add(this.label11);
-			this.tabPage2.Controls.Add(this.label10);
-			this.tabPage2.Controls.Add(this.label9);
-			this.tabPage2.Controls.Add(this.label7);
-			this.tabPage2.Controls.Add(this.button2);
-			this.tabPage2.Controls.Add(this.label6);
-			this.tabPage2.Controls.Add(this.button1);
+			this.tabPage2.Controls.Add(this.label13);
+			this.tabPage2.Controls.Add(this.button6);
+			this.tabPage2.Controls.Add(this.button5);
+			this.tabPage2.Controls.Add(this.button4);
+			this.tabPage2.Controls.Add(this.servicesListView);
 			this.tabPage2.Location = new System.Drawing.Point(4, 27);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -299,86 +295,74 @@ namespace LegatoNowPlaying
 			this.tabPage2.Text = "Accounts";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
-			// button3
+			// label13
 			// 
-			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button3.Location = new System.Drawing.Point(406, 67);
-			this.button3.Margin = new System.Windows.Forms.Padding(8);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(80, 25);
-			this.button3.TabIndex = 7;
-			this.button3.Text = "Setting";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
+			this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.label13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.label13.Location = new System.Drawing.Point(211, 305);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(2, 28);
+			this.label13.TabIndex = 12;
 			// 
-			// label11
+			// button6
 			// 
-			this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-			this.label11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.label11.Location = new System.Drawing.Point(6, 14);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(485, 2);
-			this.label11.TabIndex = 6;
+			this.button6.Enabled = false;
+			this.button6.Location = new System.Drawing.Point(219, 306);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(84, 25);
+			this.button6.TabIndex = 11;
+			this.button6.Text = "Setting";
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.button6_Click);
 			// 
-			// label10
+			// button5
 			// 
-			this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-			this.label10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.label10.Location = new System.Drawing.Point(6, 100);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(485, 2);
-			this.label10.TabIndex = 5;
+			this.button5.Enabled = false;
+			this.button5.Location = new System.Drawing.Point(99, 306);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(106, 25);
+			this.button5.TabIndex = 10;
+			this.button5.Text = "Toggle Enable";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
 			// 
-			// label9
+			// button4
 			// 
-			this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-			this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.label9.Location = new System.Drawing.Point(6, 57);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(485, 2);
-			this.label9.TabIndex = 4;
+			this.button4.Enabled = false;
+			this.button4.Location = new System.Drawing.Point(6, 306);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(87, 25);
+			this.button4.TabIndex = 9;
+			this.button4.Text = "Connect";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click);
 			// 
-			// label7
+			// servicesListView
 			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(12, 70);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(54, 18);
-			this.label7.TabIndex = 3;
-			this.label7.Text = "Misskey";
+			this.servicesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+			this.servicesListView.FullRowSelect = true;
+			this.servicesListView.GridLines = true;
+			this.servicesListView.HideSelection = false;
+			this.servicesListView.Location = new System.Drawing.Point(6, 6);
+			this.servicesListView.MultiSelect = false;
+			this.servicesListView.Name = "servicesListView";
+			this.servicesListView.Size = new System.Drawing.Size(485, 294);
+			this.servicesListView.TabIndex = 8;
+			this.servicesListView.UseCompatibleStateImageBehavior = false;
+			this.servicesListView.View = System.Windows.Forms.View.Details;
+			this.servicesListView.SelectedIndexChanged += new System.EventHandler(this.servicesListView_SelectedIndexChanged);
 			// 
-			// button2
+			// columnHeader1
 			// 
-			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.button2.Location = new System.Drawing.Point(73, 67);
-			this.button2.Margin = new System.Windows.Forms.Padding(8);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(87, 25);
-			this.button2.TabIndex = 2;
-			this.button2.Text = "Connect";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
+			this.columnHeader1.Text = "Service Name";
+			this.columnHeader1.Width = 120;
 			// 
-			// label6
+			// columnHeader2
 			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(12, 27);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(50, 18);
-			this.label6.TabIndex = 1;
-			this.label6.Text = "Twitter";
-			// 
-			// button1
-			// 
-			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this.button1.Location = new System.Drawing.Point(73, 24);
-			this.button1.Margin = new System.Windows.Forms.Padding(8);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(87, 25);
-			this.button1.TabIndex = 0;
-			this.button1.Text = "Connect";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.columnHeader2.Text = "Enable State";
+			this.columnHeader2.Width = 120;
 			// 
 			// tabPage3
 			// 
@@ -391,6 +375,15 @@ namespace LegatoNowPlaying
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "About";
 			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// versionLabel
+			// 
+			this.versionLabel.AutoSize = true;
+			this.versionLabel.Location = new System.Drawing.Point(19, 20);
+			this.versionLabel.Name = "versionLabel";
+			this.versionLabel.Size = new System.Drawing.Size(85, 18);
+			this.versionLabel.TabIndex = 1;
+			this.versionLabel.Text = "(version info)";
 			// 
 			// label8
 			// 
@@ -412,15 +405,6 @@ namespace LegatoNowPlaying
 			this.licenseLinkLabel.Text = "License";
 			this.licenseLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.licenseLinkLabel_LinkClicked);
 			// 
-			// versionLabel
-			// 
-			this.versionLabel.AutoSize = true;
-			this.versionLabel.Location = new System.Drawing.Point(19, 20);
-			this.versionLabel.Name = "versionLabel";
-			this.versionLabel.Size = new System.Drawing.Size(85, 18);
-			this.versionLabel.TabIndex = 1;
-			this.versionLabel.Text = "(version info)";
-			// 
 			// SettingWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -440,7 +424,6 @@ namespace LegatoNowPlaying
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
 			this.tabPage2.ResumeLayout(false);
-			this.tabPage2.PerformLayout();
 			this.tabPage3.ResumeLayout(false);
 			this.tabPage3.PerformLayout();
 			this.ResumeLayout(false);
@@ -466,20 +449,19 @@ namespace LegatoNowPlaying
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
-		private System.Windows.Forms.Label label7;
-		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.TabPage tabPage3;
 		private System.Windows.Forms.Label label8;
-		private System.Windows.Forms.Label label10;
-		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.Label label11;
 	private System.Windows.Forms.TextBox textBox1;
 	private System.Windows.Forms.Label previewLabel;
 	private System.Windows.Forms.Label label12;
-		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.LinkLabel licenseLinkLabel;
 		private System.Windows.Forms.Label versionLabel;
+		private System.Windows.Forms.ListView servicesListView;
+		private System.Windows.Forms.ColumnHeader columnHeader1;
+		private System.Windows.Forms.ColumnHeader columnHeader2;
+		private System.Windows.Forms.Button button6;
+		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Label label13;
 	}
 }

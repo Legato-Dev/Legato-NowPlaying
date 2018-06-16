@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 

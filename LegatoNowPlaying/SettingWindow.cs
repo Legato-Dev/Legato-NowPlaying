@@ -1,4 +1,5 @@
 using Legato.Interop.AimpRemote.Entities;
+using LegatoNowPlaying.Services;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -48,9 +49,18 @@ namespace LegatoNowPlaying
 			textBoxPostSoundPath.Text = SettingSource.PostingSound;
 			textBoxExitSoundPath.Text = SettingSource.ExitingSound;
 
+			// render version
 			var assembly = Assembly.GetExecutingAssembly();
 			var v = assembly.GetName().Version;
 			versionLabel.Text = $"Version: {v.Major}.{v.Minor}.{v.Revision}";
+
+			// add services list
+			foreach(var service in this.Accounts.Services)
+			{
+				var item = new ListViewItem(new[] { service.Name, "" });
+				servicesListView.Items.Add(item);
+				UpdateListViewItem(item, service);
+			}
 
 			this.renderPreview();
 		}
@@ -94,24 +104,9 @@ namespace LegatoNowPlaying
 			}
 		}
 
-		private void button1_Click(object sender, EventArgs e)
-		{
-			Services.Twitter.Service.Install(this.Accounts);
-		}
-
-		private void button2_Click(object sender, EventArgs e)
-		{
-			Services.Misskey.Service.Install(this.Accounts);
-		}
-
 		private void textBoxPostingFormat_TextChanged(object sender, EventArgs e)
 		{
 			this.renderPreview();
-		}
-
-		private void button3_Click(object sender, EventArgs e)
-		{
-			Services.Misskey.Service.Setting();
 		}
 
 		private void licenseLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -138,5 +133,67 @@ namespace LegatoNowPlaying
 
 		#endregion Methods
 
+		private void UpdateListViewItem(ListViewItem item, Service service)
+		{
+			item.SubItems[0].Text = service.Name;
+			item.SubItems[1].Text = service.IsInstalled ? (service.Enabled ? "Enabled" : "Disabled") : "Not Connected";
+		}
+
+		private async void button4_Click(object sender, EventArgs e)
+		{
+			if (servicesListView.SelectedItems.Count != 1) return;
+
+			var listViewItem = servicesListView.SelectedItems[0];
+			var serviceName = listViewItem.SubItems[0].Text;
+			var service = Accounts.Services.Find(i => i.Name == serviceName);
+			if (service == null) return;
+
+			await service.Install();
+
+			UpdateListViewItem(listViewItem, service);
+		}
+
+		private void button5_Click(object sender, EventArgs e)
+		{
+			if (servicesListView.SelectedItems.Count != 1) return;
+
+			var listViewItem = servicesListView.SelectedItems[0];
+			var serviceName = listViewItem.SubItems[0].Text;
+			var service = Accounts.Services.Find(i => i.Name == serviceName);
+			if (service == null) return;
+
+			service.Enabled = !service.Enabled;
+			UpdateListViewItem(listViewItem, service);
+		}
+
+		private void button6_Click(object sender, EventArgs e)
+		{
+			if (servicesListView.SelectedItems.Count != 1) return;
+
+			var serviceName = servicesListView.SelectedItems[0].SubItems[0].Text;
+			var service = Accounts.Services.Find(i => i.Name == serviceName);
+			if (service == null) return;
+
+			service.Setting();
+		}
+
+		private void servicesListView_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if(servicesListView.SelectedItems.Count != 1)
+			{
+				button4.Enabled = false;
+				button5.Enabled = false;
+				button6.Enabled = false;
+				return;
+			}
+
+			var serviceName = servicesListView.SelectedItems[0].SubItems[0].Text;
+			var service = Accounts.Services.Find(i => i.Name == serviceName);
+			if (service == null) return;
+
+			button4.Enabled = true;
+			button5.Enabled = true;
+			button6.Enabled = service.HasSetting;
+		}
 	}
 }

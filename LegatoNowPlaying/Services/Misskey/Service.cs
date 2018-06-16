@@ -1,4 +1,3 @@
-using Misq;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Net.Http;
@@ -6,52 +5,43 @@ using System.Threading.Tasks;
 
 namespace LegatoNowPlaying.Services.Misskey
 {
-	public class Service : IService
+	public class Service : Services.Service
 	{
 		public const string appKey = "z31SlkbuIonQ5G1tdx4j7xvGRL7XS51y";
 
 		private Misq.Me me;
 		private CredentialsJsonFile config;
 
-		public Service(Me me)
-		{
-			this.me = me;
-		}
+		public override string Name { get; } = "Misskey";
+		public override bool IsInstalled => me != null && me.UserToken != null;
+		public override bool HasSetting { get; } = true;
 
-		static public void Install(Accounts accounts)
+		public override Task<bool> Install()
 		{
+			var s = new TaskCompletionSource<bool>();
+			
 			var form = new Services.Misskey.AuthForm(async (Misq.Me me) => {
 				var config = await CredentialsJsonFile.LoadAsync();
 				config.Token = me.UserToken;
 				config.Host = me.Host;
 				await config.SaveAsync();
+				await Setup();
 
-				accounts.Misskey = await Use();
+				s.SetResult(true);
 			});
 			form.Show();
+
+			return s.Task;
 		}
 
-		static public void Setting()
-		{
-			var form = new Services.Misskey.SettingForm();
-			form.Show();
-		}
-
-		static public async Task<Service> Use()
+		public override async Task Setup()
 		{
 			var config = await CredentialsJsonFile.LoadAsync();
 
-			if (config.Token != null)
-			{
-				return new Service(new Misq.Me(config.Host, config.Token, appKey));
-			}
-			else
-			{
-				return null;
-			}
+			this.me = new Misq.Me(config.Host, config.Token, appKey);
 		}
 
-		public async Task Post(string text, Image albumArt)
+		public override async Task Post(string text, Image albumArt)
 		{
 			var config = await CredentialsJsonFile.LoadAsync();
 
@@ -67,9 +57,12 @@ namespace LegatoNowPlaying.Services.Misskey
 
 			if (albumArt != null)
 			{
-				var stream = new System.IO.MemoryStream();
-				albumArt.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
-				var img = stream.ToArray();
+				byte[] img;
+				using (var stream = new System.IO.MemoryStream())
+				{
+					albumArt.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+					img = stream.ToArray();
+				}
 
 				var form = new MultipartFormDataContent
 				{
@@ -82,6 +75,14 @@ namespace LegatoNowPlaying.Services.Misskey
 			}
 
 			await this.me.Request("notes/create", ps);
+		}
+
+		public override Task Setting()
+		{
+			var form = new Services.Misskey.SettingForm();
+			form.Show();
+
+			return Task.CompletedTask;
 		}
 	}
 
@@ -99,7 +100,7 @@ namespace LegatoNowPlaying.Services.Misskey
 		#region Methods
 
 		/// <summary>
-		/// tokens.json からアカウント情報を読み込みます
+		/// misskey.json からアカウント情報を読み込みます
 		/// </summary>
 		public static Task<CredentialsJsonFile> LoadAsync()
 		{
@@ -107,7 +108,7 @@ namespace LegatoNowPlaying.Services.Misskey
 		}
 
 		/// <summary>
-		/// tokens.json を生成します
+		/// misskey.json を生成します
 		/// </summary>
 		public Task SaveAsync()
 		{
