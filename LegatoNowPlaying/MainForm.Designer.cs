@@ -57,8 +57,8 @@
 			// 
 			// pictureBoxAlbumArt
 			// 
-			this.pictureBoxAlbumArt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)));
+			this.pictureBoxAlbumArt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.pictureBoxAlbumArt.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pictureBoxAlbumArt.Location = new System.Drawing.Point(12, 12);
 			this.pictureBoxAlbumArt.Name = "pictureBoxAlbumArt";
@@ -80,10 +80,11 @@
 			// 
 			// labelTitle
 			// 
-			this.labelTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.labelTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelTitle.AutoEllipsis = true;
 			this.labelTitle.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.labelTitle.ForeColor = System.Drawing.Color.Teal;
 			this.labelTitle.Location = new System.Drawing.Point(212, 9);
 			this.labelTitle.Name = "labelTitle";
 			this.labelTitle.Size = new System.Drawing.Size(210, 23);
@@ -92,8 +93,8 @@
 			// 
 			// labelArtist
 			// 
-			this.labelArtist.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.labelArtist.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelArtist.AutoEllipsis = true;
 			this.labelArtist.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.labelArtist.Location = new System.Drawing.Point(187, 32);
@@ -104,8 +105,8 @@
 			// 
 			// labelAlbum
 			// 
-			this.labelAlbum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.labelAlbum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelAlbum.AutoEllipsis = true;
 			this.labelAlbum.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.labelAlbum.Location = new System.Drawing.Point(187, 55);
@@ -141,8 +142,8 @@
 			// 
 			// panel1
 			// 
-			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel1.Cursor = System.Windows.Forms.Cursors.Default;
 			this.panel1.Location = new System.Drawing.Point(187, 87);
@@ -168,7 +169,7 @@
 			this.notifyIcon.Text = "notifyIcon1";
 			this.notifyIcon.Visible = true;
 			// 
-			// Form1
+			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -184,7 +185,7 @@
 			this.Controls.Add(this.pictureBoxAlbumArt);
 			this.Controls.Add(this.buttonPostNowPlaying);
 			this.MinimumSize = new System.Drawing.Size(393, 231);
-			this.Name = "Form1";
+			this.Name = "MainForm";
 			this.Text = "Legato NowPlaying";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
 			this.Load += new System.EventHandler(this.MainForm_Load);
