@@ -28,30 +28,24 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthForm));
 			this.label5 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// label5
 			// 
-			this.label5.AutoSize = true;
-			this.label5.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.label5.Location = new System.Drawing.Point(86, 54);
+			resources.ApplyResources(this.label5, "label5");
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(158, 24);
-			this.label5.TabIndex = 5;
-			this.label5.Text = "Waiting for you...";
 			// 
 			// AuthForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(345, 141);
 			this.Controls.Add(this.label5);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "AuthForm";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "AuthForm";
 			this.Load += new System.EventHandler(this.AuthForm_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
