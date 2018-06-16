@@ -117,7 +117,349 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>393, 231</value>
+  </data>
+  <data name="&gt;&gt;labelArtist.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="checkBoxAutoPosting.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="&gt;&gt;buttonPostNowPlaying.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pictureBoxAlbumArt.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="buttonShowSettingWindow.Font" type="System.Drawing.Font, System.Drawing">
+    <value>メイリオ, 8.25pt</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="labelTitle.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;labelArtist.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;labelTitle.Name" xml:space="preserve">
+    <value>labelTitle</value>
+  </data>
+  <data name="labelTrackNumber.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="labelTitle.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxAlbumArt.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="labelTrackNumber.Location" type="System.Drawing.Point, System.Drawing">
+    <value>187, 9</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;labelAlbum.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="labelArtist.Text" xml:space="preserve">
+    <value>Artist</value>
+  </data>
+  <data name="&gt;&gt;buttonPostNowPlaying.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="labelTitle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 23</value>
+  </data>
+  <data name="labelArtist.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="buttonShowSettingWindow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 25</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="&gt;&gt;buttonShowSettingWindow.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;checkBoxAutoPosting.Name" xml:space="preserve">
+    <value>checkBoxAutoPosting</value>
+  </data>
+  <data name="buttonPostNowPlaying.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="notifyIcon.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxAutoPosting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 24</value>
+  </data>
+  <data name="buttonPostNowPlaying.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="checkBoxAutoPosting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>187, 96</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxAlbumArt.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxNeedAlbumArt.Name" xml:space="preserve">
+    <value>checkBoxNeedAlbumArt</value>
+  </data>
+  <data name="checkBoxAutoPosting.Font" type="System.Drawing.Font, System.Drawing">
+    <value>メイリオ, 9.75pt</value>
+  </data>
+  <data name="buttonPostNowPlaying.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 25</value>
+  </data>
+  <data name="buttonShowSettingWindow.Text" xml:space="preserve">
+    <value>Settings...</value>
+  </data>
+  <data name="labelAlbum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>235, 23</value>
+  </data>
+  <data name="labelAlbum.Text" xml:space="preserve">
+    <value>Album</value>
+  </data>
+  <data name="&gt;&gt;checkBoxAutoPosting.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainForm</value>
+  </data>
+  <data name="labelAlbum.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxAlbumArt.Name" xml:space="preserve">
+    <value>pictureBoxAlbumArt</value>
+  </data>
+  <data name="pictureBoxAlbumArt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 169</value>
+  </data>
+  <data name="checkBoxNeedAlbumArt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 24</value>
+  </data>
+  <data name="&gt;&gt;checkBoxNeedAlbumArt.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;labelArtist.Name" xml:space="preserve">
+    <value>labelArtist</value>
+  </data>
+  <data name="&gt;&gt;checkBoxNeedAlbumArt.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labelAlbum.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;labelTrackNumber.Name" xml:space="preserve">
+    <value>labelTrackNumber</value>
+  </data>
+  <data name="buttonShowSettingWindow.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="labelTitle.Text" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="&gt;&gt;notifyIcon.Name" xml:space="preserve">
+    <value>notifyIcon</value>
+  </data>
+  <data name="&gt;&gt;checkBoxAutoPosting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="notifyIcon.Text" xml:space="preserve">
+    <value>notifyIcon1</value>
+  </data>
+  <data name="labelArtist.Font" type="System.Drawing.Font, System.Drawing">
+    <value>メイリオ, 11.25pt</value>
+  </data>
+  <data name="buttonPostNowPlaying.Location" type="System.Drawing.Point, System.Drawing">
+    <value>187, 156</value>
+  </data>
+  <data name="checkBoxNeedAlbumArt.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="labelTrackNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 23</value>
+  </data>
+  <data name="&gt;&gt;buttonShowSettingWindow.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="labelTrackNumber.Font" type="System.Drawing.Font, System.Drawing">
+    <value>メイリオ, 11.25pt</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;labelAlbum.Name" xml:space="preserve">
+    <value>labelAlbum</value>
+  </data>
+  <data name="labelArtist.Size" type="System.Drawing.Size, System.Drawing">
+    <value>235, 23</value>
+  </data>
+  <data name="panel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="labelArtist.Location" type="System.Drawing.Point, System.Drawing">
+    <value>187, 32</value>
+  </data>
+  <data name="&gt;&gt;labelArtist.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;checkBoxNeedAlbumArt.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;labelTrackNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonPostNowPlaying.Text" xml:space="preserve">
+    <value>NowPlaying</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pictureBoxAlbumArt.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="labelArtist.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="pictureBoxAlbumArt.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="checkBoxAutoPosting.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxAutoPosting.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>235, 1</value>
+  </data>
+  <data name="labelTitle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>メイリオ, 11.25pt</value>
+  </data>
+  <data name="checkBoxNeedAlbumArt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>187, 126</value>
+  </data>
+  <data name="buttonPostNowPlaying.Font" type="System.Drawing.Font, System.Drawing">
+    <value>メイリオ, 8.25pt</value>
+  </data>
+  <data name="checkBoxNeedAlbumArt.Text" xml:space="preserve">
+    <value>Post with AlbumArt</value>
+  </data>
+  <data name="checkBoxNeedAlbumArt.Font" type="System.Drawing.Font, System.Drawing">
+    <value>メイリオ, 9.75pt</value>
+  </data>
+  <data name="labelTitle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>212, 9</value>
+  </data>
+  <data name="labelAlbum.Font" type="System.Drawing.Font, System.Drawing">
+    <value>メイリオ, 11.25pt</value>
+  </data>
+  <data name="&gt;&gt;buttonShowSettingWindow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonShowSettingWindow.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;labelTitle.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="pictureBoxAlbumArt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="&gt;&gt;labelTitle.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;notifyIcon.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBoxNeedAlbumArt.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="checkBoxAutoPosting.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxAlbumArt.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>187, 87</value>
+  </data>
+  <data name="&gt;&gt;labelAlbum.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="panel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
+  </data>
+  <data name="&gt;&gt;labelTrackNumber.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Legato NowPlaying</value>
+  </data>
+  <data name="&gt;&gt;labelAlbum.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;buttonPostNowPlaying.Name" xml:space="preserve">
+    <value>buttonPostNowPlaying</value>
+  </data>
+  <data name="&gt;&gt;buttonPostNowPlaying.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="labelTrackNumber.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="labelAlbum.Location" type="System.Drawing.Point, System.Drawing">
+    <value>187, 55</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>434, 193</value>
+  </data>
+  <data name="&gt;&gt;buttonShowSettingWindow.Name" xml:space="preserve">
+    <value>buttonShowSettingWindow</value>
+  </data>
+  <data name="checkBoxAutoPosting.Text" xml:space="preserve">
+    <value>Post auto</value>
+  </data>
+  <data name="checkBoxNeedAlbumArt.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelTrackNumber.Text" xml:space="preserve">
+    <value>--.</value>
+  </data>
+  <data name="&gt;&gt;labelTrackNumber.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="buttonShowSettingWindow.Location" type="System.Drawing.Point, System.Drawing">
+    <value>314, 156</value>
+  </data>
+  <data name="&gt;&gt;labelTitle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="notifyIcon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>ja</value>
   </metadata>
 </root>

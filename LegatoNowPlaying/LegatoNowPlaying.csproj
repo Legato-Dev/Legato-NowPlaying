@@ -101,6 +101,9 @@
       <DependentUpon>SettingWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="SoundService.cs" />
+    <EmbeddedResource Include="MainForm.ja.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Services\Misskey\SettingForm.resx">
       <DependentUpon>SettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingWindow.ja.resx">
+      <DependentUpon>SettingWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingWindow.resx">
       <DependentUpon>SettingWindow.cs</DependentUpon>
