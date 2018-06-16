@@ -10,10 +10,13 @@ namespace LegatoNowPlaying.Services.Misskey
 		public const string appKey = "z31SlkbuIonQ5G1tdx4j7xvGRL7XS51y";
 
 		private Misq.Me me;
-		private CredentialsJsonFile config;
+
+		private CredentialsJsonFile _Config { get; set; }
 
 		public override string Name { get; } = "Misskey";
+
 		public override bool IsInstalled => me != null && me.UserToken != null;
+
 		public override bool HasSetting { get; } = true;
 
 		public override Task<bool> Install()
@@ -21,10 +24,9 @@ namespace LegatoNowPlaying.Services.Misskey
 			var s = new TaskCompletionSource<bool>();
 			
 			var form = new Services.Misskey.AuthForm(async (Misq.Me me) => {
-				var config = await CredentialsJsonFile.LoadAsync();
-				config.Token = me.UserToken;
-				config.Host = me.Host;
-				await config.SaveAsync();
+				_Config.Token = me.UserToken;
+				_Config.Host = me.Host;
+				await _Config.SaveAsync();
 				await Setup();
 
 				s.SetResult(true);
@@ -36,21 +38,28 @@ namespace LegatoNowPlaying.Services.Misskey
 
 		public override async Task Setup()
 		{
-			var config = await CredentialsJsonFile.LoadAsync();
+			_Config = await CredentialsJsonFile.LoadAsync();
 
-			this.me = new Misq.Me(config.Host, config.Token, appKey);
+			this.me = new Misq.Me(_Config.Host, _Config.Token, appKey);
+			Enabled = _Config.Enabled;
+		}
+
+		public override async Task ToggleEnable()
+		{
+			Enabled = !Enabled;
+
+			_Config.Enabled = Enabled;
+			await _Config.SaveAsync();
 		}
 
 		public override async Task Post(string text, Image albumArt)
 		{
-			var config = await CredentialsJsonFile.LoadAsync();
-
 			var ps = new Dictionary<string, object>
 			{
 				{ "text", text }
 			};
 
-			if (!config.PostToLtl)
+			if (!_Config.PostToLtl)
 			{
 				ps.Add("visibility", "home");
 			}
@@ -91,8 +100,12 @@ namespace LegatoNowPlaying.Services.Misskey
 
 		#region Properties/Fields
 
+		public bool Enabled { get; set; } = true;
+
 		public string Token { get; set; }
+
 		public string Host { get; set; }
+
 		public bool PostToLtl { get; set; }
 
 		#endregion Properties/Fields

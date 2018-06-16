@@ -12,6 +12,7 @@ namespace LegatoNowPlaying.Services
 
 		public abstract Task<bool> Install();
 		public abstract Task Setup();
+		public abstract Task ToggleEnable();
 		public abstract Task Post(string text, Image albumArt);
 		public abstract Task Setting();
 	}

@@ -162,7 +162,7 @@ namespace LegatoNowPlaying
 			var service = Accounts.Services.Find(i => i.Name == serviceName);
 			if (service == null) return;
 
-			service.Enabled = !service.Enabled;
+			service.ToggleEnable();
 			UpdateListViewItem(listViewItem, service);
 		}
 

@@ -12,12 +12,15 @@ namespace LegatoNowPlaying.Services.Twitter
 		private Tokens _Twitter { get; set; }
 
 		public override string Name { get; } = "Twitter";
+
 		public override bool IsInstalled => _Twitter.AccessToken != null;
+
 		public override bool HasSetting { get; } = false;
 
 		public override async Task<bool> Install()
 		{
-			var twitter = await _LoadAndVerifyCredentialsAsync();
+			var config = await CredentialsJsonFile.LoadAsync();
+			var twitter = await _LoadAndVerifyCredentialsAsync(config);
 			if (twitter == null)
 			{
 				MessageBox.Show(
@@ -37,7 +40,8 @@ namespace LegatoNowPlaying.Services.Twitter
 
 		public override async Task Setup()
 		{
-			var twitter = await _LoadAndVerifyCredentialsAsync();
+			var config = await CredentialsJsonFile.LoadAsync();
+			var twitter = await _LoadAndVerifyCredentialsAsync(config);
 
 			if (twitter == null) return;
 
@@ -46,6 +50,17 @@ namespace LegatoNowPlaying.Services.Twitter
 			twitter.ScreenName = user.ScreenName;
 
 			_Twitter = twitter;
+
+			Enabled = config.Enabled;
+		}
+
+		public override async Task ToggleEnable()
+		{
+			Enabled = !Enabled;
+
+			var config = await CredentialsJsonFile.LoadAsync();
+			config.Enabled = Enabled;
+			await config.SaveAsync();
 		}
 
 		public override async Task Post(string text, Image albumArt)
@@ -75,13 +90,12 @@ namespace LegatoNowPlaying.Services.Twitter
 		/// <summary>
 		/// tokens.json からアカウント情報を読み込み、その有効性を検証します
 		/// </summary>
-		static private async Task<Tokens> _LoadAndVerifyCredentialsAsync()
+		static private async Task<Tokens> _LoadAndVerifyCredentialsAsync(CredentialsJsonFile config)
 		{
-			var data = await CredentialsJsonFile.LoadAsync();
-			var ck = data.ConsumerKey;
-			var cs = data.ConsumerSecret;
-			var at = data.AccessToken;
-			var ats = data.AccessTokenSecret;
+			var ck = config.ConsumerKey;
+			var cs = config.ConsumerSecret;
+			var at = config.AccessToken;
+			var ats = config.AccessTokenSecret;
 
 			var defaultTokensKey = "";
 
@@ -112,7 +126,7 @@ namespace LegatoNowPlaying.Services.Twitter
 
 		#region Properties/Fields
 
-		public static string DefaultValue = "please set your tokens";
+		public bool Enabled { get; set; } = true;
 
 		public string ConsumerKey { get; set; }
 
