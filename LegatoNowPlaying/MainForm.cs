@@ -46,7 +46,8 @@ namespace LegatoNowPlaying
 				var trackFilePath = _AimpProperties.CurrentTrack.FilePath;
 				var selector = new Selector();
 				var extractor = selector.SelectAlbumArtExtractor(trackFilePath);
-				return extractor.Extract(trackFilePath);
+				var source = extractor.Extract(trackFilePath);
+				return new Bitmap(source);
 			}
 			catch (Exception ex)
 			{

@@ -37,9 +37,8 @@
     <ApplicationIcon>Resources\legato.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AlbumArtExtraction, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AlbumArtExtraction.0.1.0\lib\net461\AlbumArtExtraction.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="AlbumArtExtraction, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AlbumArtExtraction.1.0.0\lib\netstandard2.0\AlbumArtExtraction.dll</HintPath>
     </Reference>
     <Reference Include="CoreTweet, Version=0.8.1.394, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CoreTweet.0.8.1.394\lib\net45\CoreTweet.dll</HintPath>
