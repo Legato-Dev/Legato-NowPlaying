@@ -58,6 +58,7 @@ namespace LegatoNowPlaying
 			this.versionLabel = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
 			this.licenseLinkLabel = new System.Windows.Forms.LinkLabel();
+			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			((System.ComponentModel.ISupportInitialize)(this.UpDownNotifyTime)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -297,7 +298,7 @@ namespace LegatoNowPlaying
 			// 
 			// label13
 			// 
-			this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.label13.Anchor = System.Windows.Forms.AnchorStyles.Left;
 			this.label13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.label13.Location = new System.Drawing.Point(211, 305);
 			this.label13.Name = "label13";
@@ -339,9 +340,13 @@ namespace LegatoNowPlaying
 			// 
 			// servicesListView
 			// 
+			this.servicesListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.servicesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader2});
+            this.columnHeader2,
+            this.columnHeader3});
 			this.servicesListView.FullRowSelect = true;
 			this.servicesListView.GridLines = true;
 			this.servicesListView.HideSelection = false;
@@ -356,12 +361,12 @@ namespace LegatoNowPlaying
 			// 
 			// columnHeader1
 			// 
-			this.columnHeader1.Text = "Service Name";
+			this.columnHeader1.Text = "Service";
 			this.columnHeader1.Width = 120;
 			// 
 			// columnHeader2
 			// 
-			this.columnHeader2.Text = "Enable State";
+			this.columnHeader2.Text = "State";
 			this.columnHeader2.Width = 120;
 			// 
 			// tabPage3
@@ -405,18 +410,26 @@ namespace LegatoNowPlaying
 			this.licenseLinkLabel.Text = "License";
 			this.licenseLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.licenseLinkLabel_LinkClicked);
 			// 
+			// columnHeader3
+			// 
+			this.columnHeader3.Text = "Account";
+			this.columnHeader3.Width = 120;
+			// 
 			// SettingWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(529, 432);
+			this.ClientSize = new System.Drawing.Size(529, 431);
 			this.Controls.Add(this.licenseLinkLabel);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.buttonOk);
+			this.MaximizeBox = false;
 			this.MaximumSize = new System.Drawing.Size(1024, 470);
+			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(322, 470);
 			this.Name = "SettingWindow";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Settings";
 			this.Load += new System.EventHandler(this.SettingWindow_Load);
 			((System.ComponentModel.ISupportInitialize)(this.UpDownNotifyTime)).EndInit();
@@ -463,5 +476,6 @@ namespace LegatoNowPlaying
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.ColumnHeader columnHeader3;
 	}
 }

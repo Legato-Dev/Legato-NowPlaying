@@ -26,6 +26,7 @@ namespace LegatoNowPlaying.Services.Misskey
 			var form = new Services.Misskey.AuthForm(async (Misq.Me me) => {
 				_Config.Token = me.UserToken;
 				_Config.Host = me.Host;
+				_Config.AccountName = "@" + me.Username;
 				await _Config.SaveAsync();
 				await Setup();
 
@@ -42,6 +43,7 @@ namespace LegatoNowPlaying.Services.Misskey
 
 			this.me = new Misq.Me(_Config.Host, _Config.Token, appKey);
 			Enabled = _Config.Enabled;
+			AccountName = _Config.AccountName;
 		}
 
 		public override async Task ToggleEnable()
@@ -107,6 +109,8 @@ namespace LegatoNowPlaying.Services.Misskey
 		public string Host { get; set; }
 
 		public bool PostToLtl { get; set; }
+
+		public string AccountName { get; set; }
 
 		#endregion Properties/Fields
 

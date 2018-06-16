@@ -186,6 +186,7 @@
 			this.Controls.Add(this.buttonPostNowPlaying);
 			this.MinimumSize = new System.Drawing.Size(393, 231);
 			this.Name = "MainForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Legato NowPlaying";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
 			this.Load += new System.EventHandler(this.MainForm_Load);

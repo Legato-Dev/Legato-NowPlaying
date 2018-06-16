@@ -9,6 +9,7 @@ namespace LegatoNowPlaying.Services
 		public abstract bool IsInstalled { get; }
 		public abstract bool HasSetting { get; }
 		public bool Enabled { get; set; } = true;
+		public string AccountName { get; set; }
 
 		public abstract Task<bool> Install();
 		public abstract Task Setup();

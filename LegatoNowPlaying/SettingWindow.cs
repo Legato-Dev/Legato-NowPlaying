@@ -57,7 +57,7 @@ namespace LegatoNowPlaying
 			// add services list
 			foreach(var service in this.Accounts.Services)
 			{
-				var item = new ListViewItem(new[] { service.Name, "" });
+				var item = new ListViewItem(new[] { service.Name, "", "" });
 				servicesListView.Items.Add(item);
 				UpdateListViewItem(item, service);
 			}
@@ -137,6 +137,7 @@ namespace LegatoNowPlaying
 		{
 			item.SubItems[0].Text = service.Name;
 			item.SubItems[1].Text = service.IsInstalled ? (service.Enabled ? "Enabled" : "Disabled") : "Not Connected";
+			item.SubItems[2].Text = service.IsInstalled ? (service.AccountName != null ? service.AccountName : "?") : "";
 		}
 
 		private async void button4_Click(object sender, EventArgs e)

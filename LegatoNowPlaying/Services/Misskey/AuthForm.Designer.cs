@@ -50,6 +50,7 @@
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "AuthForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "AuthForm";
 			this.Load += new System.EventHandler(this.AuthForm_Load);
 			this.ResumeLayout(false);
