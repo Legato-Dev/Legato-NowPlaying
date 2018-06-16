@@ -58,6 +58,9 @@ namespace LegatoNowPlaying
 			foreach(var service in this.Accounts.Services)
 			{
 				var item = new ListViewItem(new[] { service.Name, "", "" });
+				item.UseItemStyleForSubItems = false;
+				item.SubItems[0].Font = new System.Drawing.Font(this.servicesListView.Font, System.Drawing.FontStyle.Bold);
+				item.SubItems[2].ForeColor = System.Drawing.Color.Navy;
 				servicesListView.Items.Add(item);
 				UpdateListViewItem(item, service);
 			}
