@@ -125,7 +125,7 @@
     <value>82, 18</value>
   </data>
   <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="textBoxPostSoundPath.Font" type="System.Drawing.Font, System.Drawing">
     <value>メイリオ, 9pt</value>
@@ -158,8 +158,8 @@
   <data name="textBoxPostSoundPath.Location" type="System.Drawing.Point, System.Drawing">
     <value>94, 269</value>
   </data>
-  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
+  <data name="buttonOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 25</value>
   </data>
   <data name="&gt;&gt;label13.Parent" xml:space="preserve">
     <value>tabPage2</value>
@@ -169,6 +169,9 @@
   </data>
   <data name="versionLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 18</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>tabPage1</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -189,7 +192,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -203,12 +206,6 @@
   <data name="&gt;&gt;label2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="previewLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 90</value>
-  </data>
-  <data name="&gt;&gt;tabPage2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="button4.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -221,9 +218,6 @@
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>0, 20</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 20</value>
-  </data>
   <data name="&gt;&gt;button6.Parent" xml:space="preserve">
     <value>tabPage2</value>
   </data>
@@ -234,26 +228,26 @@
   <data name="textBoxExitSoundPath.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="&gt;&gt;textBoxPostSoundPath.Name" xml:space="preserve">
-    <value>textBoxPostSoundPath</value>
+  <data name="textBoxExitSoundPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>355, 25</value>
   </data>
-  <data name="tabPage3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 27</value>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="panel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
   <data name="&gt;&gt;buttonOpenExitSound.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>505, 368</value>
+  <data name="button6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 306</value>
   </data>
   <data name="&gt;&gt;UpDownNotifyTime.Name" xml:space="preserve">
     <value>UpDownNotifyTime</value>
@@ -267,17 +261,20 @@
   <data name="servicesListView.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>Always top</value>
+  </data>
   <data name="&gt;&gt;tabPage2.Name" xml:space="preserve">
     <value>tabPage2</value>
   </data>
   <data name="textBoxExitSoundPath.Location" type="System.Drawing.Point, System.Drawing">
     <value>94, 298</value>
   </data>
-  <data name="&gt;&gt;textBoxPostSoundPath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="tabPage4.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
+  <data name="button4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 306</value>
   </data>
   <data name="button5.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -291,8 +288,8 @@
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="previewLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>290, 146</value>
+  <data name="button5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 306</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 18</value>
@@ -316,13 +313,22 @@
     <value>4</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>5</value>
+  </data>
+  <data name="columnHeader3.Width" type="System.Int32, mscorlib">
+    <value>120</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Posting</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="button6.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+  <data name="textBoxPostSoundPath.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
   <data name="&gt;&gt;previewLabel.Name" xml:space="preserve">
     <value>previewLabel</value>
@@ -337,7 +343,7 @@
     <value>4, 27</value>
   </data>
   <data name="&gt;&gt;textBoxPostingFormat.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>4</value>
   </data>
   <data name="label13.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -360,20 +366,26 @@
   <data name="&gt;&gt;button4.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>1024, 470</value>
+  <data name="textBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>State</value>
+  <data name="licenseLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 12</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 24</value>
   </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>505, 1</value>
+  <data name="button4.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>Service</value>
   </data>
   <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
     <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;UpDownNotifyTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
     <value>Preview:</value>
@@ -385,7 +397,7 @@
     <value>Yo</value>
   </data>
   <data name="previewLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="&gt;&gt;button4.Name" xml:space="preserve">
     <value>button4</value>
@@ -398,9 +410,6 @@
   </data>
   <data name="&gt;&gt;label13.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -418,13 +427,16 @@
     <value>12, 386</value>
   </data>
   <data name="textBoxPostingFormat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 26</value>
+    <value>7, 26</value>
   </data>
-  <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 128</value>
+  <data name="button6.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 3</value>
+    <value>3, 3</value>
   </data>
   <data name="&gt;&gt;versionLabel.Name" xml:space="preserve">
     <value>versionLabel</value>
@@ -459,20 +471,20 @@
   <data name="&gt;&gt;buttonOpenExitSound.Name" xml:space="preserve">
     <value>buttonOpenExitSound</value>
   </data>
-  <data name="licenseLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 12</value>
-  </data>
   <data name="textBoxPostingFormat.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="&gt;&gt;previewLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.Parent" xml:space="preserve">
+    <value>tabControl1</value>
   </data>
   <data name="label8.Font" type="System.Drawing.Font, System.Drawing">
     <value>メイリオ, 12pt, style=Bold</value>
   </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="previewLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 90</value>
   </data>
   <data name="&gt;&gt;button6.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -482,6 +494,12 @@
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>322, 470</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Name" xml:space="preserve">
+    <value>checkBox1</value>
+  </data>
+  <data name="label12.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
   <data name="&gt;&gt;button5.Name" xml:space="preserve">
     <value>button5</value>
@@ -504,14 +522,20 @@
   <data name="servicesListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 164</value>
+  <data name="columnHeader1.Width" type="System.Int32, mscorlib">
+    <value>120</value>
   </data>
-  <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
-    <value>tabPage1</value>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="buttonOpenPostSound.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 301</value>
+  </data>
+  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>1024, 470</value>
   </data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>tabPage1</value>
@@ -540,10 +564,7 @@
   <data name="label12.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
-  <data name="textBoxPostSoundPath.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;button5.Type" xml:space="preserve">
+  <data name="&gt;&gt;buttonOpenExitSound.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonOpenPostSound.Parent" xml:space="preserve">
@@ -552,26 +573,17 @@
   <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="versionLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 20</value>
-  </data>
   <data name="&gt;&gt;label8.Parent" xml:space="preserve">
     <value>tabPage3</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="tabPage4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 27</value>
   </data>
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
     <value>メイリオ, 9pt</value>
   </data>
-  <data name="button4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 306</value>
+  <data name="&gt;&gt;checkBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -580,7 +592,10 @@
     <value>120</value>
   </data>
   <data name="&gt;&gt;textBoxPostSoundPath.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>8</value>
+  </data>
+  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
@@ -588,8 +603,8 @@
   <data name="buttonOk.Text" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="buttonOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 25</value>
+  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;label12.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -599,6 +614,9 @@
   </data>
   <data name="&gt;&gt;button6.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="textBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>241, 108</value>
   </data>
   <data name="&gt;&gt;label12.Name" xml:space="preserve">
     <value>label12</value>
@@ -612,8 +630,8 @@
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;UpDownNotifyTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="servicesListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 6</value>
   </data>
   <data name="buttonOpenExitSound.Text" xml:space="preserve">
     <value>...</value>
@@ -621,17 +639,26 @@
   <data name="servicesListView.Size" type="System.Drawing.Size, System.Drawing">
     <value>485, 294</value>
   </data>
-  <data name="&gt;&gt;columnHeader2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;button5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Service</value>
+  <data name="&gt;&gt;textBoxPostSoundPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label12.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tabPage4</value>
   </data>
   <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
     <value>497, 337</value>
+  </data>
+  <data name="&gt;&gt;buttonOk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Parent" xml:space="preserve">
+    <value>tabControl1</value>
   </data>
   <data name="textBoxExitSoundPath.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -639,8 +666,11 @@
   <data name="&gt;&gt;licenseLinkLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="button6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 306</value>
+  <data name="&gt;&gt;tabPage2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="tabPage3.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -652,7 +682,13 @@
     <value>Account</value>
   </data>
   <data name="&gt;&gt;previewLabel.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tabPage4</value>
+  </data>
+  <data name="previewLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 164</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -667,16 +703,22 @@
     <value>19</value>
   </data>
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tabPage4</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPage2.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+  <data name="&gt;&gt;textBox1.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
-  <data name="button4.Text" xml:space="preserve">
-    <value>Connect</value>
+  <data name="&gt;&gt;checkBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="checkBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 6</value>
+  </data>
+  <data name="&gt;&gt;label13.Name" xml:space="preserve">
+    <value>label13</value>
   </data>
   <data name="tabPage2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -685,10 +727,13 @@
     <value>True</value>
   </data>
   <data name="&gt;&gt;buttonOpenPostSound.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;textBoxPostingFormat.Name" xml:space="preserve">
     <value>textBoxPostingFormat</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>State</value>
   </data>
   <data name="&gt;&gt;tabPage1.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -706,7 +751,7 @@
     <value>True</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>9</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -715,7 +760,7 @@
     <value>General</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>4</value>
   </data>
   <data name="buttonOpenExitSound.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 25</value>
@@ -723,8 +768,8 @@
   <data name="textBoxPostSoundPath.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="textBoxPostSoundPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>355, 25</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 20</value>
   </data>
   <data name="button5.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 25</value>
@@ -733,19 +778,22 @@
     <value>メイリオ, 8.25pt</value>
   </data>
   <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>422, 394</value>
+    <value>432, 394</value>
   </data>
   <data name="button4.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 25</value>
   </data>
-  <data name="button5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>99, 306</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="previewLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;textBoxPostingFormat.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tabPage4</value>
   </data>
-  <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
-    <value>メイリオ, 9pt</value>
+  <data name="&gt;&gt;checkBox1.Parent" xml:space="preserve">
+    <value>tabPage1</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Posting format:</value>
@@ -753,20 +801,17 @@
   <data name="&gt;&gt;versionLabel.Parent" xml:space="preserve">
     <value>tabPage3</value>
   </data>
-  <data name="servicesListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 6</value>
+  <data name="textBoxPostSoundPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>355, 25</value>
   </data>
   <data name="label8.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="tabPage3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>497, 337</value>
+  <data name="checkBox1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;label8.Name" xml:space="preserve">
-    <value>label8</value>
-  </data>
-  <data name="textBoxExitSoundPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>355, 25</value>
+  <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
+    <value>tabPage1</value>
   </data>
   <data name="textBox1.Text" xml:space="preserve">
     <value>Available tags:
@@ -779,29 +824,32 @@
   <data name="&gt;&gt;textBoxPostingFormat.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;tabPage4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 272</value>
   </data>
-  <data name="&gt;&gt;servicesListView.Name" xml:space="preserve">
-    <value>servicesListView</value>
+  <data name="tabPage3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 27</value>
   </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="button6.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;textBoxExitSoundPath.Parent" xml:space="preserve">
+    <value>tabPage1</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 125</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
   </data>
   <data name="textBoxPostingFormat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>485, 96</value>
+    <value>495, 194</value>
   </data>
   <data name="&gt;&gt;buttonOk.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -815,14 +863,17 @@
   <data name="&gt;&gt;panel1.Name" xml:space="preserve">
     <value>panel1</value>
   </data>
-  <data name="&gt;&gt;textBox1.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="tabPage3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>497, 337</value>
+  </data>
+  <data name="checkBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>529, 432</value>
+    <value>539, 431</value>
   </data>
-  <data name="versionLabel.Text" xml:space="preserve">
-    <value>(version info)</value>
+  <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
+    <value>メイリオ, 9pt</value>
   </data>
   <data name="buttonOpenPostSound.Location" type="System.Drawing.Point, System.Drawing">
     <value>455, 269</value>
@@ -830,11 +881,17 @@
   <data name="textBoxPostingFormat.Font" type="System.Drawing.Font, System.Drawing">
     <value>メイリオ, 8.25pt</value>
   </data>
-  <data name="&gt;&gt;buttonOpenExitSound.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;textBoxPostSoundPath.Name" xml:space="preserve">
+    <value>textBoxPostSoundPath</value>
+  </data>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.Name" xml:space="preserve">
+    <value>tabPage4</value>
   </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>290, 128</value>
+    <value>298, 226</value>
   </data>
   <data name="buttonOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -848,32 +905,32 @@
   <data name="versionLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;servicesListView.Parent" xml:space="preserve">
-    <value>tabPage2</value>
+  <data name="tabPage4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>507, 337</value>
   </data>
   <data name="button5.Text" xml:space="preserve">
     <value>Toggle Enable</value>
   </data>
   <data name="&gt;&gt;textBoxExitSoundPath.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>3</value>
   </data>
   <data name="tabPage3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="button6.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="previewLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>301, 244</value>
   </data>
-  <data name="&gt;&gt;label13.Name" xml:space="preserve">
-    <value>label13</value>
+  <data name="button4.Text" xml:space="preserve">
+    <value>Connect</value>
   </data>
   <data name="textBoxPostingFormat.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="buttonOpenPostSound.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+  <data name="versionLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 20</value>
   </data>
   <data name="&gt;&gt;UpDownNotifyTime.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;buttonOpenExitSound.Parent" xml:space="preserve">
     <value>tabPage1</value>
@@ -887,11 +944,11 @@
   <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="columnHeader3.Width" type="System.Int32, mscorlib">
-    <value>120</value>
+  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>515, 368</value>
   </data>
-  <data name="&gt;&gt;tabPage3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 226</value>
   </data>
   <data name="&gt;&gt;tabPage3.Name" xml:space="preserve">
     <value>tabPage3</value>
@@ -899,26 +956,32 @@
   <data name="&gt;&gt;buttonOk.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;buttonOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="&gt;&gt;textBox1.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>tabPage4</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 18</value>
   </data>
+  <data name="&gt;&gt;columnHeader2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="versionLabel.Text" xml:space="preserve">
+    <value>(version info)</value>
+  </data>
   <data name="&gt;&gt;columnHeader3.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;textBoxExitSoundPath.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+  <data name="&gt;&gt;servicesListView.Name" xml:space="preserve">
+    <value>servicesListView</value>
   </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+  <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
-  <data name="columnHeader1.Width" type="System.Int32, mscorlib">
-    <value>120</value>
+  <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 22</value>
   </data>
   <data name="&gt;&gt;versionLabel.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -932,19 +995,16 @@
   <data name="label4.Text" xml:space="preserve">
     <value>Post Sound :</value>
   </data>
-  <data name="button4.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>515, 1</value>
   </data>
   <data name="&gt;&gt;button4.Parent" xml:space="preserve">
     <value>tabPage2</value>
   </data>
-  <data name="textBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 108</value>
+  <data name="&gt;&gt;servicesListView.Parent" xml:space="preserve">
+    <value>tabPage2</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>ja</value>
   </metadata>
 </root>

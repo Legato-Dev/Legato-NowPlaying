@@ -201,6 +201,8 @@ namespace LegatoNowPlaying
 
 			this.Accounts = new Accounts();
 			this.Accounts.Init();
+
+			this.TopMost = _Setting.TopMost != null ? (bool)_Setting.TopMost : false;
 		}
 
 		private async void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -250,6 +252,8 @@ namespace LegatoNowPlaying
 			if (settingWindow.ShowDialog() == DialogResult.OK)
 			{
 				await _Setting.SaveAsync();
+
+				this.TopMost = _Setting.TopMost != null ? (bool)_Setting.TopMost : false;
 			}
 		}
 

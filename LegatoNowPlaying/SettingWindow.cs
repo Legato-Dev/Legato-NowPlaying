@@ -85,6 +85,7 @@ namespace LegatoNowPlaying
 			SettingSource.NotifyTime = TimeSpan.FromSeconds((double)UpDownNotifyTime.Value);
 			SettingSource.PostingSound = textBoxPostSoundPath.Text;
 			SettingSource.ExitingSound = textBoxExitSoundPath.Text;
+			SettingSource.TopMost = checkBox1.Checked;
 
 			DialogResult = DialogResult.OK;
 			Close();

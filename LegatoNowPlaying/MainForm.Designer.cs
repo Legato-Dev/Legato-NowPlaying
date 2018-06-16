@@ -128,6 +128,8 @@
 			this.Controls.Add(this.labelTrackNumber);
 			this.Controls.Add(this.pictureBoxAlbumArt);
 			this.Controls.Add(this.buttonPostNowPlaying);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.MaximizeBox = false;
 			this.Name = "MainForm";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
 			this.Load += new System.EventHandler(this.MainForm_Load);

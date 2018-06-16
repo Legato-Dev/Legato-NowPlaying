@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 
@@ -24,6 +24,9 @@ namespace LegatoNowPlaying
 
 		[JsonProperty("notifyTime")]
 		public TimeSpan? NotifyTime { get; set; }
+
+		[JsonProperty("topMost")]
+		public bool? TopMost { get; set; }
 
 		#endregion Properties/Fields
 

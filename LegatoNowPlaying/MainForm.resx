@@ -294,9 +294,6 @@
   <data name="labelTrackNumber.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 23</value>
   </data>
-  <data name="&gt;&gt;buttonShowSettingWindow.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="labelTrackNumber.Font" type="System.Drawing.Font, System.Drawing">
     <value>メイリオ, 11.25pt</value>
   </data>
@@ -318,8 +315,8 @@
   <data name="&gt;&gt;labelArtist.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;checkBoxNeedAlbumArt.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;buttonShowSettingWindow.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;labelTrackNumber.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -443,6 +440,9 @@
   </data>
   <data name="labelTrackNumber.Text" xml:space="preserve">
     <value>--.</value>
+  </data>
+  <data name="&gt;&gt;checkBoxNeedAlbumArt.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="&gt;&gt;labelTrackNumber.ZOrder" xml:space="preserve">
     <value>7</value>
