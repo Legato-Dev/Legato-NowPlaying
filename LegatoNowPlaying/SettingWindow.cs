@@ -65,7 +65,14 @@ namespace LegatoNowPlaying
 				UpdateListViewItem(item, service);
 			}
 
-			this.renderPreview();
+			try
+			{
+				this.previewLabel.Text = this.renderPreview();
+			}
+			catch
+			{
+				this.previewLabel.Text = "(！)投稿フォーマットが無効です";
+			}
 		}
 
 		/// <summary>
@@ -109,7 +116,16 @@ namespace LegatoNowPlaying
 
 		private void textBoxPostingFormat_TextChanged(object sender, EventArgs e)
 		{
-			this.renderPreview();
+			try
+			{
+				this.previewLabel.Text = this.renderPreview();
+				buttonOk.Enabled = true;
+			}
+			catch
+			{
+				this.previewLabel.Text = "(！)投稿フォーマットが無効です";
+				buttonOk.Enabled = false;
+			}
 		}
 
 		private void licenseLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -121,7 +137,7 @@ namespace LegatoNowPlaying
 
 		#region Methods
 
-		private void renderPreview()
+		private string renderPreview()
 		{
 			var track = new TrackInfo();
 			track.Album = "Colory Starry";
@@ -131,7 +147,7 @@ namespace LegatoNowPlaying
 			track.Year = "2015";
 			track.Genre = "Electronic";
 
-			this.previewLabel.Text = Common.ComposeText(textBoxPostingFormat.Text, track);
+			return Common.ComposeText(textBoxPostingFormat.Text, track);
 		}
 
 		#endregion Methods
