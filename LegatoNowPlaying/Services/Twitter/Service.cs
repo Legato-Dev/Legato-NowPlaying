@@ -13,7 +13,7 @@ namespace LegatoNowPlaying.Services.Twitter
 
 		public override string Name { get; } = "Twitter";
 
-		public override bool IsInstalled => _Twitter.AccessToken != null;
+		public override bool IsInstalled => _Twitter != null;
 
 		public override bool HasSetting { get; } = false;
 
