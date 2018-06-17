@@ -185,6 +185,7 @@ namespace LegatoNowPlaying
 			// 
 			resources.ApplyResources(this.textBoxPostingFormat, "textBoxPostingFormat");
 			this.textBoxPostingFormat.Name = "textBoxPostingFormat";
+			this.textBoxPostingFormat.TextChanged += new System.EventHandler(this.textBoxPostingFormat_TextChanged);
 			// 
 			// tabPage1
 			// 
