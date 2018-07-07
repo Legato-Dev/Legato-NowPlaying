@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace LegatoNowPlaying.Services.Misskey
 {
-	public class Service : Services.Service
+	public class Service : ServiceBase, IService
 	{
 		public const string appKey = "z31SlkbuIonQ5G1tdx4j7xvGRL7XS51y";
 
@@ -13,13 +13,13 @@ namespace LegatoNowPlaying.Services.Misskey
 
 		private CredentialsJsonFile _Config { get; set; }
 
-		public override string Name { get; } = "Misskey";
+		public string Name { get; } = "Misskey";
 
-		public override bool IsInstalled => me != null && me.UserToken != null;
+		public bool IsInstalled => me != null && me.UserToken != null;
 
-		public override bool HasSetting { get; } = true;
+		public bool HasSetting { get; } = true;
 
-		public override Task<bool> Install()
+		public Task<bool> Install()
 		{
 			var s = new TaskCompletionSource<bool>();
 			
@@ -37,7 +37,7 @@ namespace LegatoNowPlaying.Services.Misskey
 			return s.Task;
 		}
 
-		public override async Task Setup()
+		public async Task Setup()
 		{
 			_Config = await CredentialsJsonFile.LoadAsync();
 
@@ -46,7 +46,7 @@ namespace LegatoNowPlaying.Services.Misskey
 			AccountName = _Config.AccountName;
 		}
 
-		public override async Task ToggleEnable()
+		public async Task ToggleEnable()
 		{
 			Enabled = !Enabled;
 
@@ -54,7 +54,7 @@ namespace LegatoNowPlaying.Services.Misskey
 			await _Config.SaveAsync();
 		}
 
-		public override async Task Post(string text, Image albumArt)
+		public async Task Post(string text, Image albumArt)
 		{
 			var ps = new Dictionary<string, object>
 			{
@@ -88,7 +88,7 @@ namespace LegatoNowPlaying.Services.Misskey
 			await this.me.Request("notes/create", ps);
 		}
 
-		public override Task Setting()
+		public Task Setting()
 		{
 			var form = new Services.Misskey.SettingForm();
 			form.Show();

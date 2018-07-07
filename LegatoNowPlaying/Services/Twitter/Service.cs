@@ -7,17 +7,17 @@ using System.Windows.Forms;
 
 namespace LegatoNowPlaying.Services.Twitter
 {
-	public class Service : Services.Service
+	public class Service : ServiceBase, IService
 	{
 		private Tokens _Twitter { get; set; }
 
-		public override string Name { get; } = "Twitter";
+		public string Name { get; } = "Twitter";
 
-		public override bool IsInstalled => _Twitter != null;
+		public bool IsInstalled => _Twitter != null;
 
-		public override bool HasSetting { get; } = false;
+		public bool HasSetting { get; } = false;
 
-		public override async Task<bool> Install()
+		public async Task<bool> Install()
 		{
 			var config = await CredentialsJsonFile.LoadAsync();
 			var twitter = await _LoadAndVerifyCredentialsAsync(config);
@@ -38,7 +38,7 @@ namespace LegatoNowPlaying.Services.Twitter
 			return true;
 		}
 
-		public override async Task Setup()
+		public async Task Setup()
 		{
 			var config = await CredentialsJsonFile.LoadAsync();
 			var twitter = await _LoadAndVerifyCredentialsAsync(config);
@@ -54,7 +54,7 @@ namespace LegatoNowPlaying.Services.Twitter
 			Enabled = config.Enabled;
 		}
 
-		public override async Task ToggleEnable()
+		public async Task ToggleEnable()
 		{
 			Enabled = !Enabled;
 
@@ -63,7 +63,7 @@ namespace LegatoNowPlaying.Services.Twitter
 			await config.SaveAsync();
 		}
 
-		public override async Task Post(string text, Image albumArt)
+		public async Task Post(string text, Image albumArt)
 		{
 			if (_Twitter == null) return;
 
@@ -80,7 +80,7 @@ namespace LegatoNowPlaying.Services.Twitter
 			}
 		}
 
-		public override Task Setting()
+		public Task Setting()
 		{
 			return Task.CompletedTask;
 		}

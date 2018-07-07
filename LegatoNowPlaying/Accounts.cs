@@ -1,3 +1,4 @@
+using LegatoNowPlaying.Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,7 +8,7 @@ namespace LegatoNowPlaying
 {
 	public class Accounts
 	{
-		public List<Services.Service> Services { get; set; } = new List<Services.Service>();
+		public List<IService> Services { get; set; } = new List<IService>();
 
 		public async void Init()
 		{
@@ -24,7 +25,7 @@ namespace LegatoNowPlaying
 		{
 			foreach (var service in Services)
 			{
-				if (service.Enabled)
+				if ((service as ServiceBase).Enabled)
 				{
 					try
 					{

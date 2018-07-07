@@ -153,11 +153,13 @@ namespace LegatoNowPlaying
 
 		#endregion Methods
 
-		private void UpdateListViewItem(ListViewItem item, Service service)
+		private void UpdateListViewItem(ListViewItem item, IService service)
 		{
+			var serviceBase = service as ServiceBase;
+
 			item.SubItems[0].Text = service.Name;
-			item.SubItems[1].Text = service.IsInstalled ? (service.Enabled ? "Enabled" : "Disabled") : "Not Connected";
-			item.SubItems[2].Text = service.IsInstalled ? (service.AccountName != null ? service.AccountName : "?") : "";
+			item.SubItems[1].Text = service.IsInstalled ? (serviceBase.Enabled ? "Enabled" : "Disabled") : "Not Connected";
+			item.SubItems[2].Text = service.IsInstalled ? (serviceBase.AccountName != null ? serviceBase.AccountName : "?") : "";
 		}
 
 		private async void button4_Click(object sender, EventArgs e)
