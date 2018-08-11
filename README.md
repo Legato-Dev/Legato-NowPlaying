@@ -9,6 +9,8 @@ Currently it conforms to the following SNS.
 - Misskey
 
 ![sample](sample.png)
+## Download
+[Releases](https://github.com/Legato-Dev/Legato-NowPlaying/releases)
 
 ## License for Legato-NowPlaying itself
 MIT License
@@ -35,6 +37,9 @@ AIMP Remote API ライブラリ「Legato」を利用した NowPlaying アプリ�
 - Misskey
 
 ![sample](sample.png)
+
+## ダウンロード
+[Releases](https://github.com/Legato-Dev/Legato-NowPlaying/releases)
 
 ## Legato-NowPlaying自体のライセンス
 MIT ライセンス
