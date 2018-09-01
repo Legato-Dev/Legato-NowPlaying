@@ -44,14 +44,17 @@
       <HintPath>..\packages\CoreTweet.0.8.1.394\lib\net45\CoreTweet.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FrostSDK">
+      <HintPath>..\..\frost-sdk-dotnet\FrostSDK\bin\Release\netstandard2.0\FrostSDK.dll</HintPath>
+    </Reference>
     <Reference Include="Legato, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Legato.1.1.2\lib\net461\Legato.dll</HintPath>
     </Reference>
     <Reference Include="Misq, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Misq.6.0.0\lib\net461\Misq.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Misq.6.0.0\lib\net461\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -78,6 +81,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Accounts.cs" />
+    <Compile Include="Services\Frost\Service.cs" />
     <Compile Include="Services\Service.cs" />
     <Compile Include="Services\Misskey\AuthForm.cs">
       <SubType>Form</SubType>

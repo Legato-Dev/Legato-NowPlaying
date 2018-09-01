@@ -11,6 +11,7 @@ namespace LegatoNowPlaying
 
 		public async void Init()
 		{
+			Services.Add(new Services.Frost.Service());
 			Services.Add(new Services.Misskey.Service());
 			Services.Add(new Services.Twitter.Service());
 

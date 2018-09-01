@@ -145,12 +145,12 @@ namespace LegatoNowPlaying
 			// 
 			// tabPage4
 			// 
-			resources.ApplyResources(this.tabPage4, "tabPage4");
 			this.tabPage4.Controls.Add(this.previewLabel);
 			this.tabPage4.Controls.Add(this.label12);
 			this.tabPage4.Controls.Add(this.textBox1);
 			this.tabPage4.Controls.Add(this.label1);
 			this.tabPage4.Controls.Add(this.textBoxPostingFormat);
+			resources.ApplyResources(this.tabPage4, "tabPage4");
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.UseVisualStyleBackColor = true;
 			// 
@@ -189,7 +189,6 @@ namespace LegatoNowPlaying
 			// 
 			// tabPage1
 			// 
-			resources.ApplyResources(this.tabPage1, "tabPage1");
 			this.tabPage1.Controls.Add(this.checkBox1);
 			this.tabPage1.Controls.Add(this.buttonOpenPostSound);
 			this.tabPage1.Controls.Add(this.buttonOpenExitSound);
@@ -200,6 +199,7 @@ namespace LegatoNowPlaying
 			this.tabPage1.Controls.Add(this.label3);
 			this.tabPage1.Controls.Add(this.textBoxPostSoundPath);
 			this.tabPage1.Controls.Add(this.label4);
+			resources.ApplyResources(this.tabPage1, "tabPage1");
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
@@ -225,12 +225,12 @@ namespace LegatoNowPlaying
 			// 
 			// tabPage2
 			// 
-			resources.ApplyResources(this.tabPage2, "tabPage2");
 			this.tabPage2.Controls.Add(this.label13);
 			this.tabPage2.Controls.Add(this.button6);
 			this.tabPage2.Controls.Add(this.button5);
 			this.tabPage2.Controls.Add(this.button4);
 			this.tabPage2.Controls.Add(this.servicesListView);
+			resources.ApplyResources(this.tabPage2, "tabPage2");
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
@@ -291,9 +291,9 @@ namespace LegatoNowPlaying
 			// 
 			// tabPage3
 			// 
-			resources.ApplyResources(this.tabPage3, "tabPage3");
 			this.tabPage3.Controls.Add(this.versionLabel);
 			this.tabPage3.Controls.Add(this.label8);
+			resources.ApplyResources(this.tabPage3, "tabPage3");
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
