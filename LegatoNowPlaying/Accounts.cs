@@ -24,7 +24,7 @@ namespace LegatoNowPlaying
 		{
 			foreach (var service in Services)
 			{
-				if (service.Enabled)
+				if (service.Enabled && service.IsInstalled)
 				{
 					try
 					{
