@@ -9,18 +9,11 @@ namespace LegatoNowPlaying
 	/// </summary>
 	public class SettingJsonFile : JsonFile
 	{
-
 		#region Properties/Fields
 
 		[JsonProperty("format")]
 		public string PostingFormat { get; set; }
 		public static string PostingFormatDefault = "{TrackNum}. {Title}\r\nArtist: {Artist}\r\nAlbum: {Album}\r\n#nowplaying";
-
-		[JsonProperty("postsound")]
-		public string PostingSound { get; set; }
-
-		[JsonProperty("exitsound")]
-		public string ExitingSound { get; set; }
 
 		[JsonProperty("notifyTime")]
 		public TimeSpan? NotifyTime { get; set; }
@@ -38,16 +31,10 @@ namespace LegatoNowPlaying
 		/// <param name="target"></param>
 		private void _Normalize()
 		{
-			PostingFormat = PostingFormat ?? PostingFormatDefault;
+			this.PostingFormat = this.PostingFormat ?? PostingFormatDefault;
 
-			if (!NotifyTime.HasValue)
-				NotifyTime = new TimeSpan(0, 0, 1);
-
-			if (PostingSound == "")
-				PostingSound = null;
-
-			if (ExitingSound == "")
-				ExitingSound = null;
+			if (!this.NotifyTime.HasValue)
+				this.NotifyTime = new TimeSpan(0, 0, 1);
 		}
 
 		/// <summary>
@@ -67,11 +54,10 @@ namespace LegatoNowPlaying
 		/// </summary>
 		public Task SaveAsync()
 		{
-			_Normalize();
-			return SaveAsync("settings.json");
+			this._Normalize();
+			return this.SaveAsync("settings.json");
 		}
 
 		#endregion Methods
-
 	}
 }
