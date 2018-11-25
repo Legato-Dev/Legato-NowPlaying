@@ -2,7 +2,7 @@ using Legato.Interop.AimpRemote.Entities;
 using LegatoNowPlaying.Services;
 using System;
 using System.Diagnostics;
-using System.IO;
+using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -10,64 +10,52 @@ namespace LegatoNowPlaying
 {
 	public partial class SettingWindow : Form
 	{
+		#region Constructor
 
-		#region Constractors
-
-		/// <summary>
-		/// SettingWindow コンストラクタ
-		/// </summary>
 		public SettingWindow(SettingJsonFile settingSource, Accounts accounts)
 		{
-			InitializeComponent();
+			this.InitializeComponent();
 
-			SettingSource = settingSource;
-			this.Accounts = accounts;
+			this.SettingSource = settingSource;
+			this._Accounts = accounts;
 		}
 
-		#endregion Constractors
+		#endregion Constructor
 
 		#region Properties
 
-		private OpenFileDialog _OpenFileDialog { get; set; } = new OpenFileDialog();
-
 		public SettingJsonFile SettingSource { get; set; }
 
-		private Accounts Accounts;
+		private Accounts _Accounts { get; set; }
 
 		#endregion Properties
 
 		#region Event Handlers
 
-		/// <summary>
-		/// SettingWindow が読み込まれる際に動作します。
-		/// </summary>
 		private void SettingWindow_Load(object sender, EventArgs e)
 		{
-			Icon = Properties.Resources.legato;
-
-			textBoxPostingFormat.Text = SettingSource.PostingFormat;
-			textBoxPostSoundPath.Text = SettingSource.PostingSound;
-			textBoxExitSoundPath.Text = SettingSource.ExitingSound;
+			this.Icon = Properties.Resources.legato;
+			this.textBoxPostingFormat.Text = this.SettingSource.PostingFormat;
 
 			// render version
 			var assembly = Assembly.GetExecutingAssembly();
 			var v = assembly.GetName().Version;
-			versionLabel.Text = $"Version: {v.Major}.{v.Minor}.{v.Revision}";
+			this.versionLabel.Text = $"Version: {v.Major}.{v.Minor}.{v.Revision}";
 
 			// add services list
-			foreach(var service in this.Accounts.Services)
+			foreach (var service in this._Accounts.Services)
 			{
 				var item = new ListViewItem(new[] { service.Name, "", "" });
 				item.UseItemStyleForSubItems = false;
-				item.SubItems[0].Font = new System.Drawing.Font(this.servicesListView.Font, System.Drawing.FontStyle.Bold);
-				item.SubItems[2].ForeColor = System.Drawing.Color.Navy;
-				servicesListView.Items.Add(item);
-				UpdateListViewItem(item, service);
+				item.SubItems[0].Font = new Font(this.servicesListView.Font, FontStyle.Bold);
+				item.SubItems[2].ForeColor = Color.Navy;
+				this.servicesListView.Items.Add(item);
+				this._UpdateListViewItem(item, service);
 			}
 
 			try
 			{
-				this.previewLabel.Text = this.renderPreview();
+				this.previewLabel.Text = this._RenderPreview();
 			}
 			catch
 			{
@@ -76,56 +64,87 @@ namespace LegatoNowPlaying
 		}
 
 		/// <summary>
-		/// 設定完了時に押下するボタン設定です。
+		/// 設定完了時に押下されるボタン設定
 		/// </summary>
 		private void buttonOk_Click(object sender, EventArgs e)
 		{
 			// 結果に反映
-			SettingSource.PostingFormat = textBoxPostingFormat.Text;
-			SettingSource.NotifyTime = TimeSpan.FromSeconds((double)UpDownNotifyTime.Value);
-			SettingSource.PostingSound = textBoxPostSoundPath.Text;
-			SettingSource.ExitingSound = textBoxExitSoundPath.Text;
-			SettingSource.TopMost = checkBox1.Checked;
+			this.SettingSource.PostingFormat = this.textBoxPostingFormat.Text;
+			this.SettingSource.NotifyTime = TimeSpan.FromSeconds((double)this.UpDownNotifyTime.Value);
+			this.SettingSource.TopMost = this.checkBox1.Checked;
 
-			DialogResult = DialogResult.OK;
-			Close();
+			this.DialogResult = DialogResult.OK;
+			this.Close();
 		}
 
-		/// <summary>
-		/// 投稿時にお知らせを行う音声ファイルを決定します。
-		/// </summary>
-		private void buttonOpenPostSound_Click(object sender, EventArgs e)
+		private async void button4_Click(object sender, EventArgs e)
 		{
-			if (_OpenFileDialog.ShowDialog() == DialogResult.OK)
-			{
-				string str = _OpenFileDialog.FileName;
-				textBoxPostSoundPath.Text = Path.GetDirectoryName(str) + @"\" + Path.GetFileName(str);
-			}
+			if (this.servicesListView.SelectedItems.Count != 1) return;
+
+			var listViewItem = this.servicesListView.SelectedItems[0];
+			var serviceName = listViewItem.SubItems[0].Text;
+			var service = this._Accounts.Services.Find(i => i.Name == serviceName);
+			if (service == null) return;
+
+			await service.Install();
+
+			this._UpdateListViewItem(listViewItem, service);
 		}
 
-		/// <summary>
-		/// アプリケーション終了時に再生する音声ファイルを選択します。
-		/// </summary>
-		private void buttonOpenExitSound_Click(object sender, EventArgs e)
+		private void button5_Click(object sender, EventArgs e)
 		{
-			if (_OpenFileDialog.ShowDialog() == DialogResult.OK)
+			if (this.servicesListView.SelectedItems.Count != 1) return;
+
+			var listViewItem = this.servicesListView.SelectedItems[0];
+			var serviceName = listViewItem.SubItems[0].Text;
+			var service = this._Accounts.Services.Find(i => i.Name == serviceName);
+			if (service == null) return;
+
+			service.ToggleEnable();
+			this._UpdateListViewItem(listViewItem, service);
+		}
+
+		private void button6_Click(object sender, EventArgs e)
+		{
+			if (this.servicesListView.SelectedItems.Count != 1) return;
+
+			var serviceName = this.servicesListView.SelectedItems[0].SubItems[0].Text;
+			var service = this._Accounts.Services.Find(i => i.Name == serviceName);
+			if (service == null) return;
+
+			service.Setting();
+		}
+
+		private void servicesListView_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (this.servicesListView.SelectedItems.Count != 1)
 			{
-				string str = _OpenFileDialog.FileName;
-				textBoxExitSoundPath.Text = Path.GetDirectoryName(str) + @"\" + Path.GetFileName(str);
+				this.button4.Enabled = false;
+				this.button5.Enabled = false;
+				this.button6.Enabled = false;
+				return;
 			}
+
+			var serviceName = this.servicesListView.SelectedItems[0].SubItems[0].Text;
+			var service = this._Accounts.Services.Find(i => i.Name == serviceName);
+			if (service == null) return;
+
+			this.button4.Enabled = true;
+			this.button5.Enabled = true;
+			this.button6.Enabled = service.HasSetting;
 		}
 
 		private void textBoxPostingFormat_TextChanged(object sender, EventArgs e)
 		{
 			try
 			{
-				this.previewLabel.Text = this.renderPreview();
-				buttonOk.Enabled = true;
+				this.previewLabel.Text = this._RenderPreview();
+				this.buttonOk.Enabled = true;
 			}
 			catch
 			{
 				this.previewLabel.Text = "(！)投稿フォーマットが無効です";
-				buttonOk.Enabled = false;
+				this.buttonOk.Enabled = false;
 			}
 		}
 
@@ -136,85 +155,34 @@ namespace LegatoNowPlaying
 
 		#endregion Event Handlers
 
-		#region Methods
+		#region Private Methods
 
-		private string renderPreview()
+		private string _RenderPreview()
 		{
-			var track = new TrackInfo();
-			track.Album = "Colory Starry";
-			track.Artist = "ななひら";
-			track.Title = "ほしにねがいを";
-			track.TrackNumber = 10;
-			track.Year = "2015";
-			track.Genre = "Electronic";
+			var track = new TrackInfo
+			{
+				Album = "Colory Starry",
+				Artist = "ななひら",
+				Title = "ほしにねがいを",
+				TrackNumber = 10,
+				Year = "2015",
+				Genre = "Electronic"
+			};
 
-			return Common.ComposeText(textBoxPostingFormat.Text, track);
+			return Common.ComposeText(this.textBoxPostingFormat.Text, track);
 		}
 
-		#endregion Methods
-
-		private void UpdateListViewItem(ListViewItem item, Service service)
+		private void _UpdateListViewItem(ListViewItem item, Service service)
 		{
 			item.SubItems[0].Text = service.Name;
 			item.SubItems[1].Text = service.IsInstalled ? (service.Enabled ? "Enabled" : "Disabled") : "Not Connected";
-			item.SubItems[2].Text = service.IsInstalled ? (service.AccountName != null ? service.AccountName : "?") : "";
+			item.SubItems[2].Text = service.IsInstalled ? (service.AccountName ?? "?") : "";
 		}
 
-		private async void button4_Click(object sender, EventArgs e)
-		{
-			if (servicesListView.SelectedItems.Count != 1) return;
+		#endregion Private Methods
 
-			var listViewItem = servicesListView.SelectedItems[0];
-			var serviceName = listViewItem.SubItems[0].Text;
-			var service = Accounts.Services.Find(i => i.Name == serviceName);
-			if (service == null) return;
+		#region Public Methods
 
-			await service.Install();
-
-			UpdateListViewItem(listViewItem, service);
-		}
-
-		private void button5_Click(object sender, EventArgs e)
-		{
-			if (servicesListView.SelectedItems.Count != 1) return;
-
-			var listViewItem = servicesListView.SelectedItems[0];
-			var serviceName = listViewItem.SubItems[0].Text;
-			var service = Accounts.Services.Find(i => i.Name == serviceName);
-			if (service == null) return;
-
-			service.ToggleEnable();
-			UpdateListViewItem(listViewItem, service);
-		}
-
-		private void button6_Click(object sender, EventArgs e)
-		{
-			if (servicesListView.SelectedItems.Count != 1) return;
-
-			var serviceName = servicesListView.SelectedItems[0].SubItems[0].Text;
-			var service = Accounts.Services.Find(i => i.Name == serviceName);
-			if (service == null) return;
-
-			service.Setting();
-		}
-
-		private void servicesListView_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			if(servicesListView.SelectedItems.Count != 1)
-			{
-				button4.Enabled = false;
-				button5.Enabled = false;
-				button6.Enabled = false;
-				return;
-			}
-
-			var serviceName = servicesListView.SelectedItems[0].SubItems[0].Text;
-			var service = Accounts.Services.Find(i => i.Name == serviceName);
-			if (service == null) return;
-
-			button4.Enabled = true;
-			button5.Enabled = true;
-			button6.Enabled = service.HasSetting;
-		}
+		#endregion Public Methods
 	}
 }

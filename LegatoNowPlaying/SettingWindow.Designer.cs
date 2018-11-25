@@ -34,10 +34,6 @@ namespace LegatoNowPlaying
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.UpDownNotifyTime = new System.Windows.Forms.NumericUpDown();
 			this.label3 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
-			this.textBoxPostSoundPath = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.textBoxExitSoundPath = new System.Windows.Forms.TextBox();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.previewLabel = new System.Windows.Forms.Label();
@@ -47,8 +43,6 @@ namespace LegatoNowPlaying
 			this.textBoxPostingFormat = new System.Windows.Forms.TextBox();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
-			this.buttonOpenPostSound = new System.Windows.Forms.Button();
-			this.buttonOpenExitSound = new System.Windows.Forms.Button();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.label13 = new System.Windows.Forms.Label();
 			this.button6 = new System.Windows.Forms.Button();
@@ -109,30 +103,6 @@ namespace LegatoNowPlaying
 			resources.ApplyResources(this.label3, "label3");
 			this.label3.Name = "label3";
 			// 
-			// label4
-			// 
-			resources.ApplyResources(this.label4, "label4");
-			this.label4.Name = "label4";
-			// 
-			// textBoxPostSoundPath
-			// 
-			resources.ApplyResources(this.textBoxPostSoundPath, "textBoxPostSoundPath");
-			this.textBoxPostSoundPath.BackColor = System.Drawing.Color.White;
-			this.textBoxPostSoundPath.Name = "textBoxPostSoundPath";
-			this.textBoxPostSoundPath.ReadOnly = true;
-			// 
-			// label5
-			// 
-			resources.ApplyResources(this.label5, "label5");
-			this.label5.Name = "label5";
-			// 
-			// textBoxExitSoundPath
-			// 
-			resources.ApplyResources(this.textBoxExitSoundPath, "textBoxExitSoundPath");
-			this.textBoxExitSoundPath.BackColor = System.Drawing.Color.White;
-			this.textBoxExitSoundPath.Name = "textBoxExitSoundPath";
-			this.textBoxExitSoundPath.ReadOnly = true;
-			// 
 			// tabControl1
 			// 
 			resources.ApplyResources(this.tabControl1, "tabControl1");
@@ -145,12 +115,12 @@ namespace LegatoNowPlaying
 			// 
 			// tabPage4
 			// 
-			resources.ApplyResources(this.tabPage4, "tabPage4");
 			this.tabPage4.Controls.Add(this.previewLabel);
 			this.tabPage4.Controls.Add(this.label12);
 			this.tabPage4.Controls.Add(this.textBox1);
 			this.tabPage4.Controls.Add(this.label1);
 			this.tabPage4.Controls.Add(this.textBoxPostingFormat);
+			resources.ApplyResources(this.tabPage4, "tabPage4");
 			this.tabPage4.Name = "tabPage4";
 			this.tabPage4.UseVisualStyleBackColor = true;
 			// 
@@ -189,17 +159,11 @@ namespace LegatoNowPlaying
 			// 
 			// tabPage1
 			// 
-			resources.ApplyResources(this.tabPage1, "tabPage1");
 			this.tabPage1.Controls.Add(this.checkBox1);
-			this.tabPage1.Controls.Add(this.buttonOpenPostSound);
-			this.tabPage1.Controls.Add(this.buttonOpenExitSound);
-			this.tabPage1.Controls.Add(this.textBoxExitSoundPath);
-			this.tabPage1.Controls.Add(this.label5);
 			this.tabPage1.Controls.Add(this.label2);
 			this.tabPage1.Controls.Add(this.UpDownNotifyTime);
 			this.tabPage1.Controls.Add(this.label3);
-			this.tabPage1.Controls.Add(this.textBoxPostSoundPath);
-			this.tabPage1.Controls.Add(this.label4);
+			resources.ApplyResources(this.tabPage1, "tabPage1");
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
@@ -209,28 +173,14 @@ namespace LegatoNowPlaying
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.UseVisualStyleBackColor = true;
 			// 
-			// buttonOpenPostSound
-			// 
-			resources.ApplyResources(this.buttonOpenPostSound, "buttonOpenPostSound");
-			this.buttonOpenPostSound.Name = "buttonOpenPostSound";
-			this.buttonOpenPostSound.UseVisualStyleBackColor = true;
-			this.buttonOpenPostSound.Click += new System.EventHandler(this.buttonOpenPostSound_Click);
-			// 
-			// buttonOpenExitSound
-			// 
-			resources.ApplyResources(this.buttonOpenExitSound, "buttonOpenExitSound");
-			this.buttonOpenExitSound.Name = "buttonOpenExitSound";
-			this.buttonOpenExitSound.UseVisualStyleBackColor = true;
-			this.buttonOpenExitSound.Click += new System.EventHandler(this.buttonOpenExitSound_Click);
-			// 
 			// tabPage2
 			// 
-			resources.ApplyResources(this.tabPage2, "tabPage2");
 			this.tabPage2.Controls.Add(this.label13);
 			this.tabPage2.Controls.Add(this.button6);
 			this.tabPage2.Controls.Add(this.button5);
 			this.tabPage2.Controls.Add(this.button4);
 			this.tabPage2.Controls.Add(this.servicesListView);
+			resources.ApplyResources(this.tabPage2, "tabPage2");
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
@@ -291,9 +241,9 @@ namespace LegatoNowPlaying
 			// 
 			// tabPage3
 			// 
-			resources.ApplyResources(this.tabPage3, "tabPage3");
 			this.tabPage3.Controls.Add(this.versionLabel);
 			this.tabPage3.Controls.Add(this.label8);
+			resources.ApplyResources(this.tabPage3, "tabPage3");
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
@@ -349,10 +299,6 @@ namespace LegatoNowPlaying
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.NumericUpDown UpDownNotifyTime;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.TextBox textBoxPostSoundPath;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.TextBox textBoxExitSoundPath;
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
@@ -368,8 +314,6 @@ namespace LegatoNowPlaying
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.ColumnHeader columnHeader3;
-		private System.Windows.Forms.Button buttonOpenPostSound;
-		private System.Windows.Forms.Button buttonOpenExitSound;
 		private System.Windows.Forms.TabPage tabPage4;
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.TextBox textBox1;

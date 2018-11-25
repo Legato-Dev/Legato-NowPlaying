@@ -6,7 +6,6 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,14 +13,14 @@ namespace LegatoNowPlaying
 {
 	public partial class MainForm : Form
 	{
-		#region Constractors
+		#region Constructor
 
 		public MainForm()
 		{
-			InitializeComponent();
+			this.InitializeComponent();
 		}
 
-		#endregion Constractors
+		#endregion Constructor
 
 		#region Properties
 
@@ -31,19 +30,110 @@ namespace LegatoNowPlaying
 
 		private AimpObserver _AimpObserver { get; set; } = new AimpObserver();
 
-		private SettingJsonFile _Setting { get; set; }
+		private Accounts _Accounts { get; set; } = new Accounts();
 
-		private Accounts Accounts;
+		private SettingJsonFile _Setting { get; set; }
 
 		#endregion Properties
 
-		#region Methods
+		#region Event Handlers
+
+		private async void MainForm_Load(object sender, EventArgs e)
+		{
+			this.Icon = Properties.Resources.legato;
+
+			this._Setting = await SettingJsonFile.LoadAsync();
+
+			this._AimpObserver.CurrentTrackChanged += async (track) =>
+			{
+				this._UpdateFormTrackInfo(track);
+				this._UpdateAlbumArt();
+
+				// auto posting
+				if (this.checkBoxAutoPosting.Checked)
+				{
+					await this._PostAsync();
+				}
+			};
+
+			if (this._AimpProperties.IsRunning)
+			{
+				this._UpdateFormTrackInfo(this._AimpProperties.CurrentTrack);
+				this._UpdateAlbumArt();
+			}
+
+			SystemEvents.PowerModeChanged += (s, ev) =>
+			{
+				switch (ev.Mode)
+				{
+					// スリープ直前
+					case PowerModes.Suspend:
+						break;
+
+					// 復帰直後は曲情報を再取得
+					case PowerModes.Resume:
+						this._UpdateFormTrackInfo(this._AimpProperties.CurrentTrack);
+						this._UpdateAlbumArt();
+						break;
+
+					// バッテリーや電源に関する通知があった場合
+					case PowerModes.StatusChange:
+						break;
+				}
+			};
+
+			this._Accounts.Init();
+
+			this.TopMost = this._Setting.TopMost != null ? (bool)this._Setting.TopMost : false;
+		}
+
+		private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			this._AimpObserver.Dispose();
+		}
+
+		private async void buttonPostNowPlaying_Click(object sender, EventArgs e)
+		{
+			await this._PostAsync();
+		}
+
+		private void pictureBoxAlbumArt_Click(object sender, EventArgs e)
+		{
+			var albumArt = this._GetAlbumArt();
+
+			if (albumArt != null)
+			{
+				albumArt.Save("temp.png", ImageFormat.Png);
+				Process.Start("temp.png");
+			}
+		}
+
+		private void checkBoxAutoPosting_CheckedChanged(object sender, EventArgs e)
+		{
+			this.buttonPostNowPlaying.Enabled = !this.checkBoxAutoPosting.Checked;
+		}
+
+		private async void buttonShowSettingWindow_Click(object sender, EventArgs e)
+		{
+			var settingWindow = new SettingWindow(_Setting, this._Accounts);
+
+			if (settingWindow.ShowDialog() == DialogResult.OK)
+			{
+				await this._Setting.SaveAsync();
+
+				this.TopMost = this._Setting.TopMost != null ? (bool)this._Setting.TopMost : false;
+			}
+		}
+
+		#endregion Event Handlers
+
+		#region Private Methods
 
 		private Image _GetAlbumArt()
 		{
 			try
 			{
-				var trackFilePath = _AimpProperties.CurrentTrack.FilePath;
+				var trackFilePath = this._AimpProperties.CurrentTrack.FilePath;
 				var selector = new Selector();
 				var extractor = selector.SelectAlbumArtExtractor(trackFilePath);
 				var source = extractor.Extract(trackFilePath);
@@ -59,71 +149,13 @@ namespace LegatoNowPlaying
 
 		private async Task _PostAsync()
 		{
-			var track = _AimpProperties.CurrentTrack;
+			var track = this._AimpProperties.CurrentTrack;
 
-			var text = Common.ComposeText(_Setting.PostingFormat, track);
+			var text = Common.ComposeText(this._Setting.PostingFormat, track);
 
-			var albumArt = _GetAlbumArt();
+			var albumArt = this._GetAlbumArt();
 
-			await Accounts.Post(text, checkBoxNeedAlbumArt.Checked ? albumArt : null);
-		}
-
-		/// <summary>
-		/// 非同期で音声ファイルを再生します。
-		/// </summary>
-		private async Task<SoundService> _PlaySoundAsync(string filePath, bool isClosing)
-		{
-			SoundService sound = null;
-
-			if (filePath == null)
-				return null;
-
-			try
-			{
-				// ファイルを開く
-				sound = SoundService.Open(filePath);
-
-				// 音声を再生 (音声が指定されない場合は、例外発生)
-				sound.Play();
-
-				// Legato-NowPlaying が終了される時
-				if (isClosing)
-				{
-					// 終了メッセージ
-					new LegatoMessageBox("Legato-NowPlaying を終了します。", "れがーとなうぷれしゅーりょー", 1500);
-				}
-
-				await Task.Delay(1000);
-				return sound;
-			}
-			catch (FileNotFoundException)
-			{
-				sound?.Close();
-
-				MessageBox.Show(
-					$"mp3 再生エラーが発生しました。\r\nファイルが見つかりません: {filePath}",
-					"mp3 再生エラー",
-					MessageBoxButtons.OK,
-					MessageBoxIcon.Error);
-				return null;
-			}
-		}
-
-		/// <summary>
-		/// 非同期で音声ファイルを停止します。
-		/// </summary>
-		private async Task _StopSoundAsync(SoundService sound)
-		{
-			if (sound == null)
-				return;
-
-			// Sound を停止する
-			sound.Stop();
-
-			// 閉じる
-			sound.Close();
-
-			await Task.Delay(100);
+			await _Accounts.Post(text, this.checkBoxNeedAlbumArt.Checked ? albumArt : null);
 		}
 
 		/// <summary>
@@ -131,152 +163,49 @@ namespace LegatoNowPlaying
 		/// </summary>
 		private void _UpdateAlbumArt()
 		{
-			if (_AimpProperties.IsRunning)
+			if (this._AimpProperties.IsRunning)
 			{
-				var albumArt = _GetAlbumArt();
-				pictureBoxAlbumArt.Image = albumArt ?? Properties.Resources.logo;
+				var albumArt = this._GetAlbumArt();
+				this.pictureBoxAlbumArt.Image = albumArt ?? Properties.Resources.logo;
 			}
 			else
 			{
-				pictureBoxAlbumArt.Image = Properties.Resources.logo;
+				this.pictureBoxAlbumArt.Image = Properties.Resources.logo;
 			}
 		}
 
 		private void _UpdateFormTrackInfo(TrackInfo track)
 		{
-			labelTrackNumber.Text = $"{track.TrackNumber:D2}.";
-			labelTitle.Text = track.Title;
-			labelArtist.Text = track.Artist;
-			labelAlbum.Text = track.Album;
+			this.labelTrackNumber.Text = $"{track.TrackNumber:D2}.";
+			this.labelTitle.Text = track.Title;
+			this.labelArtist.Text = track.Artist;
+			this.labelAlbum.Text = track.Album;
 
 			var os = Environment.OSVersion;
-			notifyIcon.Icon = Properties.Resources.legato;
+			this.notifyIcon.Icon = Properties.Resources.legato;
 
 			// トースト通知
 			if (os.Version.Major >= 6 && os.Version.Minor >= 2)
 			{
-				notifyIcon.BalloonTipTitle = $"Legato NowPlaying\r\n{track.Title} - {track.Artist}";
-				notifyIcon.BalloonTipText = $"Album : {track.Album}";
+				this.notifyIcon.BalloonTipTitle = $"Legato NowPlaying\r\n{track.Title} - {track.Artist}";
+				this.notifyIcon.BalloonTipText = $"Album : {track.Album}";
 				Debug.WriteLine("トースト通知が表示されました。");
 			}
 			// バルーン通知
 			else
 			{
-				notifyIcon.BalloonTipTitle = $"Legato NowPlaying";
-				notifyIcon.BalloonTipText = $"{track.Title} - {track.Artist}\r\nAlbum : {track.Album}";
+				this.notifyIcon.BalloonTipTitle = $"Legato NowPlaying";
+				this.notifyIcon.BalloonTipText = $"{track.Title} - {track.Artist}\r\nAlbum : {track.Album}";
 				Debug.WriteLine("バルーン通知が表示されました。");
 			}
-			notifyIcon.ShowBalloonTip((int)_Setting.NotifyTime.Value.TotalMilliseconds);
+
+			this.notifyIcon.ShowBalloonTip((int)this._Setting.NotifyTime.Value.TotalMilliseconds);
 		}
 
-		#endregion Methods
+		#endregion Private Methods
 
-		#region Event Handlers
+		#region Public Methods
 
-		private async void MainForm_Load(object sender, EventArgs e)
-		{
-			Icon = Properties.Resources.legato;
-
-			_Setting = await SettingJsonFile.LoadAsync();
-
-			_AimpObserver.CurrentTrackChanged += async (track) =>
-			{
-				_UpdateFormTrackInfo(track);
-				_UpdateAlbumArt();
-
-				// auto posting
-				if (checkBoxAutoPosting.Checked)
-				{
-					var sound = await _PlaySoundAsync(_Setting.PostingSound, false);
-					await _PostAsync();
-					await _StopSoundAsync(sound);
-				}
-			};
-
-			if (_AimpProperties.IsRunning)
-			{
-				_UpdateFormTrackInfo(_AimpProperties.CurrentTrack);
-				_UpdateAlbumArt();
-			}
-
-			SystemEvents.PowerModeChanged += (s, ev) =>
-			{
-				switch (ev.Mode)
-				{
-					// スリープ直前
-					case PowerModes.Suspend:
-						break;
-
-					// 復帰直後は曲情報を再取得
-					case PowerModes.Resume:
-						_UpdateFormTrackInfo(_AimpProperties.CurrentTrack);
-						_UpdateAlbumArt();
-						break;
-
-					// バッテリーや電源に関する通知があった場合
-					case PowerModes.StatusChange:
-						break;
-				}
-			};
-
-			this.Accounts = new Accounts();
-			this.Accounts.Init();
-
-			this.TopMost = _Setting.TopMost != null ? (bool)_Setting.TopMost : false;
-		}
-
-		private async void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-		{
-
-			SoundService sound = null;
-			if (_Setting != null)
-			{
-				sound = await _PlaySoundAsync(_Setting.ExitingSound, true);
-			}
-
-			_AimpObserver.Dispose();
-
-			if (_Setting != null)
-			{
-				await _StopSoundAsync(sound);
-			}
-		}
-
-		private async void buttonPostNowPlaying_Click(object sender, EventArgs e)
-		{
-			var sound = await _PlaySoundAsync(_Setting.PostingSound, false);
-			await _PostAsync();
-			await _StopSoundAsync(sound);
-		}
-
-		private void pictureBoxAlbumArt_Click(object sender, EventArgs e)
-		{
-			var albumArt = _GetAlbumArt();
-
-			if (albumArt != null)
-			{
-				albumArt.Save("temp.png", ImageFormat.Png);
-				Process.Start("temp.png");
-			}
-		}
-
-		private void checkBoxAutoPosting_CheckedChanged(object sender, EventArgs e)
-		{
-			buttonPostNowPlaying.Enabled = !checkBoxAutoPosting.Checked;
-		}
-
-		private async void buttonShowSettingWindow_Click(object sender, EventArgs e)
-		{
-			var settingWindow = new SettingWindow(_Setting, this.Accounts);
-
-			if (settingWindow.ShowDialog() == DialogResult.OK)
-			{
-				await _Setting.SaveAsync();
-
-				this.TopMost = _Setting.TopMost != null ? (bool)_Setting.TopMost : false;
-			}
-		}
-
-		#endregion Event Handlers
+		#endregion Public Methods
 	}
 }
