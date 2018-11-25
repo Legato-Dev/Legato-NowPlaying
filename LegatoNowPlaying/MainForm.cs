@@ -177,7 +177,11 @@ namespace LegatoNowPlaying
 		private void _UpdateFormTrackInfo(TrackInfo track)
 		{
 			this.labelTrackNumber.Text = $"{track.TrackNumber:D2}.";
+
+			// タイトルラベルのみ、ニーモニックキーの無効化を実施
+			this.labelTitle.UseMnemonic = false;
 			this.labelTitle.Text = track.Title;
+
 			this.labelArtist.Text = track.Artist;
 			this.labelAlbum.Text = track.Album;
 
