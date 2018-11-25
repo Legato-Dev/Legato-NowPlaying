@@ -1,6 +1,7 @@
 using AlbumArtExtraction;
 using Legato;
 using Legato.Interop.AimpRemote.Entities;
+using Microsoft.Win32;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -13,7 +14,6 @@ namespace LegatoNowPlaying
 {
 	public partial class MainForm : Form
 	{
-
 		#region Constractors
 
 		public MainForm()
@@ -199,6 +199,26 @@ namespace LegatoNowPlaying
 				_UpdateAlbumArt();
 			}
 
+			SystemEvents.PowerModeChanged += (s, ev) =>
+			{
+				switch (ev.Mode)
+				{
+					// スリープ直前
+					case PowerModes.Suspend:
+						break;
+
+					// 復帰直後は曲情報を再取得
+					case PowerModes.Resume:
+						_UpdateFormTrackInfo(_AimpProperties.CurrentTrack);
+						_UpdateAlbumArt();
+						break;
+
+					// バッテリーや電源に関する通知があった場合
+					case PowerModes.StatusChange:
+						break;
+				}
+			};
+
 			this.Accounts = new Accounts();
 			this.Accounts.Init();
 
@@ -258,6 +278,5 @@ namespace LegatoNowPlaying
 		}
 
 		#endregion Event Handlers
-
 	}
 }
