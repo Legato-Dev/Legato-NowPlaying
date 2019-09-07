@@ -1,4 +1,6 @@
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace LegatoNowPlaying.Services.Misskey
@@ -33,8 +35,42 @@ namespace LegatoNowPlaying.Services.Misskey
 
 			panel1.Visible = false;
 
+			JToken metaRes = await Misq.Core.Request(textBox1.Text, "meta", new Dictionary<string, object> { });
+			var versionSource = metaRes.Value<string>("version");
+			var versionMajorStr = versionSource.Split('.')[0];
+
+			if (!int.TryParse(versionMajorStr, out int version))
+			{
+				MessageBox.Show(
+					$"invalid format of the Misskey version",
+					"Error",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Exclamation);
+				return;
+			}
+
+			var permissionsList = new List<string>();
+
+			if (version == 10)
+			{
+				permissionsList.AddRange(new[] { "note-write", "drive-write" });
+			}
+			else if (version >= 11)
+			{
+				permissionsList.AddRange(new[] { "write:notes", "write:drive" });
+			}
+			else
+			{
+				MessageBox.Show(
+					$"Unsupported the Misskey instance version",
+					"Error",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Exclamation);
+				return;
+			}
+
 			var app = await Misq.App.Register(
-				textBox1.Text, "Legato Nowplaying", "A NowPlaying App for AIMP4", new[] { "write:notes", "write:drive" });
+				textBox1.Text, "Legato Nowplaying", "A NowPlaying App for AIMP4", permissionsList);
 			var me = await app.Authorize();
 			this.Close();
 			this.onComplete(me, app);
