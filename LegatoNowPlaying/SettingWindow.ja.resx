@@ -130,26 +130,14 @@
   <data name="label3.Text" xml:space="preserve">
     <value>通知の時間 :</value>
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 18</value>
+  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>527, 368</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>投稿時の音 :</value>
+  <data name="tabPage4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>519, 337</value>
   </data>
-  <data name="textBoxPostSoundPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>367, 25</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 301</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 18</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>終了時の音 :</value>
-  </data>
-  <data name="textBoxExitSoundPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>367, 25</value>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>投稿</value>
   </data>
   <data name="previewLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>284, 223</value>
@@ -215,11 +203,11 @@
   <data name="textBoxPostingFormat.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
   </data>
-  <data name="tabPage4.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
     <value>519, 337</value>
   </data>
-  <data name="tabPage4.Text" xml:space="preserve">
-    <value>投稿</value>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>全般</value>
   </data>
   <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>123, 22</value>
@@ -227,17 +215,11 @@
   <data name="checkBox1.Text" xml:space="preserve">
     <value>常に最前面に表示</value>
   </data>
-  <data name="buttonOpenPostSound.Location" type="System.Drawing.Point, System.Drawing">
-    <value>467, 269</value>
-  </data>
-  <data name="buttonOpenExitSound.Location" type="System.Drawing.Point, System.Drawing">
-    <value>467, 298</value>
-  </data>
-  <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
     <value>519, 337</value>
   </data>
-  <data name="tabPage1.Text" xml:space="preserve">
-    <value>全般</value>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>アカウント</value>
   </data>
   <data name="button6.Text" xml:space="preserve">
     <value>設定...</value>
@@ -257,26 +239,17 @@
   <data name="columnHeader3.Text" xml:space="preserve">
     <value>アカウント名</value>
   </data>
-  <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>519, 337</value>
-  </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>アカウント</value>
-  </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 24</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>よお</value>
-  </data>
   <data name="tabPage3.Size" type="System.Drawing.Size, System.Drawing">
     <value>519, 337</value>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
     <value>バージョン情報</value>
   </data>
-  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>527, 368</value>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 24</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>よお</value>
   </data>
   <data name="licenseLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 12</value>
