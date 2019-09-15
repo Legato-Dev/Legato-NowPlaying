@@ -1,10 +1,10 @@
 ![Logo](logo.png)
 # Legato-NowPlaying(en)
-A NowPlaying Application with AIMP Remote API library "Legato".
+The NowPlaying Application with the AIMP Remote API library "Legato".
 
-Let's share for your track information!
+Let's share the songs you are listening to!
 
-Currently it conforms to the following SNS.
+Currently, the following services are supported:
 - Twitter
 - Misskey
 
@@ -28,11 +28,11 @@ MIT License
 ![Logo](logo.png)
 
 # Legato-NowPlaying(ja)
-AIMP Remote API ライブラリ「Legato」を利用した NowPlaying アプリケーションです。
+AIMP Remote API ライブラリ「Legato」を利用した NowPlaying アプリケーション。
 
 あなたの聴いている曲を共有しよう！
 
-現在、以下の SNS に準拠しています。
+現在は以下のサービスに対応しています。
 - Twitter
 - Misskey
 
