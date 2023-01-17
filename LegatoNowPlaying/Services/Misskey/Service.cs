@@ -7,27 +7,26 @@ namespace LegatoNowPlaying.Services.Misskey
 {
 	public class Service : Services.Service
 	{
-		public const string appKey = "z31SlkbuIonQ5G1tdx4j7xvGRL7XS51y";
+		private Misq.Me Me;
 
-		private Misq.Me me;
-
-		private CredentialsJsonFile _Config { get; set; }
+		private CredentialsJsonFile Config { get; set; }
 
 		public override string Name { get; } = "Misskey";
 
-		public override bool IsInstalled => me != null && me.UserToken != null;
+		public override bool IsInstalled => this.Me != null && this.Me.UserToken != null;
 
 		public override bool HasSetting { get; } = true;
 
 		public override Task<bool> Install()
 		{
 			var s = new TaskCompletionSource<bool>();
-			
-			var form = new Services.Misskey.AuthForm(async (Misq.Me me) => {
-				_Config.Token = me.UserToken;
-				_Config.Host = me.Host;
-				_Config.AccountName = "@" + me.Username;
-				await _Config.SaveAsync();
+
+			var form = new Services.Misskey.AuthForm(async (Misq.Me me, Misq.App app) => {
+				this.Config.Token = me.UserToken;
+				this.Config.Secret = app.Secret;
+				this.Config.Host = me.Host;
+				this.Config.AccountName = "@" + me.Username;
+				await this.Config.SaveAsync();
 				await Setup();
 
 				s.SetResult(true);
@@ -39,19 +38,22 @@ namespace LegatoNowPlaying.Services.Misskey
 
 		public override async Task Setup()
 		{
-			_Config = await CredentialsJsonFile.LoadAsync();
+			this.Config = await CredentialsJsonFile.LoadAsync();
 
-			this.me = new Misq.Me(_Config.Host, _Config.Token, appKey);
-			Enabled = _Config.Enabled;
-			AccountName = _Config.AccountName;
+			if (this.Config.Host != null && this.Config.Token != null && this.Config.Secret != null)
+			{
+				this.Me = new Misq.Me(this.Config.Host, this.Config.Token, this.Config.Secret);
+			}
+			this.Enabled = this.Config.Enabled;
+			this.AccountName = this.Config.AccountName;
 		}
 
 		public override async Task ToggleEnable()
 		{
-			Enabled = !Enabled;
+			this.Enabled = !this.Enabled;
 
-			_Config.Enabled = Enabled;
-			await _Config.SaveAsync();
+			this.Config.Enabled = this.Enabled;
+			await this.Config.SaveAsync();
 		}
 
 		public override async Task Post(string text, Image albumArt)
@@ -61,7 +63,7 @@ namespace LegatoNowPlaying.Services.Misskey
 				{ "text", text }
 			};
 
-			if (!_Config.PostToLtl)
+			if (!this.Config.PostToLtl)
 			{
 				ps.Add("visibility", "home");
 			}
@@ -80,17 +82,17 @@ namespace LegatoNowPlaying.Services.Misskey
 					{ new ByteArrayContent(img), "file", "cover.jpg" }
 				};
 
-				var file = await this.me.RequestWithBinary("drive/files/create", form);
+				var file = await this.Me.RequestWithBinary("drive/files/create", form);
 
 				ps.Add("mediaIds", new string[] { file.id });
 			}
 
-			await this.me.Request("notes/create", ps);
+			await this.Me.Request("notes/create", ps);
 		}
 
 		public override Task Setting()
 		{
-			var form = new Services.Misskey.SettingForm();
+			var form = new Services.Misskey.SettingForm(this.Config);
 			form.Show();
 
 			return Task.CompletedTask;
@@ -106,6 +108,8 @@ namespace LegatoNowPlaying.Services.Misskey
 
 		public string Token { get; set; }
 
+		public string Secret { get; set; }
+
 		public string Host { get; set; }
 
 		public bool PostToLtl { get; set; }
@@ -119,9 +123,17 @@ namespace LegatoNowPlaying.Services.Misskey
 		/// <summary>
 		/// misskey.json からアカウント情報を読み込みます
 		/// </summary>
-		public static Task<CredentialsJsonFile> LoadAsync()
+		public static async Task<CredentialsJsonFile> LoadAsync()
 		{
-			return LoadAsync<CredentialsJsonFile>("misskey.json");
+			var setting = await LoadAsync<CredentialsJsonFile>("misskey.json");
+
+			if (setting.Token == null || setting.Secret == null)
+			{
+				setting.Token = null;
+				setting.Secret = null;
+			}
+
+			return setting;
 		}
 
 		/// <summary>

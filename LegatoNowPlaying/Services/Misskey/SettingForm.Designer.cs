@@ -58,7 +58,6 @@
 			this.Name = "SettingForm";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
-			this.Load += new System.EventHandler(this.SettingForm_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

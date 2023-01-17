@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LegatoNowPlaying
 {
@@ -11,18 +12,34 @@ namespace LegatoNowPlaying
 
 		public async void Init()
 		{
-			Services.Add(new Services.Misskey.Service());
-			Services.Add(new Services.Twitter.Service());
+			this.Services.Add(new Services.Misskey.Service());
+			this.Services.Add(new Services.Twitter.Service());
 
-			foreach (var service in Services)
+			for (var i = 0; i < this.Services.Count; i++)
 			{
-				await service.Setup();
+				try
+				{
+					await this.Services[i].Setup();
+				}
+				catch
+				{
+					MessageBox.Show(
+						$"サービス「{this.Services[i].Name}」の設定ファイル読込み時にエラーが発生しました。\r\n" +
+						$"サービス「{this.Services[i].Name}」は無効化されます。\r\n" +
+						"設定ファイルが古い形式で保存されている等が考えられるため、設定ファイルを削除して再設定すると問題が解決する可能性があります。",
+						"エラー",
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Exclamation);
+
+					this.Services.RemoveAt(i);
+					i--;
+				}
 			}
 		}
 
 		public async Task Post(string text, Image albumArt)
 		{
-			foreach (var service in Services)
+			foreach (var service in this.Services)
 			{
 				if (service.Enabled && service.IsInstalled)
 				{

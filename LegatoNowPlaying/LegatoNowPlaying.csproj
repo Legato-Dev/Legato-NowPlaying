@@ -47,9 +47,6 @@
     <Reference Include="Legato, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Legato.1.1.2\lib\net461\Legato.dll</HintPath>
     </Reference>
-    <Reference Include="Misq, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Misq.6.0.0\lib\net461\Misq.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -67,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.cs" />
+    <Compile Include="ErrorLogger.cs" />
     <Compile Include="JsonFile.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -154,6 +152,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\legato.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Misq\Misq.csproj">
+      <Project>{79333b32-8a49-4937-9732-dbac9be770ff}</Project>
+      <Name>Misq</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

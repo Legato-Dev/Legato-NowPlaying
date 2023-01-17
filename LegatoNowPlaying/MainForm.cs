@@ -155,6 +155,8 @@ namespace LegatoNowPlaying
 
 			var albumArt = this._GetAlbumArt();
 
+
+
 			await _Accounts.Post(text, this.checkBoxNeedAlbumArt.Checked ? albumArt : null);
 		}
 
