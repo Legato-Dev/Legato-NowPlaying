@@ -20,7 +20,7 @@ namespace LegatoNowPlaying.Services.Misskey
 		public override Task<bool> Install()
 		{
 			var s = new TaskCompletionSource<bool>();
-			
+
 			var form = new Services.Misskey.AuthForm(async (Misq.Me me, Misq.App app) => {
 				this.Config.Token = me.UserToken;
 				this.Config.Secret = app.Secret;

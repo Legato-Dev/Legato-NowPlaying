@@ -76,7 +76,7 @@ namespace LegatoNowPlaying.Services.Misskey
 			this.onComplete(me, app);
 
 			MessageBox.Show(
-				$"WELCOME {me.Username}",
+				$"WELCOME @{me.Username}",
 				"Done",
 				MessageBoxButtons.OK,
 				MessageBoxIcon.Information);
