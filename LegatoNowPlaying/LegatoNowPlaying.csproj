@@ -154,7 +154,7 @@
     <None Include="Resources\legato.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Misq\Misq\Misq.csproj">
+    <ProjectReference Include="..\Misq\Misq.csproj">
       <Project>{79333b32-8a49-4937-9732-dbac9be770ff}</Project>
       <Name>Misq</Name>
     </ProjectReference>
