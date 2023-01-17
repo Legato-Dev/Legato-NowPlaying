@@ -40,7 +40,7 @@ namespace LegatoNowPlaying
 			// render version
 			var assembly = Assembly.GetExecutingAssembly();
 			var v = assembly.GetName().Version;
-			this.versionLabel.Text = $"Version: {v.Major}.{v.Minor}.{v.Revision}";
+			this.versionLabel.Text = $"Version: {v.Major}.{v.Minor}.{v.Build}";
 
 			// add services list
 			foreach (var service in this._Accounts.Services)
