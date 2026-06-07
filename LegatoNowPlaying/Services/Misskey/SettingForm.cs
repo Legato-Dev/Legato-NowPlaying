@@ -9,9 +9,9 @@ namespace LegatoNowPlaying.Services.Misskey
 		{
 			InitializeComponent();
 
-			this.Config = config;
+			Config = config;
 
-			this.checkBox1.Checked = config.PostToLtl;
+			comboBox1.SelectedIndex = Config.VisibilityIndex.Value;
 		}
 
 		private CredentialsJsonFile Config;
@@ -19,8 +19,8 @@ namespace LegatoNowPlaying.Services.Misskey
 		// save button
 		private async void button1_Click(object sender, EventArgs e)
 		{
-			this.Config.PostToLtl = this.checkBox1.Checked;
-			await this.Config.SaveAsync();
+			Config.VisibilityIndex = comboBox1.SelectedIndex;
+			await Config.SaveAsync();
 
 			this.Close();
 		}
