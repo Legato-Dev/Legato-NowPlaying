@@ -130,7 +130,7 @@
     <value>フォロワー</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>公開範囲:</value>
+    <value>投稿の公開範囲:</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Misskey の設定</value>
