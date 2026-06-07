@@ -63,10 +63,7 @@ namespace LegatoNowPlaying.Services.Misskey
 				{ "text", text }
 			};
 
-			if (!this.Config.PostToLtl)
-			{
-				ps.Add("visibility", "home");
-			}
+			ps.Add("visibility", MapVisibility(this.Config.VisibilityIndex.Value));
 
 			if (albumArt != null)
 			{
@@ -88,6 +85,21 @@ namespace LegatoNowPlaying.Services.Misskey
 			}
 
 			await this.Me.Request("notes/create", ps);
+		}
+
+		private string MapVisibility(int visibilityIndex)
+		{
+			switch (visibilityIndex)
+			{
+				case 0:
+					return "public";
+				case 1:
+					return "home";
+				case 2:
+					return "followers";
+				default:
+					return "home";
+			}
 		}
 
 		public override Task Setting()
@@ -112,6 +124,11 @@ namespace LegatoNowPlaying.Services.Misskey
 
 		public string Host { get; set; }
 
+		/// <summary>
+		/// 0 public, 1 home, 2 followers
+		/// </summary>
+		public int? VisibilityIndex { get; set; }
+
 		public bool PostToLtl { get; set; }
 
 		public string AccountName { get; set; }
@@ -131,6 +148,13 @@ namespace LegatoNowPlaying.Services.Misskey
 			{
 				setting.Token = null;
 				setting.Secret = null;
+			}
+
+			// PostToLtlからの設定移行
+			// ・trueであればpublic扱い、falseであればhome扱いとする
+			if (setting.VisibilityIndex == null)
+			{
+				setting.VisibilityIndex = setting.PostToLtl ? 0 : 1;
 			}
 
 			return setting;
